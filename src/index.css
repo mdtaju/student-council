@@ -1,0 +1,150 @@
+/* Import Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Old+Standard+TT:wght@400;700&family=Poppins:wght@400;500;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Ruda:wght@400;500;600;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@100&family=Anek+Odia:wght@100;600&family=Beau+Rivage&family=Kanit:ital,wght@0,500;0,600;1,500&family=Oswald:wght@400;500;600;700&family=PT+Sans+Narrow:wght@700&family=Poppins&display=swap%22");
+
+* {
+  font-family: "Poppins", sans-serif;
+  /* font-family: 'Anek Gujarati', sans-serif; */
+  /* font-family: 'Anek Odia', sans-serif; */
+  /* font-family: 'Beau Rivage', cursive; */
+  /* font-family: 'Kanit', sans-serif; */
+  /* font-family: 'Oswald', sans-serif; */
+  /* font-family: 'PT Sans Narrow', sans-serif; */
+}
+
+.text-p {
+  /* font-family: 'Roboto Mono', monospace; */
+  font-family: "Kanit", sans-serif;
+
+  /* font-family: "Poppins", sans-serif; */
+}
+
+.cursive {
+  font-family: "Beau Rivage", cursive;
+}
+
+.text {
+  /* font-family: 'Roboto Mono', monospace; */
+  /* font-family: "Poppins", sans-serif; */
+  /* font-family: 'Anek Gujarati', sans-serif; */
+  /* font-family: 'Oswald', sans-serif; */
+  /* font-family: 'PT Sans Narrow', sans-serif; */
+  font-family: "Ruda", sans-serif;
+}
+
+/* .navbar {
+  font-family: 'Anek Odia', sans-serif;
+} */
+
+/**********event expo features card**********/
+.feature_card,
+.feature_title,
+.feature_icon {
+  transition: all 0.35s linear;
+}
+/* #ff5e14 */
+.feature_card:hover .feature_icon {
+  background-color: #ff0000;
+}
+
+.feature_card:hover .feature_title {
+  color: #ff0000;
+}
+
+/********testimonials******/
+
+.zoomed_img {
+  transform: scale(1);
+  transition: all 0.35s ease-in-out;
+  overflow: hidden;
+}
+
+.testimonial_box:hover .zoomed_img {
+  transform: scale(1.2);
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+}
+
+/*******event album layout*******/
+
+.transition_move {
+  transition: all 0.35s ease-in;
+}
+
+/*********expo slider banner********/
+/* 
+.swiper .res-slide {
+  min-width: 300px;
+  max-width: 400px;
+  min-height: 350px;
+  border: 2px solid hsl(210, 100%, 50%);
+  border-radius: 20px;
+} */
+
+/* .swiper-nav-btns {
+  position: relative;
+  ;
+} */
+
+/* .swiper {
+  position: relative !important
+} */
+
+.swiper-nav-btns button {
+  /* position: absolute; */
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #031f4b;
+  color: #fff;
+  margin: 0px 0.5rem;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+  transition: all 0.5s;
+  z-index: 99999;
+}
+
+.jodit-workplace {
+  height: 300px !important;
+}
+.jodit-wysiwyg {
+  height: 100% !important;
+}
+/* 
+.swiper-nav-btns button:hover {
+  background-color: hsl(210, 100%, 40%);
+  cursor: pointer;
+} */
+
+/* custom scrollbar */
+.custom_scrollbar::-webkit-scrollbar {
+  /* Customize the scrollbar width */
+  @apply w-[10px] rounded-full bg-gray-100;
+}
+
+.custom_scrollbar::-webkit-scrollbar-track {
+  /* Customize the scrollbar track */
+  @apply w-[8px] rounded-full bg-gray-100;
+}
+
+.custom_scrollbar::-webkit-scrollbar-thumb {
+  /* Customize the scrollbar thumb */
+  @apply w-[8px] rounded-full bg-gray-300;
+}
