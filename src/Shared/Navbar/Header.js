@@ -18,9 +18,51 @@ import useFirebaseLogin from "../../hooks/useFirebaseLogin";
 // import GET from "../../API/get";
 // import { backendURL } from "../../API/config";
 
+import '@mui/material/styles';
+/* SignIn modal import here  */
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import CloseIcon from '@mui/icons-material/Close';
+
+
+
+// Import Tailwind CSS
+import 'tailwindcss/base.css';
+import 'tailwindcss/components.css';
+import 'tailwindcss/utilities.css';
+
+
+/* SignIn Modal functionality  */
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
+
+
 const drawerWidth = 280;
 
 const Header = ({ window, show }) => {
+
+
+  /* SignIn Modal functionality  */
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
   // const { user, logoutUser, isLogin } = useContext(Context);
   const { SignOutAccount } = useFirebaseLogin();
   const auth = useAuth();
@@ -274,6 +316,44 @@ const Header = ({ window, show }) => {
 
   return (
     <div className="navbar bg-white">
+
+
+
+      {/* SignIn Modal Code  start here  */}
+      <React.Fragment>
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <DialogTitle className={"text-center font-bolder font-mono text-2xl"} sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+            WELCOME TO STUDENT COUNCIL
+          </DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogContent dividers>
+            <Button className={"w-full   py-4 rounded my-2 font-bold text-white  "} variant="outlined" >Free Assessment</Button>
+            <Button className={"w-full  py-4 rounded my-2 font-bold text-white  "} variant="outlined">Call Back Request</Button>
+            <Button className={"w-full  py-4 rounded my-2 font-bold text-white  "} variant="outlined" >Appointment Booking</Button>
+            <Button className={"w-full  py-4 rounded my-2 font-bold text-white "} variant="outlined">Help and support?</Button>
+          </DialogContent>
+        </BootstrapDialog>
+      </React.Fragment>
+
+      {/* SignIn Modal Code end  here  */}
+
+
+
       <Box sx={{ display: "flex" }} style={{}} className="shadow-lg">
         <CssBaseline />
         <AppBar
@@ -284,11 +364,10 @@ const Header = ({ window, show }) => {
             boxShadow: "none",
             borderBottom: "1px solid rgb(209 213 219 / 1)",
           }}
-          className={`${
-            !show
-              ? "fixed top-0 duration-100 py-4 scroll-smooth"
-              : "lg:mt-[60px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
-          }`}>
+          className={`${!show
+            ? "fixed top-0 duration-100 py-4 scroll-smooth"
+            : "lg:mt-[60px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
+            }`}>
           <Toolbar className="w-11/12 md:w-full mx-auto lg:w-full xl:w-11/12 lg mx-1:xl:mx-2 xl:mx-auto text-black">
             <div className="flex justify-between items-center lg:hidden w-full">
               <IconButton
@@ -531,7 +610,27 @@ const Header = ({ window, show }) => {
                   </>
                 ) : (
                   <>
+
+
+
+
+
+                    {/* signIn button here  */}
+
+
+
                     <NavLink
+                      onClick={handleClickOpen}
+                      to={""}
+                      className={
+                        "text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "
+                      }>
+                      Sign In
+                    </NavLink>
+
+
+                    <NavLink
+                      onClick={handleClickOpen}
                       to={"/login"}
                       className={
                         "text-center mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
