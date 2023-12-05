@@ -78,6 +78,11 @@ const AdminDashboardListItem = ({ setState, handleDrawerToggle, open }) => {
                 <PeopleAltTwoTone className="text-" />
               </ListItemIcon>
             )}
+            {normalPath?.name === "All Visa" && (
+              <ListItemIcon>
+                <PeopleAltTwoTone className="text-" />
+              </ListItemIcon>
+            )}
             {normalPath?.name === "All Students" && (
               <ListItemIcon>
                 <PeopleAltTwoTone className="text-" />

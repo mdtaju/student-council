@@ -4,7 +4,7 @@ export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:9000",
-    // https://server-y29-p.applyversity.com
+    // http://localhost:9000
   }),
   tagTypes: [],
   endpoints: (builder) => ({}),

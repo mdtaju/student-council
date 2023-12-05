@@ -6,7 +6,6 @@ export default function useAuth() {
 
   if (auth?.accessToken && auth?.user) {
     let decoded = jwt_decode(auth?.accessToken);
-    console.log(decoded);
     let role;
     if (decoded?.role === "Student") {
       role = "Student";

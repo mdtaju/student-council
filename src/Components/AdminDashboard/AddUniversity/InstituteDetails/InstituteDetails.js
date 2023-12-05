@@ -57,6 +57,8 @@ const InstituteDetails = ({
   setCommission,
   mapLocation,
   setMapLocation,
+  livingCostDuration,
+  setLivingCostDuration,
 }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -84,6 +86,8 @@ const InstituteDetails = ({
   } = useDropzone({ onDrop: onDocumentsDrop });
 
   const partnershipOptions = ["", "B2B University", "Direct University"];
+
+  const costOfLivingDuration = ["", "Weekly", "Monthly", "Yearly"];
 
   const deliveryMethods = ["", "In Class", "Online"];
 
@@ -194,6 +198,13 @@ const InstituteDetails = ({
           placeholder="Enter cost"
           value={constOfLiving}
           onChange={(e) => setCostOfLiving(e.target.value)}
+        />
+        <SelectInput
+          title={"Cost Duration"}
+          optionsArray={costOfLivingDuration}
+          // isRequired
+          selectState={livingCostDuration}
+          setSelectState={setLivingCostDuration}
         />
         <Input
           type="url"

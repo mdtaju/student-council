@@ -8,6 +8,7 @@ exports.adminNormalPathname = [
   // { path: "administrationList", name: "Administration List" },
   { path: "appointments", name: "Appointments" },
   { path: "addVisa", name: "Add Visa" },
+  { path: "allVisa", name: "All Visa" },
   { path: "allStudents", name: "All Students" },
 ];
 

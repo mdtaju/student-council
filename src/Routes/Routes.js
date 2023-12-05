@@ -69,9 +69,11 @@ import AddUniversity from "../Components/AdminDashboard/AddUniversity/AddUnivers
 import AllStudents from "../Components/AdminDashboard/AllStudents/AllStudents";
 import AllUniversity from "../Components/AdminDashboard/AllUniversity/AllUniversity";
 import UpdateUniversity from "../Components/AdminDashboard/AllUniversity/UpdateUniversity";
+import AllVisa from "../Components/AdminDashboard/AllVisa/AllVisa";
 import Appointments from "../Components/AdminDashboard/Appointments/Appointments";
 import MakeUser from "../Components/AdminDashboard/MakeUser/MakeUser";
 import AddVisa from "../Components/AdminDashboard/VisaApplications/AddVisa";
+import VisaUpdate from "../Components/AdminDashboard/VisaUpdate/VisaUpdate";
 import CounsellorAppointments from "../Components/CounsellorDashboard/Appointments/Appointments";
 import ContactMessages from "../Components/CounsellorDashboard/ContactMessages.js/ContactMessages";
 import StudentCourseList from "../Components/CounsellorDashboard/StudentCourseList/StudentCourseList";
@@ -82,6 +84,7 @@ import ApplicationAndApply from "../Components/StudentDashboard/StudentProfile/A
 import CourseDetails from "../Components/StudentDashboard/StudentProfile/CourseDetails/CourseDetails";
 import SearchAndApply from "../Components/StudentDashboard/StudentProfile/SearchAndApply/SearchAndApply";
 import StudentProfile from "../Components/StudentDashboard/StudentProfile/StudentProfile";
+import VisaApplication from "../Components/StudentDashboard/StudentProfile/VisaApplication/VisaApplication";
 import UniversityDetails from "../Components/StudentDashboard/UniversityDetails/UniversityDetails";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import CourseDetailsPublic from "../Pages/CourseDetails/CourseDetails";
@@ -242,6 +245,14 @@ export const routes = createBrowserRouter([
       {
         path: "addVisa",
         element: <AddVisa />,
+      },
+      {
+        path: "allVisa",
+        element: <AllVisa />,
+      },
+      {
+        path: "updateVisa/:id",
+        element: <VisaUpdate />,
       },
       {
         path: "allStudents",
@@ -483,6 +494,10 @@ export const routes = createBrowserRouter([
       {
         path: "applications/:id",
         element: <ApplicationAndApply />,
+      },
+      {
+        path: "visaApplications",
+        element: <VisaApplication />,
       },
       {
         path: "createAppointment",

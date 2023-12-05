@@ -31,6 +31,7 @@ const AddCourse = ({ courses, setCourses }) => {
   const [courseUrl, setCourseUrl] = useState("");
   const [currency, setCurrency] = useState("");
   const [applicationFee, setApplicationFee] = useState("");
+  const [applicationOfferFee, setApplicationOfferFee] = useState("");
   const [tuitionFee, setTuitionFee] = useState("");
   const [minimumTuitionFee, setMinimumTuitionFee] = useState("");
   const [entryRequirement, setEntryRequirement] = useState("");
@@ -49,6 +50,7 @@ const AddCourse = ({ courses, setCourses }) => {
   const [eslOption, setEslOption] = useState("");
   const [aboutDocument, setAboutDocument] = useState("");
   const [deadline, setDeadline] = useState("");
+  const [applicationAvailability, setApplicationAvailability] = useState("");
   // multi Standardized custom score
   const [standardizedTests, setStandardizedTests] = useState([]);
   const [requirements, setRequirements] = useState([]);
@@ -71,12 +73,14 @@ const AddCourse = ({ courses, setCourses }) => {
       course_url: courseUrl,
       currency,
       application_fee: applicationFee,
+      application_offer_fee: applicationOfferFee,
       yearly_tuition_fee: tuitionFee,
       minimum_tuition_fee: minimumTuitionFee,
       average_time_acceptance_letter: avgTimeToReceiveLetter,
       admission_interview: isInterview,
       scholarship_available: isScholarship,
       course_for: courseForLevel,
+      application_availability: applicationAvailability,
       entry_requirements: entryRequirement,
       remarks,
       pte_overall: PTEOverall,
@@ -152,10 +156,12 @@ const AddCourse = ({ courses, setCourses }) => {
     setTests(course?.custom_test);
     setCourseDocuments(course?.require_documents);
     setCourseForLevel(course?.course_for);
+    setApplicationAvailability(course?.application_availability);
     setDuration(course?.duration);
     setCampus(course?.campus);
     setCourseUrl(course?.course_url);
     setApplicationFee(course?.application_fee);
+    setApplicationOfferFee(course?.application_offer_fee);
     setTuitionFee(course?.yearly_tuition_fee);
     setEntryRequirement(course?.entry_requirements);
     setRemarks(course?.remarks);
@@ -192,10 +198,12 @@ const AddCourse = ({ courses, setCourses }) => {
     setTests([]);
     setCourseDocuments([]);
     setCourseForLevel("");
-    setDuration("");
     setCampus("");
+    setDuration("");
+    setApplicationAvailability("");
     setCourseUrl("");
     setApplicationFee("");
+    setApplicationOfferFee("");
     setTuitionFee("");
     setMinimumTuitionFee("");
     setEntryRequirement("");
@@ -258,6 +266,8 @@ const AddCourse = ({ courses, setCourses }) => {
             setCourseUrl={setCourseUrl}
             applicationFee={applicationFee}
             setApplicationFee={setApplicationFee}
+            applicationOfferFee={applicationOfferFee}
+            setApplicationOfferFee={setApplicationOfferFee}
             tuitionFee={tuitionFee}
             setTuitionFee={setTuitionFee}
             minimumTuitionFee={minimumTuitionFee}
@@ -278,6 +288,8 @@ const AddCourse = ({ courses, setCourses }) => {
             setCourseRequirements={setCourseRequirements}
             currency={currency}
             setCurrency={setCurrency}
+            applicationAvailability={applicationAvailability}
+            setApplicationAvailability={setApplicationAvailability}
           />
           <div className="col-span-3">
             <TextArea

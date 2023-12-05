@@ -70,7 +70,9 @@ const EducationInfo = ({
   return (
     <div>
       <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg mt-10">
-        <h1 className="text-2xl font-bold text-gray-600">Education Summary</h1>
+        <h1 className="text-2xl font-bold text-gray-600">
+          Latest Education Summary
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-6">
           <SelectCountry
             title={"Country of Education"}

@@ -18,7 +18,7 @@ const DetailsBox = ({ attendSchools, setAttendSchools, handleExpire }) => {
       {attendSchools?.map((school, i) => (
         <div
           key={i}
-          className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-6">
+          className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-6 border border-gray-300 p-4 rounded-md">
           <div className="">
             <h1 className="text-base font-medium text-gray-800">
               {school?.name_of_institute}

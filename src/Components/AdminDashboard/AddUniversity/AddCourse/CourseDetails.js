@@ -57,6 +57,10 @@ const CourseDetails = ({
   setCourseRequirements,
   currency,
   setCurrency,
+  applicationOfferFee,
+  setApplicationOfferFee,
+  applicationAvailability,
+  setApplicationAvailability,
 }) => {
   const monthName = [
     "",
@@ -184,9 +188,11 @@ const CourseDetails = ({
     { value: "Overall Course", label: "Overall Course" },
   ];
 
-  const isInterviewOptions = [
-    { value: "Yes", label: "Yes" },
-    { value: "No", label: "No" },
+  const isInterviewOptions = scholarshipOptions;
+
+  const applicationAvailabilityOption = [
+    { value: "Open", label: "Open" },
+    { value: "Close", label: "Close" },
   ];
 
   const courseDuration = [
@@ -199,7 +205,8 @@ const CourseDetails = ({
 
   const programLevels = [
     "",
-    "High School (11th - 12th)",
+    "School/ O Level (1st-10th)",
+    "High School / A Level (11th - 12th)",
     "UG Diploma/ Certificate/ Associate Degree",
     "UG",
     "PG Diploma/Certificate",
@@ -216,6 +223,7 @@ const CourseDetails = ({
   ];
 
   const requirementsArray = [
+    "MOI",
     "PTE",
     "TOEFL iBT",
     "IELTS",
@@ -246,6 +254,10 @@ const CourseDetails = ({
 
   const handleInterview = (value) => {
     setIsInterview(value);
+  };
+
+  const handleApplicationAvailability = (value) => {
+    setApplicationAvailability(value);
   };
 
   const handleChange = (e, v) => {
@@ -420,6 +432,15 @@ const CourseDetails = ({
         onChange={(e) => setApplicationFee(e.target.value)}
       />
       <Input
+        title={"Application Offer Fees"}
+        type="number"
+        // // isRequired
+        // required
+        placeholder="Enter amount with currency"
+        value={applicationOfferFee}
+        onChange={(e) => setApplicationOfferFee(e.target.value)}
+      />
+      <Input
         title={"Yearly Tuition Fees"}
         type={"number"}
         // // isRequired
@@ -455,6 +476,7 @@ const CourseDetails = ({
         selectedValue={isInterview}
         onChange={handleInterview}
       />
+
       <RadioInput
         title={"Is scholarship available?"}
         // // isRequired
@@ -492,6 +514,15 @@ const CourseDetails = ({
         // // isRequired
         selectState={courseForLevel}
         setSelectState={setCourseForLevel}
+      />
+      <RadioInput
+        title={"Application Availability"}
+        // // isRequired
+        // required
+        name="applicationAvailability"
+        options={applicationAvailabilityOption}
+        selectedValue={applicationAvailability}
+        onChange={handleApplicationAvailability}
       />
     </div>
   );

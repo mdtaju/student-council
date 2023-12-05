@@ -41,6 +41,7 @@ const AddUniversity = () => {
   const [aboutInstitute, setAboutInstitute] = useState("");
   const [commission, setCommission] = useState("");
   const [mapLocation, setMapLocation] = useState("");
+  const [livingCostDuration, setLivingCostDuration] = useState("");
 
   // requirements state - under the university
   const [requirements, setRequirements] = useState([]);
@@ -73,7 +74,7 @@ const AddUniversity = () => {
   //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   // }, [isError, data]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const formData = new FormData();
     setLoading(true);
 
@@ -136,6 +137,7 @@ const AddUniversity = () => {
     formData.append("provider_id", providerId);
     formData.append("type_of_institute", typeOfInstitute);
     formData.append("cost_of_living", constOfLiving);
+    formData.append("living_cost_duration", livingCostDuration);
     formData.append("website_url", websiteUrl);
     formData.append("qs_ranking", qsRanging);
     formData.append("national_ranking", nationalRanking);
@@ -152,7 +154,7 @@ const AddUniversity = () => {
       formData.append("longitude", getLocation[1]?.trimStart());
     }
 
-    await addUniversity(formData)
+    addUniversity(formData)
       .unwrap()
       .then((d) => {
         setOpen(true);
@@ -257,6 +259,8 @@ const AddUniversity = () => {
           setCommission={setCommission}
           mapLocation={mapLocation}
           setMapLocation={setMapLocation}
+          livingCostDuration={livingCostDuration}
+          setLivingCostDuration={setLivingCostDuration}
         />
 
         {/* add courses */}

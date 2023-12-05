@@ -23,6 +23,7 @@ const TestScores = ({
     "",
     "I don't have this",
     "I will provide this later",
+    "Without English Proficiency",
     "TOEFL",
     "IELTS",
     "Duolingo English Test",

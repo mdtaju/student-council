@@ -39,8 +39,77 @@ export const studentApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    addAllowStudentVisa: builder.mutation({
+      query: (data) => ({
+        url: "/visa_application",
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    deleteAllowStudentVisa: builder.mutation({
+      query: (data) => ({
+        url: "/visa_application",
+        method: "DELETE",
+        body: data,
+      }),
+    }),
+    deleteVisaApplication: builder.mutation({
+      query: (data) => ({
+        url: "/visa_application_delete",
+        method: "DELETE",
+        body: data,
+      }),
+    }),
     getAllStudents: builder.query({
       query: (id) => `/auth_users/${id}`,
+    }),
+    getVisaForStudent: builder.query({
+      query: (id) => `/get_visa_for_student/${id}`,
+    }),
+    addVisaDocumentFromStudent: builder.mutation({
+      query: (data) => ({
+        url: "/visa_documents_from_student",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    addVisaStatusUpdate: builder.mutation({
+      query: (data) => ({
+        url: "/status_update",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    deleteVisaSubmittedFile: builder.mutation({
+      query: (data) => ({
+        url: "/delete_student_upload",
+        method: "DELETE",
+        body: data,
+      }),
+    }),
+    getVisaByCountry: builder.query({
+      query: (id) => `/get_visa_by_country/${id}`,
+    }),
+    addVisaDocumentFiles: builder.mutation({
+      query: (data) => ({
+        url: "/add_visa_documents",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    deleteVisaDocuments: builder.mutation({
+      query: (data) => ({
+        url: "/delete_visa_documents",
+        method: "DELETE",
+        body: data,
+      }),
+    }),
+    updateVisaApplication: builder.mutation({
+      query: (data) => ({
+        url: "/update_visa_application",
+        method: "POST",
+        body: data,
+      }),
     }),
   }),
 });
@@ -56,5 +125,16 @@ export const {
   useAddContactMessageMutation,
   useGetContactMessagesQuery,
   useAddVisaDocumentMutation,
+  useAddAllowStudentVisaMutation,
+  useDeleteAllowStudentVisaMutation,
+  useDeleteVisaApplicationMutation,
+  useGetVisaForStudentQuery,
   useGetAllStudentsQuery,
+  useAddVisaDocumentFromStudentMutation,
+  useAddVisaStatusUpdateMutation,
+  useDeleteVisaSubmittedFileMutation,
+  useGetVisaByCountryQuery,
+  useAddVisaDocumentFilesMutation,
+  useDeleteVisaDocumentsMutation,
+  useUpdateVisaApplicationMutation,
 } = studentApi;

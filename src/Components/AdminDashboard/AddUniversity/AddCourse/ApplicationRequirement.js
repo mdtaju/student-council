@@ -275,7 +275,7 @@ const ApplicationRequirement = ({ requirements, setRequirements }) => {
             onChange={handleNoteOption}
           />
           <RadioInput
-            title={"Access Type"}
+            title={"Requirement Access Type"}
             // is// Required
             // required
             name="accessType"

@@ -15,6 +15,9 @@ const MenuTab = () => {
     if (location?.pathname === "/student-dashboard/applications") {
       setActiveTab("applications");
     }
+    if (location?.pathname === "/student-dashboard/visaApplications") {
+      setActiveTab("visaApplications");
+    }
   }, [location]);
   return (
     <div className="w-full flex items-center gap-6 border-b border-gray-400 mb-10 px-6">
@@ -46,6 +49,16 @@ const MenuTab = () => {
               : "border-transparent"
           }`}>
           <span>Applications</span>
+        </div>
+      </Link>
+      <Link to={"/student-dashboard/visaApplications"}>
+        <div
+          className={`p-2 border-b-4 cursor-pointer ${
+            activeTab === "visaApplications"
+              ? "border-blue-500 text-blue-500"
+              : "border-transparent"
+          }`}>
+          <span>Visa Applications</span>
         </div>
       </Link>
     </div>

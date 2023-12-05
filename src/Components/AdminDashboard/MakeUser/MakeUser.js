@@ -11,7 +11,14 @@ const MakeUser = () => {
   const [mss, setMss] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const userTypes = ["Admin", "Branch_Admin", "Counsellor_Admin"];
+  const userTypes = [
+    "Admin",
+    "Branch_Admin",
+    "Counsellor_Admin",
+    "Smart_Partner",
+    "Agent",
+    "B2B Partner",
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();

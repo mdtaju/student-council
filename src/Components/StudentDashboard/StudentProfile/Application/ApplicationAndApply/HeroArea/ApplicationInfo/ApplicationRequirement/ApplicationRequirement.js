@@ -147,7 +147,7 @@ const ApplicationRequirement = ({ course_req = [] }) => {
       setPostSubmissionStatus(getAllPostSubReqStatus);
 
       const getPreSub = getCourseByAccessType.filter(
-        (cR) => cR?.application_type === "Admission"
+        (cR) => cR?.application_type === "Pre-Submission"
       );
 
       const getAllPreSubReqStatus = totalReqStatusCount(getPreSub);
