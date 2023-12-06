@@ -9,6 +9,7 @@ import StudyDestination from "../../Components/Home/StudyDestination/StudyDestin
 import Testimonials from "../../Shared/Testimonials/Testimonials";
 import Banner from "../../assets/hero/900.jpg";
 import BannerBottom from "../../Components/Home/BannerBottom/BannerBottom";
+import NewHeroSection from "../../Components/Home/HeroSection/NewHeroSection";
 
 const Home = () => {
   const [show, setShow] = useState(true);
@@ -33,7 +34,8 @@ const Home = () => {
       <div className="bg-[#F4F4F4] w-full">
         <SocialLinks />
         <div className={`${show ? "lg:mt-[80px] mt-[50px]" : "mt-[50px]"} `}>
-          <HeroSection></HeroSection>
+          {/* <HeroSection></HeroSection> */}
+          <NewHeroSection></NewHeroSection>
         </div>
 
         <div className="bg-secondary text-white "> 

@@ -1,0 +1,27 @@
+ /* .customStyle {
+   -webkit-animation-delay: 1.7s;
+   -moz-animation-delay: 1.7s;
+   animation-delay: 1.7s;
+
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+     -webkit-transform: translate3d(0, 100%, 0);
+     transform: translate3d(0, 100%, 0);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform:none;
+      transform: none;
+    }
+  }
+  
+  .fadeUp {
+    -webkit-animation-name: fadeUp;
+    animation-name: fadeUp;
+  } 
+ */
+
+
