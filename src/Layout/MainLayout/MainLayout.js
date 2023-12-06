@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import ReactWhatsapp from "react-whatsapp";
 import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
-import NewNavbar from '../../Shared/Navbar/NewNavbar';
 import SideLinks from "../../Shared/SideLinks/SideLinks";
 import whatsApp from "../../assets/logo/whatsapp.png";
 
@@ -11,8 +10,7 @@ const MainLayout = () => {
   return (
     <div className="">
       {/* <Navbar></Navbar> */}
-      {/* <Navbar></Navbar> */}
-      <NewNavbar></NewNavbar>
+      <Navbar></Navbar>
       <SideLinks />
       <Outlet></Outlet>
       <Footer></Footer>

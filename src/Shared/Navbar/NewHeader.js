@@ -18,11 +18,39 @@ import useFirebaseLogin from "../../hooks/useFirebaseLogin";
 // import GET from "../../API/get";
 // import { backendURL } from "../../API/config";
 
+import '@mui/material/styles';
+/* SignIn modal import here  */
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import CloseIcon from '@mui/icons-material/Close';
+
+
+
+// Import Tailwind CSS
+import 'tailwindcss/base.css';
+import 'tailwindcss/components.css';
+import 'tailwindcss/utilities.css';
+
+
+/* SignIn Modal functionality  */
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
 
 
 const drawerWidth = 280;
 
-const Header = ({ window, show }) => {
+const NewHeader = ({ window, show }) => {
 
 
   /* SignIn Modal functionality  */
@@ -290,6 +318,39 @@ const Header = ({ window, show }) => {
     <div className="navbar bg-white">
 
 
+
+      {/* SignIn Modal Code  start here  */}
+      <React.Fragment>
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <DialogTitle className={"text-center font-bolder font-mono text-2xl"} sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+            WELCOME TO STUDENT COUNCIL
+          </DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogContent dividers>
+            <Button className={"w-full   py-4 rounded my-2 font-bold text-white  "} variant="outlined" >Free Assessment</Button>
+            <Button className={"w-full  py-4 rounded my-2 font-bold text-white  "} variant="outlined">Call Back Request</Button>
+            <Button className={"w-full  py-4 rounded my-2 font-bold text-white  "} variant="outlined" >Appointment Booking</Button>
+            <Button className={"w-full  py-4 rounded my-2 font-bold text-white "} variant="outlined">Help and support?</Button>
+          </DialogContent>
+        </BootstrapDialog>
+      </React.Fragment>
+
+      {/* SignIn Modal Code end  here  */}
 
 
 
@@ -560,6 +621,16 @@ const Header = ({ window, show }) => {
 
                     <NavLink
                       onClick={handleClickOpen}
+                      to={""}
+                      className={
+                        "text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "
+                      }>
+                      Sign In
+                    </NavLink>
+
+
+                    <NavLink
+                      onClick={handleClickOpen}
                       to={"/login"}
                       className={
                         "text-center mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
@@ -654,4 +725,4 @@ const Header = ({ window, show }) => {
   );
 };
 
-export default Header;
+export default NewHeader;
