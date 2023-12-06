@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import TopBar from './TopBar';
 import NewHeader from './NewHeader';
+import NewTopBar from './NewTopBar';
 
 const Navbar = () => {
 
@@ -27,7 +28,8 @@ const Navbar = () => {
             <div
                 className={` ${show ? "opacity-100   scroll-smooth" : "opacity-0 duration-100"} `}
             >
-                <TopBar />
+                {/* <TopBar /> */}
+                <NewTopBar></NewTopBar>
             </div>
 
             {/* Finished */}

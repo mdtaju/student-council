@@ -21,7 +21,7 @@ import useFirebaseLogin from "../../hooks/useFirebaseLogin";
 import '@mui/material/styles';
 /* SignIn modal import here  */
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import { makeStyles, styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -30,116 +30,113 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 
-// Import Tailwind CSS
-import 'tailwindcss/base.css';
-import 'tailwindcss/components.css';
-import 'tailwindcss/utilities.css';
-
 
 /* SignIn Modal functionality  */
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
-  },
-  '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
-  },
+    '& .MuiDialogContent-root': {
+        padding: theme.spacing(2),
+    },
+    '& .MuiDialogActions-root': {
+        padding: theme.spacing(1),
+    },
 }));
-
 
 
 const drawerWidth = 280;
 
 const NewHeader = ({ window, show }) => {
 
+   
+    /* SignIn Modal functionality  */
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-  /* SignIn Modal functionality  */
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
 
-  // const { user, logoutUser, isLogin } = useContext(Context);
-  const { SignOutAccount } = useFirebaseLogin();
-  const auth = useAuth();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
-  const currentURL = location.pathname;
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
 
-  const [activeLink, setActiveLink] = useState("/");
-  let activeStyle = {
-    backgroundColor: "#ff0000",
-    color: "#fff",
-    padding: "8px 20px",
-    borderRadius: "5px",
-    clipPath: `polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%)`,
-    width: "100%",
-  };
+    // const { user, logoutUser, isLogin } = useContext(Context);
+    const { SignOutAccount } = useFirebaseLogin();
+    const auth = useAuth();
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const location = useLocation();
+    const currentURL = location.pathname;
 
-  let loginBtn = {
-    backgroundColor: "#00ADE6",
-    color: "#fff",
-    padding: "8px 20px",
-    width: "100%",
-  };
+    const handleDrawerToggle = () => {
+        setMobileOpen((prevState) => !prevState);
+    };
 
-  useEffect(() => {
-    setActiveLink(currentURL);
-  }, [currentURL]);
+    const [activeLink, setActiveLink] = useState("/");
+    let activeStyle = {
+        backgroundColor: "#ff0000",
+        color: "#fff",
+        padding: "8px 20px",
+        borderRadius: "5px",
+        clipPath: `polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%)`,
+        width: "100%",
+    };
 
-  const drawer = (
-    <Box sx={{ textAlign: "center", color: "black" }}>
-      {/* home */}
-      <ListItem button>
-        <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-          <NavLink
-            to={"/"}
-            exact="true"
-            className={"text-center "}
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            activeclassname={activeLink}
-            onClick={handleDrawerToggle}>
-            {"Home"}
-          </NavLink>
-        </ListItemButton>
-      </ListItem>
-      <ListItem button>
-        <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-          <NavLink
-            to={"/search_and_apply"}
-            exact="true"
-            className={"text-center "}
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            activeclassname={activeLink}
-            onClick={handleDrawerToggle}>
-            {"Search And Apply"}
-          </NavLink>
-        </ListItemButton>
-      </ListItem>
-      <ListItem button>
-        <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-          <NavLink
-            to={"/contact_us"}
-            exact="true"
-            className={"text-center "}
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            activeclassname={activeLink}
-            onClick={handleDrawerToggle}>
-            {"Contact Us"}
-          </NavLink>
-        </ListItemButton>
-      </ListItem>
+    let loginBtn = {
+        backgroundColor: "#00ADE6",
+        color: "#fff",
+        padding: "8px 20px",
+        width: "100%",
+    };
 
-      {/* countries  */}
-      {/* <List>
+    useEffect(() => {
+        setActiveLink(currentURL);
+    }, [currentURL]);
+
+    const drawer = (
+        <Box sx={{ textAlign: "center", color: "black" }}>
+            {/* home */}
+            <ListItem button>
+                <ListItemButton sx={{ textAlign: "center", color: "black" }}>
+                    <NavLink
+                        to={"/"}
+                        exact="true"
+                        className={"text-center "}
+                        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                        activeclassname={activeLink}
+                        onClick={handleDrawerToggle}>
+                        {"Home"}
+                    </NavLink>
+                </ListItemButton>
+            </ListItem>
+            <ListItem button>
+                <ListItemButton sx={{ textAlign: "center", color: "black" }}>
+                    <NavLink
+                        to={"/search_and_apply"}
+                        exact="true"
+                        className={"text-center "}
+                        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                        activeclassname={activeLink}
+                        onClick={handleDrawerToggle}>
+                        {"Search And Apply"}
+                    </NavLink>
+                </ListItemButton>
+            </ListItem>
+            <ListItem button>
+                <ListItemButton sx={{ textAlign: "center", color: "black" }}>
+                    <NavLink
+                        to={"/contact_us"}
+                        exact="true"
+                        className={"text-center "}
+                        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                        activeclassname={activeLink}
+                        onClick={handleDrawerToggle}>
+                        {"Contact Us"}
+                    </NavLink>
+                </ListItemButton>
+            </ListItem>
+
+            {/* countries  */}
+            {/* <List>
         <ListItemButton onClick={() => setOpenCountries(!openCountries)}>
           <ListItemText className="mx-4" primary="Countries" />
           {openCountries ? <ExpandLess /> : <ExpandMore />}
@@ -165,8 +162,8 @@ const NewHeader = ({ window, show }) => {
         </Collapse>
       </List> */}
 
-      {/* e-counselling  */}
-      {/* <ListItem button>
+            {/* e-counselling  */}
+            {/* <ListItem button>
         <ListItemButton sx={{ textAlign: "center", color: "black" }}>
           <NavLink
             to={"/eCounselling"}
@@ -180,9 +177,9 @@ const NewHeader = ({ window, show }) => {
         </ListItemButton>
       </ListItem> */}
 
-      {/* events  */}
+            {/* events  */}
 
-      {/* <List>
+            {/* <List>
         <ListItemButton onClick={() => setOpenEvents(!openEvents)}>
           <ListItemText className="mx-4" primary="Events" />
           {openEvents ? <ExpandLess /> : <ExpandMore />}
@@ -205,7 +202,7 @@ const NewHeader = ({ window, show }) => {
         </Collapse>
       </List> */}
 
-      {/* <List>
+            {/* <List>
         {navItems?.map((route) => (
           <ListItem button key={route?.path}>
             <ListItemButton sx={{ textAlign: "center", color: "black" }}>
@@ -223,8 +220,8 @@ const NewHeader = ({ window, show }) => {
         ))}
       </List> */}
 
-      {/* blog and news  */}
-      {/* <List>
+            {/* blog and news  */}
+            {/* <List>
         <ListItemButton onClick={() => setOpenBlogs(!openBlogs)}>
           <ListItemText className="mx-4" primary="Blog And News" />
           {openBlogs ? <ExpandLess /> : <ExpandMore />}
@@ -247,53 +244,53 @@ const NewHeader = ({ window, show }) => {
         </Collapse>
       </List> */}
 
-      {/* dashboard  */}
-      {auth?.user === "Admin" && (
-        <ListItem button>
-          <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-            <NavLink
-              to={"/dashboard"}
-              exact="true"
-              className={"text-center "}
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              activeclassname={activeLink}
-              onClick={handleDrawerToggle}>
-              {"Dashboard"}
-            </NavLink>
-          </ListItemButton>
-        </ListItem>
-      )}
-      {auth?.user === "Student" && (
-        <ListItem button>
-          <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-            <NavLink
-              to={"/student-dashboard"}
-              exact="true"
-              className={"text-center "}
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              activeclassname={activeLink}
-              onClick={handleDrawerToggle}>
-              {"Dashboard"}
-            </NavLink>
-          </ListItemButton>
-        </ListItem>
-      )}
-      {auth?.user === "Counsellor_Admin" && (
-        <ListItem button>
-          <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-            <NavLink
-              to={"/counsellor-dashboard"}
-              exact="true"
-              className={"text-center "}
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              activeclassname={activeLink}
-              onClick={handleDrawerToggle}>
-              {"Dashboard"}
-            </NavLink>
-          </ListItemButton>
-        </ListItem>
-      )}
-      {/* {isLogin && user?.role === "counsellor" && (
+            {/* dashboard  */}
+            {auth?.user === "Admin" && (
+                <ListItem button>
+                    <ListItemButton sx={{ textAlign: "center", color: "black" }}>
+                        <NavLink
+                            to={"/dashboard"}
+                            exact="true"
+                            className={"text-center "}
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            activeclassname={activeLink}
+                            onClick={handleDrawerToggle}>
+                            {"Dashboard"}
+                        </NavLink>
+                    </ListItemButton>
+                </ListItem>
+            )}
+            {auth?.user === "Student" && (
+                <ListItem button>
+                    <ListItemButton sx={{ textAlign: "center", color: "black" }}>
+                        <NavLink
+                            to={"/student-dashboard"}
+                            exact="true"
+                            className={"text-center "}
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            activeclassname={activeLink}
+                            onClick={handleDrawerToggle}>
+                            {"Dashboard"}
+                        </NavLink>
+                    </ListItemButton>
+                </ListItem>
+            )}
+            {auth?.user === "Counsellor_Admin" && (
+                <ListItem button>
+                    <ListItemButton sx={{ textAlign: "center", color: "black" }}>
+                        <NavLink
+                            to={"/counsellor-dashboard"}
+                            exact="true"
+                            className={"text-center "}
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            activeclassname={activeLink}
+                            onClick={handleDrawerToggle}>
+                            {"Dashboard"}
+                        </NavLink>
+                    </ListItemButton>
+                </ListItem>
+            )}
+            {/* {isLogin && user?.role === "counsellor" && (
         <ListItem button>
           <ListItemButton sx={{ textAlign: "center", color: "black" }}>
             <NavLink
@@ -308,121 +305,124 @@ const NewHeader = ({ window, show }) => {
           </ListItemButton>
         </ListItem>
       )} */}
-    </Box>
-  );
+        </Box>
+    );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+    const container =
+        window !== undefined ? () => window().document.body : undefined;
 
-  return (
-    <div className="navbar bg-white">
-
-
-
-      {/* SignIn Modal Code  start here  */}
-      <React.Fragment>
-        <BootstrapDialog
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <DialogTitle className={"text-center font-bolder font-mono text-2xl"} sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            WELCOME TO STUDENT COUNCIL
-          </DialogTitle>
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <DialogContent dividers>
-            <Button className={"w-full   py-4 rounded my-2 font-bold text-white  "} variant="outlined" >Free Assessment</Button>
-            <Button className={"w-full  py-4 rounded my-2 font-bold text-white  "} variant="outlined">Call Back Request</Button>
-            <Button className={"w-full  py-4 rounded my-2 font-bold text-white  "} variant="outlined" >Appointment Booking</Button>
-            <Button className={"w-full  py-4 rounded my-2 font-bold text-white "} variant="outlined">Help and support?</Button>
-          </DialogContent>
-        </BootstrapDialog>
-      </React.Fragment>
-
-      {/* SignIn Modal Code end  here  */}
+    return (
+        <div className="navbar bg-white">
 
 
 
-      <Box sx={{ display: "flex" }} style={{}} className="shadow-lg">
-        <CssBaseline />
-        <AppBar
-          component="nav"
-          style={{
-            background: "#FFFFFF",
-            width: "100%",
-            boxShadow: "none",
-            borderBottom: "1px solid rgb(209 213 219 / 1)",
-          }}
-          className={`${!show
-            ? "fixed top-0 duration-100 py-4 scroll-smooth"
-            : "lg:mt-[60px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
-            }`}>
-          <Toolbar className="w-11/12 md:w-full mx-auto lg:w-full xl:w-11/12 lg mx-1:xl:mx-2 xl:mx-auto text-black">
-            <div className="flex justify-between items-center lg:hidden w-full">
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { md: "none" } }}>
-                <MenuIcon />
-              </IconButton>
-              <Link to={"/"} className="my-2 ">
-                <img src={Logo} alt="logo" className="w-[6rem] " />
-              </Link>
-            </div>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", md: "block" } }}>
-              <Link to={"/"}>
-                <img
-                  src={Logo}
-                  alt="logo"
-                  className="lg:w-[7rem] xl:w-[10rem]"
-                />
-              </Link>
-            </Typography>
+            {/* SignIn Modal Code  start here  */}
+            <React.Fragment>
+                <BootstrapDialog
+                style={{  padding:'20px'}}
+                    onClose={handleClose}
+                    aria-labelledby="customized-dialog-title"
+                    open={open}
+                >
+                    <DialogTitle 
+                    style={{fontWeight: 'bolder',fontSize:'25px', textAlign:'center'  }}
+                    sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                        WELCOME TO STUDENT COUNCIL
+                    </DialogTitle>
+                    <IconButton
+                        aria-label="close"
+                        onClick={handleClose}
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: 8,
+                            color: (theme) => theme.palette.grey[500],
+                        }}
+                    >
+                        <CloseIcon />
+                    </IconButton>
+                    <DialogContent dividers>
+                        <Button style={{ width:'100%', margin:'5px 0px ', padding:'10px 0px'  , borderRadius:'30px', fontSize:'20px' }} variant="contained"  color="error" >Free Assessment</Button>
+                        <Button style={{ width:'100%', margin:'5px 0px ', padding:'10px 0px'  , borderRadius:'30px', fontSize:'20px' }} variant="contained"  color="error">Call Back Request</Button>
+                        <Button style={{ width:'100%', margin:'5px 0px ', padding:'10px 0px'  , borderRadius:'30px', fontSize:'20px' }} variant="contained"  color="error" >Appointment Booking</Button>
+                        <Button style={{ width:'100%', margin:'5px 0px ', padding:'10px 0px'  , borderRadius:'30px', fontSize:'20px' }} variant="contained"  color="error">Help and support?</Button>
+                    </DialogContent>
+                </BootstrapDialog>
+            </React.Fragment>
 
-            <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <nav>
-                <NavLink
-                  to={"/"}
-                  className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
-                  style={({ isActive }) =>
-                    isActive ? activeStyle : undefined
-                  }>
-                  Home{" "}
-                </NavLink>
-                <NavLink
-                  to={"/search_and_apply"}
-                  className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
-                  style={({ isActive }) =>
-                    isActive ? activeStyle : undefined
-                  }>
-                  Search And Apply{" "}
-                </NavLink>
-                <NavLink
-                  to={"/contact_us"}
-                  className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
-                  style={({ isActive }) =>
-                    isActive ? activeStyle : undefined
-                  }>
-                  Contact Us{" "}
-                </NavLink>
+            {/* SignIn Modal Code end  here  */}
 
-                {/* <button
+
+
+            <Box sx={{ display: "flex" }} style={{}} className="shadow-lg">
+                <CssBaseline />
+                <AppBar
+                    component="nav"
+                    style={{
+                        background: "#FFFFFF",
+                        width: "100%",
+                        boxShadow: "none",
+                        borderBottom: "1px solid rgb(209 213 219 / 1)",
+                    }}
+                    className={`${!show
+                        ? "fixed top-0 duration-100 py-4 scroll-smooth"
+                        : "lg:mt-[60px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
+                        }`}>
+                    <Toolbar className="w-11/12 md:w-full mx-auto lg:w-full xl:w-11/12 lg mx-1:xl:mx-2 xl:mx-auto text-black">
+                        <div className="flex justify-between items-center lg:hidden w-full">
+                            <IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                edge="start"
+                                onClick={handleDrawerToggle}
+                                sx={{ mr: 2, display: { md: "none" } }}>
+                                <MenuIcon />
+                            </IconButton>
+                            <Link to={"/"} className="my-2 ">
+                                <img src={Logo} alt="logo" className="w-[6rem] " />
+                            </Link>
+                        </div>
+                        <Typography
+                            variant="h6"
+                            component="div"
+                            sx={{ flexGrow: 1, display: { xs: "none", md: "block" } }}>
+                            <Link to={"/"}>
+                                <img
+                                    src={Logo}
+                                    alt="logo"
+                                    className="lg:w-[7rem] xl:w-[10rem]"
+                                />
+                            </Link>
+                        </Typography>
+
+                        <Box sx={{ display: { xs: "none", md: "block" } }}>
+                            <nav>
+                                <NavLink
+                                    to={"/"}
+                                    className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
+                                    style={({ isActive }) =>
+                                        isActive ? activeStyle : undefined
+                                    }>
+                                    Home{" "}
+                                </NavLink>
+                                <NavLink
+                                    to={"/search_and_apply"}
+                                    className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
+                                    style={({ isActive }) =>
+                                        isActive ? activeStyle : undefined
+                                    }>
+                                    Search And Apply{" "}
+                                </NavLink>
+                                <NavLink
+                                    to={"/contact_us"}
+                                    className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
+                                    style={({ isActive }) =>
+                                        isActive ? activeStyle : undefined
+                                    }>
+                                    Contact Us{" "}
+                                </NavLink>
+
+                                {/* <button
                   className={
                     " xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000]"
                   }
@@ -435,8 +435,8 @@ const NewHeader = ({ window, show }) => {
                   <span>{open ? <ExpandLess /> : <ExpandMore />}</span>
                 </button> */}
 
-                {/* menu */}
-                {/* <Menu
+                                {/* menu */}
+                                {/* <Menu
                   id="fade-menu"
                   MenuListProps={{
                     "aria-labelledby": "fade-button",
@@ -457,8 +457,8 @@ const NewHeader = ({ window, show }) => {
                   ))}
                 </Menu> */}
 
-                {/* menu */}
-                {/* <NavLink
+                                {/* menu */}
+                                {/* <NavLink
                   to={"/eCounselling"}
                   className={
                     " xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000]"
@@ -469,7 +469,7 @@ const NewHeader = ({ window, show }) => {
                   E-Counselling{" "}
                 </NavLink> */}
 
-                {/* <button
+                                {/* <button
                   className={
                     " xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] "
                   }
@@ -481,8 +481,8 @@ const NewHeader = ({ window, show }) => {
                   Events <span>{open2 ? <ExpandLess /> : <ExpandMore />}</span>
                 </button> */}
 
-                {/* menu */}
-                {/* <Menu
+                                {/* menu */}
+                                {/* <Menu
                   id="fade-menu"
                   MenuListProps={{
                     "aria-labelledby": "fade-button",
@@ -502,7 +502,7 @@ const NewHeader = ({ window, show }) => {
                     </Link>
                   ))}
                 </Menu> */}
-                {/* <NavLink
+                                {/* <NavLink
                   to={"/whyUs"}
                   className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000]`}
                   style={({ isActive }) =>
@@ -510,7 +510,7 @@ const NewHeader = ({ window, show }) => {
                   }>
                   Why Us{" "}
                 </NavLink> */}
-                {/* <NavLink
+                                {/* <NavLink
                                     to={"/blogAndNews"}
                                     className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
                                     style={({ isActive }) => (isActive ? activeStyle : undefined)}
@@ -518,7 +518,7 @@ const NewHeader = ({ window, show }) => {
                                     Blog & News{" "}
                                 </NavLink> */}
 
-                {/* <button
+                                {/* <button
                   className={
                     " xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] "
                   }
@@ -531,8 +531,8 @@ const NewHeader = ({ window, show }) => {
                   <span>{open3 ? <ExpandLess /> : <ExpandMore />}</span>
                 </button> */}
 
-                {/* menu */}
-                {/* <Menu
+                                {/* menu */}
+                                {/* <Menu
                   id="fade-menu"
                   MenuListProps={{
                     "aria-labelledby": "fade-button",
@@ -553,39 +553,39 @@ const NewHeader = ({ window, show }) => {
                   ))}
                 </Menu> */}
 
-                {auth?.user === "Admin" && (
-                  <NavLink
-                    to={"/dashboard"}
-                    className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }>
-                    Dashboard{" "}
-                  </NavLink>
-                )}
+                                {auth?.user === "Admin" && (
+                                    <NavLink
+                                        to={"/dashboard"}
+                                        className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined
+                                        }>
+                                        Dashboard{" "}
+                                    </NavLink>
+                                )}
 
-                {auth?.user === "Counsellor_Admin" && (
-                  <NavLink
-                    to={"/counsellor-dashboard"}
-                    className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }>
-                    Dashboard{" "}
-                  </NavLink>
-                )}
+                                {auth?.user === "Counsellor_Admin" && (
+                                    <NavLink
+                                        to={"/counsellor-dashboard"}
+                                        className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined
+                                        }>
+                                        Dashboard{" "}
+                                    </NavLink>
+                                )}
 
-                {auth?.user === "Student" && (
-                  <NavLink
-                    to={"/student-dashboard"}
-                    className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }>
-                    Dashboard{" "}
-                  </NavLink>
-                )}
-                {/* {isLogin && user?.role === "counsellor" && (
+                                {auth?.user === "Student" && (
+                                    <NavLink
+                                        to={"/student-dashboard"}
+                                        className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined
+                                        }>
+                                        Dashboard{" "}
+                                    </NavLink>
+                                )}
+                                {/* {isLogin && user?.role === "counsellor" && (
                   <NavLink
                     to={"/counsellor-dashboard"}
                     className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
@@ -597,114 +597,114 @@ const NewHeader = ({ window, show }) => {
                   </NavLink>
                 )} */}
 
-                {auth?.accessToken ? (
-                  <>
-                    <Link
-                      onClick={SignOutAccount}
-                      to="/"
-                      className={
-                        "text-center mx-1 xl:mx-2 xl:mr-2 px-2 md:px-4 xl:px-[25px] py-[8px] font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
-                      }>
-                      Log Out
-                    </Link>
-                  </>
-                ) : (
-                  <>
+                                {auth?.accessToken ? (
+                                    <>
+                                        <Link
+                                            onClick={SignOutAccount}
+                                            to="/"
+                                            className={
+                                                "text-center mx-1 xl:mx-2 xl:mr-2 px-2 md:px-4 xl:px-[25px] py-[8px] font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
+                                            }>
+                                            Log Out
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
 
 
 
 
 
-                    {/* signIn button here  */}
+                                        {/* signIn button here  */}
 
 
 
-                    <NavLink
-                      onClick={handleClickOpen}
-                      to={""}
-                      className={
-                        "text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "
-                      }>
-                      Sign In
-                    </NavLink>
+                                        <NavLink
+                                            onClick={handleClickOpen}
+                                            to={""}
+                                            
+                                            className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "  }
+                                            >
+                                            Sign In
+                                        </NavLink>
 
 
-                    <NavLink
-                      onClick={handleClickOpen}
-                      to={"/login"}
-                      className={
-                        "text-center mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
-                      }>
-                      Log In
-                    </NavLink>
-                    {/* <NavLink
+                                        <NavLink
+                                            onClick={handleClickOpen}
+                                            to={"/login"}
+                                            className={
+                                                "text-center mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
+                                            }>
+                                            Log In
+                                        </NavLink>
+                                        {/* <NavLink
                       onClick={navigateToRegister}
                       className={
                         "text-center mx-1 xl:mx-2 px-2 xl:px-[25px] py-[8px] xl:font-medium text-white bg-primary  hover:bg-secondary rounded"
                       }>
                       Apply Now
                     </NavLink> */}
-                  </>
-                )}
-              </nav>
-            </Box>
-          </Toolbar>
-        </AppBar>
+                                    </>
+                                )}
+                            </nav>
+                        </Box>
+                    </Toolbar>
+                </AppBar>
 
-        {/* For Mobile Devices  */}
+                {/* For Mobile Devices  */}
 
-        <Box component="nav" style={{ color: "black" }}>
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              color: "black",
-              display: { xs: "block", md: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-            style={{ color: "black" }}>
-            {drawer}
+                <Box component="nav" style={{ color: "black" }}>
+                    <Drawer
+                        container={container}
+                        variant="temporary"
+                        open={mobileOpen}
+                        onClose={handleDrawerToggle}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                        sx={{
+                            color: "black",
+                            display: { xs: "block", md: "none" },
+                            "& .MuiDrawer-paper": {
+                                boxSizing: "border-box",
+                                width: drawerWidth,
+                            },
+                        }}
+                        style={{ color: "black" }}>
+                        {drawer}
 
-            {auth?.accessToken ? (
-              <>
-                <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-                  <NavLink
-                    to={"/"}
-                    exact="true"
-                    className={"text-center "}
-                    style={loginBtn}
-                    activeclassname={activeLink}
-                    onClick={() => {
-                      handleDrawerToggle();
-                    }}>
-                    Log Out
-                  </NavLink>
-                </ListItemButton>
-              </>
-            ) : (
-              <>
-                <ListItem button key={"/login"}>
-                  <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-                    <NavLink
-                      to={"/login"}
-                      exact="true"
-                      className={"text-center "}
-                      style={loginBtn}
-                      activeclassname={activeLink}
-                      onClick={handleDrawerToggle}>
-                      Log In
-                    </NavLink>
-                  </ListItemButton>
-                </ListItem>
-                {/* <ListItem button key={"/applyNow"}>
+                        {auth?.accessToken ? (
+                            <>
+                                <ListItemButton sx={{ textAlign: "center", color: "black" }}>
+                                    <NavLink
+                                        to={"/"}
+                                        exact="true"
+                                        className={"text-center "}
+                                        style={loginBtn}
+                                        activeclassname={activeLink}
+                                        onClick={() => {
+                                            handleDrawerToggle();
+                                        }}>
+                                        Log Out
+                                    </NavLink>
+                                </ListItemButton>
+                            </>
+                        ) : (
+                            <>
+                                <ListItem button key={"/login"}>
+                                    <ListItemButton sx={{ textAlign: "center", color: "black" }}>
+                                        <NavLink
+                                            to={"/login"}
+                                            exact="true"
+                                            className={"text-center "}
+                                            style={loginBtn}
+                                            activeclassname={activeLink}
+                                            onClick={handleDrawerToggle}>
+                                            Log In
+                                        </NavLink>
+                                    </ListItemButton>
+                                </ListItem>
+                                {/* <ListItem button key={"/applyNow"}>
                   <ListItemButton sx={{ textAlign: "center", color: "black" }}>
                     <NavLink
                       exact="true"
@@ -716,13 +716,13 @@ const NewHeader = ({ window, show }) => {
                     </NavLink>
                   </ListItemButton>
                 </ListItem> */}
-              </>
-            )}
-          </Drawer>
-        </Box>
-      </Box>
-    </div>
-  );
+                            </>
+                        )}
+                    </Drawer>
+                </Box>
+            </Box>
+        </div>
+    );
 };
 
 export default NewHeader;
