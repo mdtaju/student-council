@@ -8,7 +8,7 @@ const HowWeHelp = () => {
   // }, [])
 
   return (
-    <div className="p-4 sm:p-6 md:p-12 grid md:grid-cols-2 items-center gap-4 justify-between">
+    <div className="p-4 sm:p-6 md:p-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-center gap-4 justify-between">
       <div className="w-full sm:w-[400px] md:w-[600px] bg-secondary bg-opacity-90 rounded-xl p-4 text-white h-full">
         <h1 className="text-2xl">Message From Chief Executive</h1>
         <br />
