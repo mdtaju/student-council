@@ -55,14 +55,10 @@ const NewHeader = ({ window, show }) => {
     setOpen(false);
   };
 
-  const [isArrowRotated, setIsArrowRotated] = useState(false);
+
 
   /* Meta Menu icon functionality */
-  const [isRotated, setIsRotated] = useState(false);
-  const handleNavLinkClick = () => {
-    setIsRotated(!isRotated);
-  };
-
+  const [isArrowRotated, setIsArrowRotated] = useState(false);
 
 
   // const { user, logoutUser, isLogin } = useContext(Context);
@@ -655,14 +651,14 @@ const NewHeader = ({ window, show }) => {
 
 
 
-                    {/* signUp button here  */}
+                    {/* Contact button here  */}
                     <NavLink
                       onClick={handleClickOpen}
                       to={""}
 
                       className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "}
                     >
-                      Sign Up
+                      Contact
                     </NavLink>
 
 
