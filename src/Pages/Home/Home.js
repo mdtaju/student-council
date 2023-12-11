@@ -10,6 +10,9 @@ import Testimonials from "../../Shared/Testimonials/Testimonials";
 import Banner from "../../assets/hero/900.jpg";
 import BannerBottom from "../../Components/Home/BannerBottom/BannerBottom";
 import NewHeroSection from "../../Components/Home/HeroSection/NewHeroSection";
+import NewTestimonials from "../../Shared/Testimonials/NewTestimonials";
+import NewPartners from "../../Components/Home/Partners/NewPartners";
+import LeadingUniversity from "../../Components/Home/LeadingUniversity/LeadingUniversity";
 
 const Home = () => {
   const [show, setShow] = useState(true);
@@ -71,22 +74,32 @@ const Home = () => {
           <GuidesAndResources></GuidesAndResources>
         </div> */}
 
-        <div className="xl:relative xxl:static my-10">
+        <div className="xl:relative xxl:static my-10 pb-7">
           <div>
             <h1 className="lg:text-[160px] xl:text-[200px] font-medium text-center text-gray-300/90 hidden xl:block xxl:hidden">
               Testimonials
             </h1>
-            <h1 className="text-center md:text-3xl text-2xl font-semibold text-secondary xxl:static xl:absolute lg:left-[20rem] xl:top-[15%] capitalize">
+            <h1 className="text-center  md:text-3xl text-2xl font-semibold text-secondary xxl:static xl:absolute lg:left-[20rem] xl:top-[15%] capitalize">
               What Our Student Says
             </h1>
           </div>
-
-          <Testimonials></Testimonials>
+          {/* <Testimonials></Testimonials> */}
+          <NewTestimonials></NewTestimonials>
         </div>
 
-        <div className="xl:relative xxl:static">
+
+{/* Leading university and partners section  */}
+     <div className="bg-red-500 mt-10 ">
+          <h1 className=" lg:text-4xl pt-10 font-bold text-center text-white ">Leading Universities and Student Council Partners</h1>
+          <div className="flex justify-center items-center  h-80">
+            <LeadingUniversity></LeadingUniversity>
+          </div>
+        </div> 
+
+        
+        <div className="xl:relative xxl:static bg-[#FFFFF0]">
           {/* xl:bottom-[104px] */}
-          <div>
+          <div className="md:pt-10">
             <h1 className=" lg:text-[200px] font-medium text-center text-gray-300/90 hidden xl:block xxl:hidden">
               Partners
             </h1>
@@ -94,7 +107,8 @@ const Home = () => {
               Meet Our Partners
             </h1>
           </div>
-          <Partners></Partners>
+          {/* <Partners></Partners> */}
+          <NewPartners></NewPartners>
         </div>
       </div>
     </>
