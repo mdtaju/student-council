@@ -378,7 +378,7 @@ const NewHeader = ({ window, show }) => {
           }}
           className={`${!show
             ? "fixed top-0 duration-100 py-4 scroll-smooth"
-            : "lg:mt-[60px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
+            : "lg:mt-[45px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
             }`}>
           <Toolbar className="w-11/12 md:w-full mx-auto lg:w-full xl:w-11/12 lg mx-1:xl:mx-2 xl:mx-auto text-black">
             <div className="flex justify-between items-center lg:hidden w-full">
