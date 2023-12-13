@@ -96,6 +96,7 @@ import StudentRegister from "../Pages/StudentRegister/StudentRegister";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import CouncilPrivateRoute from "./CouncilPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
+import PublicForm from "../Shared/PublicForm/PublicForm";
 
 export const routes = createBrowserRouter([
   {
@@ -122,6 +123,10 @@ export const routes = createBrowserRouter([
       {
         path: "/university/:id",
         element: <UniversityDetails />,
+      },
+      {
+        path: "/publicForm/:id",
+        element: <PublicForm />,
       },
       // {
       //   path: "/countries/:id",
