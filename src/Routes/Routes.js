@@ -71,6 +71,8 @@ import AllUniversity from "../Components/AdminDashboard/AllUniversity/AllUnivers
 import UpdateUniversity from "../Components/AdminDashboard/AllUniversity/UpdateUniversity";
 import AllVisa from "../Components/AdminDashboard/AllVisa/AllVisa";
 import Appointments from "../Components/AdminDashboard/Appointments/Appointments";
+import AllForm from "../Components/AdminDashboard/Form/AllForm";
+import MakeForm from "../Components/AdminDashboard/Form/MakeForm";
 import MakeUser from "../Components/AdminDashboard/MakeUser/MakeUser";
 import AddVisa from "../Components/AdminDashboard/VisaApplications/AddVisa";
 import VisaUpdate from "../Components/AdminDashboard/VisaUpdate/VisaUpdate";
@@ -257,6 +259,18 @@ export const routes = createBrowserRouter([
       {
         path: "allStudents",
         element: <AllStudents />,
+      },
+      {
+        path: "makeForm",
+        element: <MakeForm />,
+      },
+      {
+        path: "allForm",
+        element: <AllForm />,
+      },
+      {
+        path: "allForm/:id",
+        element: <MakeForm />,
       },
 
       // {
@@ -536,8 +550,6 @@ export const routes = createBrowserRouter([
       //   path: "resource",
       //   element: <Resource />,
       // },
-
-      
     ],
   },
   {

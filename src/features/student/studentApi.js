@@ -111,6 +111,23 @@ export const studentApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    addPublicForm: builder.mutation({
+      query: (data) => ({
+        url: "/public_form",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getAllForm: builder.query({
+      query: () => `/public_form`,
+    }),
+    deleteForm: builder.mutation({
+      query: (data) => ({
+        url: "/public_form",
+        method: "DELETE",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -137,4 +154,7 @@ export const {
   useAddVisaDocumentFilesMutation,
   useDeleteVisaDocumentsMutation,
   useUpdateVisaApplicationMutation,
+  useAddPublicFormMutation,
+  useGetAllFormQuery,
+  useDeleteFormMutation,
 } = studentApi;
