@@ -17,44 +17,29 @@ import useAuth from "../../hooks/useAuth";
 import useFirebaseLogin from "../../hooks/useFirebaseLogin";
 // import GET from "../../API/get";
 // import { backendURL } from "../../API/config";
-
-/* SignIn modal import here  */
-import Button from '@mui/material/Button';
-import { makeStyles, styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import CloseIcon from '@mui/icons-material/Close';
-
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
-/* SignIn Modal functionality  */
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
-  },
-  '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
-  },
-}));
-
+import NavModal from "./NavModal";
 
 const drawerWidth = 280;
 
+
+
+
+
+
+
+
+
 const NewHeader = ({ window, show }) => {
 
-
   /* SignIn Modal functionality  */
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const closeModal = () => {
+    setModalOpen(false);
   };
-
 
 
   /* Meta Menu icon functionality */
@@ -316,55 +301,6 @@ const NewHeader = ({ window, show }) => {
 
   return (
     <div className="navbar bg-white">
-
-      {/* SignUp modal start here  */}
-      <React.Fragment>
-        <BootstrapDialog
-          dialogClassName="custom-dialog"
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <DialogTitle
-            style={{
-              width: '450px',
-              fontWeight: 'bolder',
-              margin: '10px 0px',
-              fontSize: '20px',
-              textAlign: 'center',
-            }}
-            sx={{ m: 0, p: 2 }}
-            id="customized-dialog-title"
-          >
-            WELCOME TO STUDENT COUNCIL
-          </DialogTitle>
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 20,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <DialogContent dividers style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Button style={{ width: '90%', margin: '8px 10px', padding: '7px 0px', borderRadius: '30px', fontSize: '15px' }} variant="contained" color="error">Free Assessment</Button>
-            <Button style={{ width: '90%', margin: '8px 10px', padding: '7px 0px', borderRadius: '30px', fontSize: '15px' }} variant="contained" color="error">Call Back Request</Button>
-            <Button style={{ width: '90%', margin: '8px 10px', padding: '7px 0px', borderRadius: '30px', fontSize: '15px' }} variant="contained" color="error">Appointment Booking</Button>
-            <Button style={{ width: '90%', margin: '8px 10px', padding: '7px 0px', borderRadius: '30px', fontSize: '15px' }} variant="contained" color="error">Help and support?</Button>
-          </DialogContent>
-        </BootstrapDialog>
-      </React.Fragment>
-      {/* Sign Up modal end here */}
-
-
-
-
-
-
 
       <Box sx={{ display: "flex" }} style={{}} className="shadow-lg">
         <CssBaseline />
@@ -650,16 +586,18 @@ const NewHeader = ({ window, show }) => {
 
 
 
-
-                    {/* Contact button here  */}
                     <NavLink
-                      onClick={handleClickOpen}
+                      onClick={openModal}
                       to={""}
-
                       className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "}
                     >
-                      Contact
+                      Apply
                     </NavLink>
+                    <NavModal isOpen={isModalOpen} onClose={closeModal} />
+
+
+
+
 
 
                     <NavLink
