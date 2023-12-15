@@ -105,7 +105,7 @@ const PersonalInfo = ({
       <h4 className="text-lg font-normal text-gray-400 my-3">
         (As indicated on your passport)
       </h4>
-      {passportFiles.length > 0 && (
+      {passportFiles?.length > 0 && (
         <>
           <p className="text-sm">Uploaded files</p>
           {/* contain files */}

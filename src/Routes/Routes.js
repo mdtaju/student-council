@@ -97,6 +97,7 @@ import AdminPrivateRoute from "./AdminPrivateRoute";
 import CouncilPrivateRoute from "./CouncilPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
 import PublicForm from "../Shared/PublicForm/PublicForm";
+import FreeAssessment from "../Pages/FreeAssessment/FreeAssessment";
 
 export const routes = createBrowserRouter([
   {
@@ -127,6 +128,11 @@ export const routes = createBrowserRouter([
       {
         path: "/publicForm/:id",
         element: <PublicForm />,
+      },
+
+      {
+        path: "/assessment",
+        element: <FreeAssessment />,
       },
       // {
       //   path: "/countries/:id",
