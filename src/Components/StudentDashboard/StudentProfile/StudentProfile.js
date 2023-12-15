@@ -229,6 +229,9 @@ const StudentProfile = () => {
     }
   }, [student_form_data]);
 
+
+
+  
   // data send form submit to database
   const handleSubmit = async (e) => {
     e.preventDefault();
