@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import ReactWhatsapp from "react-whatsapp";
 import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
@@ -7,13 +7,20 @@ import SideLinks from "../../Shared/SideLinks/SideLinks";
 import whatsApp from "../../assets/logo/whatsapp.png";
 
 const MainLayout = () => {
+  const location = useLocation();
+  const isAssessmentPage = location.pathname.includes("/assessment");
+
+
   return (
     <div className="">
       {/* <Navbar></Navbar> */}
       <Navbar></Navbar>
       <SideLinks />
       <Outlet></Outlet>
-      <Footer></Footer>
+      {
+        isAssessmentPage ? null : <Footer></Footer>
+      }
+      
       <div className=" right-0 bottom-10 fixed z-50">
         <ReactWhatsapp
           number="+8801978881097"

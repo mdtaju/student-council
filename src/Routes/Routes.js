@@ -130,6 +130,11 @@ export const routes = createBrowserRouter([
         path: "/publicForm/:id",
         element: <PublicForm />,
       },
+
+      {
+        path: "/assessment",
+        element: <FreeAssessment />,
+      },
       // {
       //   path: "/countries/:id",
       //   element: <CountriesLandingPage></CountriesLandingPage>,
