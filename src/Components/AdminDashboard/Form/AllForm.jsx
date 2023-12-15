@@ -48,7 +48,7 @@ const AllForm = () => {
                         </h1>
                         {selectionModel.length > 0 && (
                               <div className="w-fit ml-auto my-2 flex items-center gap-3">
-                                    <Link to={`/dashboard/updateUniversity/${selectionModel[0]}`}>
+                                    <Link to={`/dashboard/allForm/${selectionModel[0]}`} target="_blank">
                                           <button className="px-3 py-1 text-white bg-blue-500 hover:bg-blue-600 shadow-sm active:scale-95 duration-150 rounded-md ">
                                                 Update
                                           </button>
@@ -72,7 +72,7 @@ const AllForm = () => {
                                                 renderCell: (params) => (
                                                       <Link className="text-blue-500 hover:underline"
                                                             target="_blank"
-                                                            to={`/dashboard/allForm/${params.value}`}>
+                                                            to={`/dashboard/allForm/view/${params.value}`}>
                                                             {params.value}
                                                       </Link>
                                                 ),

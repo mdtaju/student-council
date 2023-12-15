@@ -72,7 +72,9 @@ import UpdateUniversity from "../Components/AdminDashboard/AllUniversity/UpdateU
 import AllVisa from "../Components/AdminDashboard/AllVisa/AllVisa";
 import Appointments from "../Components/AdminDashboard/Appointments/Appointments";
 import AllForm from "../Components/AdminDashboard/Form/AllForm";
+import FormView from "../Components/AdminDashboard/Form/FormView";
 import MakeForm from "../Components/AdminDashboard/Form/MakeForm";
+import UpdateForm from "../Components/AdminDashboard/Form/UpdateForm";
 import MakeUser from "../Components/AdminDashboard/MakeUser/MakeUser";
 import AddVisa from "../Components/AdminDashboard/VisaApplications/AddVisa";
 import VisaUpdate from "../Components/AdminDashboard/VisaUpdate/VisaUpdate";
@@ -93,10 +95,10 @@ import CourseDetailsPublic from "../Pages/CourseDetails/CourseDetails";
 import Login from "../Pages/Login/Login";
 import SearchAndApplyHomePage from "../Pages/SearchAndApply/SearchAndApply";
 import StudentRegister from "../Pages/StudentRegister/StudentRegister";
+import PublicForm from "../Shared/PublicForm/PublicForm";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import CouncilPrivateRoute from "./CouncilPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
-import PublicForm from "../Shared/PublicForm/PublicForm";
 
 export const routes = createBrowserRouter([
   {
@@ -275,7 +277,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "allForm/:id",
-        element: <MakeForm />,
+        element: <UpdateForm />,
+      },
+      {
+        path: "allForm/view/:id",
+        element: <FormView />,
       },
 
       // {

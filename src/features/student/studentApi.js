@@ -121,10 +121,20 @@ export const studentApi = apiSlice.injectEndpoints({
     getAllForm: builder.query({
       query: () => `/public_form`,
     }),
+    getSingleForm: builder.query({
+      query: (id) => `/get_single_form/${id}`,
+    }),
     deleteForm: builder.mutation({
       query: (data) => ({
         url: "/public_form",
         method: "DELETE",
+        body: data,
+      }),
+    }),
+    updateForm: builder.mutation({
+      query: (data) => ({
+        url: "/public_form",
+        method: "PUT",
         body: data,
       }),
     }),
@@ -157,4 +167,6 @@ export const {
   useAddPublicFormMutation,
   useGetAllFormQuery,
   useDeleteFormMutation,
+  useUpdateFormMutation,
+  useGetSingleFormQuery,
 } = studentApi;
