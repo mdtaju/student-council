@@ -81,13 +81,7 @@ const EducationInfo = ({
             setCountryName={setEducationCountry}
             placeholder="Search country"
           />
-          {/* <Input
-            title={"Country of Education"}
-            isRequired
-            required
-            placeholder="Enter education country..."
-            type="text"
-          /> */}
+        
           <GroupAutoSelectInput
             title={"Highest Level of Education"}
             isRequired

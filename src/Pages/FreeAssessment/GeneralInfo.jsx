@@ -39,7 +39,12 @@ const GeneralInfo = ({
     setPhoneNumbers,
     whatsappNumbers,
     setWhatsappNumbers,
-   
+    referenceName,
+    setReferenceName,
+    referenceAddress,
+    setReferenceAddress,
+    referenceMobile,
+    setReferenceMobile,
 }) => {
 
     const handleMaritalStatus = (value) => {
@@ -208,9 +213,41 @@ const GeneralInfo = ({
 
 
 
+                    {/* Reference Details Start here  */}
+
+                    <h1 className="text-2xl mt-20 font-bold text-gray-600">Reference Details</h1>
+                    <p className='pt-3'>If you have any references, please let me know</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 my-6">
+
+                        <Input
+                            title={"Name"}
+                            placeholder="Enter His/Her Name..."
+                            type="text"
+                            value={referenceName}
+                            onChange={(e) => setReferenceName(e.target.value)}
+                        />
+
+                        <Input
+                            title={"Address"}
+                            placeholder="Enter His/Her Address..."
+                            type="text"
+                            value={referenceAddress}
+                            onChange={(e) => setReferenceAddress(e.target.value)}
+                        />
+
+                        <Input
+                            title={"Phone Number"}
+                            type="text"
+                            placeholder="Add Phone Number"
+                            value={referenceMobile}
+                            onChange={(e) => setReferenceMobile(e.target.value)}
+                        />
+
+                    </div>
+                    {/* Reference Details End Here  */}
 
 
-                    <h1 className="text-lg mt-20 font-bold text-gray-600">Address Details</h1>
+                    <h1 className="text-2xl mt-20 font-bold text-gray-600">Address Details</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 my-6">
                         <div className="">
                             <Input
@@ -291,12 +328,12 @@ const GeneralInfo = ({
                                     )}
                                 </div>
                             ))}
-                            <Button
-                                style={{ marginTop: '14px' }}
+                            <button
+                                className="bg-green-600 mt-3 text-white p-2 shadow-xl rounded-xl text-sm outline-none mr-2" 
                                 onClick={handleAddPhoneNumber}
                                 variant="contained" color="success" size="small">
                                 Add More Number
-                            </Button>
+                            </button>
                         </div>
 
 
@@ -324,12 +361,12 @@ const GeneralInfo = ({
                                     )}
                                 </div>
                             ))}
-                            <Button
-                                style={{ marginTop: '14px' }}
+                            <button
+                               className="bg-green-600 mt-3 text-white p-2 shadow-xl rounded-xl text-sm outline-none mr-2" 
                                 onClick={handleAddWhatsappNumber}
                                 variant="contained" color="success" size="small">
                                 Add More Number
-                            </Button>
+                            </button>
                         </div>
 
 

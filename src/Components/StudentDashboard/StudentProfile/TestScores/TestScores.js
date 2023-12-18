@@ -22,6 +22,7 @@ const TestScores = ({
   const examType = [
     "",
     "I don't have this",
+    "Taking Preparation",
     "I will provide this later",
     "Without English Proficiency",
     "TOEFL",
@@ -31,10 +32,10 @@ const TestScores = ({
   ];
   return (
     <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg mt-10">
-      <h1 className="text-2xl font-bold text-gray-600">Test Scores</h1>
+      <h1 className="text-2xl font-bold text-gray-600">English Proficiency Details</h1>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6 my-6">
         <SelectInput
-          title={"English Exam Type"}
+          title={"Exam Type"}
           placeholder="Select exam type"
           isRequired
           selectState={engExamType}
