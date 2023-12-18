@@ -92,6 +92,7 @@ import VisaApplication from "../Components/StudentDashboard/StudentProfile/VisaA
 import UniversityDetails from "../Components/StudentDashboard/UniversityDetails/UniversityDetails";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import CourseDetailsPublic from "../Pages/CourseDetails/CourseDetails";
+import FreeAssessment from "../Pages/FreeAssessment/FreeAssessment";
 import Login from "../Pages/Login/Login";
 import SearchAndApplyHomePage from "../Pages/SearchAndApply/SearchAndApply";
 import StudentRegister from "../Pages/StudentRegister/StudentRegister";
