@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const PublicForm = () => {
     const params = useParams();
-    console.log(params.id)
+    console.log(params)
     return (
         <div className='py-40'>
             <div className='mx-auto '>
