@@ -10,11 +10,13 @@ import {
   useUpdateCourseShortListMutation,
 } from "../../../features/course/courseApi";
 import useAuth from "../../../hooks/useAuth";
+import usePath from "../../../hooks/usePath";
 import SnackMessage from "../../SnackBarMessage/SnackMessage";
 import DataTableMui from "../../Table/Table";
 
 function StudentCourseList() {
   const auth = useAuth();
+  const pathName = usePath();
   const { data, refetch } = useGetAllCourseShortListForAdminQuery();
   const [updateCourseShortList, { data: updatedData }] =
     useUpdateCourseShortListMutation();
@@ -127,7 +129,7 @@ function StudentCourseList() {
                     <Link
                       className="text-blue-600"
                       target="_blank"
-                      to={`/student-dashboard/university/${course_query_id}`}>
+                      to={`/${pathName}/university/${course_query_id}`}>
                       {university}
                     </Link>
                   );
@@ -143,7 +145,7 @@ function StudentCourseList() {
                     <Link
                       className="text-blue-600"
                       target="_blank"
-                      to={`/student-dashboard/courseDetails/${course_id}`}>
+                      to={`/${pathName}/courseDetails/${course_id}`}>
                       {course_name}
                     </Link>
                   );
@@ -235,7 +237,7 @@ function StudentCourseList() {
                   if (is_eligible === "Yes") {
                     content = (
                       <Link
-                        to={`/counsellor-dashboard/applications/${id}`}
+                        to={`/${pathName}/applications/${id}`}
                         target="_blank">
                         <button className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-md shadow-sm">
                           <OpenInNewOutlinedIcon

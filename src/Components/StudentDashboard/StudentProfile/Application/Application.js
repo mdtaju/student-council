@@ -10,12 +10,14 @@ import {
   useUpdateCourseShortListMutation,
 } from "../../../../features/course/courseApi";
 import useAuth from "../../../../hooks/useAuth";
+import usePath from "../../../../hooks/usePath";
 import SnackMessage from "../../../SnackBarMessage/SnackMessage";
 import DataTableMui from "../../../Table/Table";
 import Layout from "../Layout.js/Layout";
 
 const Application = () => {
   const auth = useAuth();
+  const pathName = usePath();
   const { data, refetch } = useGetAllCourseShortlistQuery(auth?.id);
   const [updateCourseShortList, { data: updatedData }] =
     useUpdateCourseShortListMutation();
@@ -32,7 +34,7 @@ const Application = () => {
   useEffect(() => {
     async function getShortlistData() {
       const res = await fetch(
-        `https://server-y29-p.applyversity.com/get_all_course_shortlist/${auth?.id}`
+        `http://localhost:9000/get_all_course_shortlist/${auth?.id}`
       );
       const getData = await res.json();
       setCourseShortlist(getData);
@@ -135,7 +137,7 @@ const Application = () => {
                       <Link
                         className="text-blue-600"
                         target="_blank"
-                        to={`/student-dashboard/university/${course_query_id}`}>
+                        to={`/${pathName}/university/${course_query_id}`}>
                         {university}
                       </Link>
                     );
@@ -151,7 +153,7 @@ const Application = () => {
                       <Link
                         className="text-blue-600"
                         target="_blank"
-                        to={`/student-dashboard/courseDetails/${course_id}`}>
+                        to={`/${pathName}/courseDetails/${course_id}`}>
                         {course_name}
                       </Link>
                     );
@@ -243,7 +245,7 @@ const Application = () => {
                     if (is_eligible === "Yes") {
                       content = (
                         <Link
-                          to={`/student-dashboard/applications/${id}`}
+                          to={`/${pathName}/applications/${id}`}
                           target="_blank">
                           <button className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-md shadow-sm">
                             <OpenInNewOutlinedIcon

@@ -68,6 +68,7 @@ import CounsellorDashboard from "../Components/CounsellorDashboard/CounsellorDas
 import AddUniversity from "../Components/AdminDashboard/AddUniversity/AddUniversity";
 import AllStudents from "../Components/AdminDashboard/AllStudents/AllStudents";
 import AllUniversity from "../Components/AdminDashboard/AllUniversity/AllUniversity";
+import UpdateCourse from "../Components/AdminDashboard/AllUniversity/UpdateCourse";
 import UpdateUniversity from "../Components/AdminDashboard/AllUniversity/UpdateUniversity";
 import AllVisa from "../Components/AdminDashboard/AllVisa/AllVisa";
 import Appointments from "../Components/AdminDashboard/Appointments/Appointments";
@@ -269,6 +270,14 @@ export const routes = createBrowserRouter([
       {
         path: "updateVisa/:id",
         element: <VisaUpdate />,
+      },
+      {
+        path: "updateCourse/:id",
+        element: <UpdateCourse />,
+      },
+      {
+        path: "courseDetails/:id",
+        element: <CourseDetails />,
       },
       {
         path: "allStudents",
@@ -624,6 +633,10 @@ export const routes = createBrowserRouter([
       {
         path: "todaysAssignedStudent",
         element: <TodaysAssignedStudent />,
+      },
+      {
+        path: "courseDetails/:id",
+        element: <CourseDetails />,
       },
       // // studentPathName
       // {

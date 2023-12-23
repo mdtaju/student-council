@@ -17,21 +17,11 @@ import useAuth from "../../hooks/useAuth";
 import useFirebaseLogin from "../../hooks/useFirebaseLogin";
 // import GET from "../../API/get";
 // import { backendURL } from "../../API/config";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NavModal from "./NavModal";
 
 const drawerWidth = 280;
-
-
-
-
-
-
-
-
-
 const NewHeader = ({ window, show }) => {
-
   /* SignIn Modal functionality  */
   const [isModalOpen, setModalOpen] = useState(false);
   const openModal = () => {
@@ -40,7 +30,6 @@ const NewHeader = ({ window, show }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
 
   /* Meta Menu icon functionality */
   const [isEventArrowRotated, setIsEventArrowRotated] = useState(false);
@@ -124,7 +113,6 @@ const NewHeader = ({ window, show }) => {
         </ListItemButton>
       </ListItem>
 
-
       {/* dashboard  */}
       {auth?.user === "Admin" && (
         <ListItem button>
@@ -171,7 +159,6 @@ const NewHeader = ({ window, show }) => {
           </ListItemButton>
         </ListItem>
       )}
-
     </Box>
   );
 
@@ -180,7 +167,6 @@ const NewHeader = ({ window, show }) => {
 
   return (
     <div className="navbar bg-white">
-
       <Box sx={{ display: "flex" }} style={{}} className="shadow-lg">
         <CssBaseline />
         <AppBar
@@ -191,11 +177,12 @@ const NewHeader = ({ window, show }) => {
             boxShadow: "none",
             borderBottom: "1px solid rgb(209 213 219 / 1)",
           }}
-          className={`${!show
-            ? "fixed top-0 duration-100 py-4 scroll-smooth"
-            : "lg:mt-[45px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
-            }`}>
-          <Toolbar className="w-11/12 md:w-full mx-auto lg:w-full xl:w-11/12 lg:mx-1 xl:mx-auto text-black">
+          className={`${
+            !show
+              ? "fixed top-0 duration-100 py-4 scroll-smooth"
+              : "lg:mt-[45px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
+          }`}>
+          <Toolbar className="w-11/12 md:w-full mx-auto lg:w-full xl:w-11/12 lg mx-1:xl:mx-2 xl:mx-auto text-black">
             <div className="flex justify-between items-center lg:hidden w-full">
               <IconButton
                 color="inherit"
@@ -241,25 +228,40 @@ const NewHeader = ({ window, show }) => {
                   Search & Apply{" "}
                 </NavLink>
 
-
                 {/* Event Meta menu route start here   */}
                 <div className="group relative inline-block">
                   <NavLink
                     className="block cursor-pointer p-4 xl:font-medium   text-gray-900"
                     onMouseEnter={() => setIsEventArrowRotated(true)}
-                    onMouseLeave={() => setIsEventArrowRotated(false)}
-                  >
+                    onMouseLeave={() => setIsEventArrowRotated(false)}>
                     Event
                     <span
-                      className={`inline-block transition-transform transform ${isEventArrowRotated ? 'rotate-180' : ''}`}>
-                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                      className={`inline-block transition-transform transform ${
+                        isEventArrowRotated ? "rotate-180" : ""
+                      }`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
 
                   <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Education Expo</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Assessment Day</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Event Album</p> </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500 hover:font-bold">
+                        Education Expo
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500 hover:font-bold">
+                        Assessment Day
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500 hover:font-bold">
+                        Event Album
+                      </p>{" "}
+                    </NavLink>
                   </div>
                 </div>
 
@@ -268,43 +270,84 @@ const NewHeader = ({ window, show }) => {
                   <NavLink
                     className="block cursor-pointer p-4  xl:font-medium   text-gray-900"
                     onMouseEnter={() => setIsVisaArrowRotated(true)}
-                    onMouseLeave={() => setIsVisaArrowRotated(false)}
-                  >
+                    onMouseLeave={() => setIsVisaArrowRotated(false)}>
                     Visa Gallery
                     <span
-                      className={`inline-block transition-transform transform ${isVisaArrowRotated ? 'rotate-180' : ''}`}>
-                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                      className={`inline-block transition-transform transform ${
+                        isVisaArrowRotated ? "rotate-180" : ""
+                      }`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
 
                   <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">UK</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">USA</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">CANADA</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">AUSTRALIA</p> </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        UK
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        USA
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        CANADA
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        AUSTRALIA
+                      </p>{" "}
+                    </NavLink>
                   </div>
                 </div>
-
 
                 {/* Blog and Offer Meta menu route start here   */}
                 <div className="group relative inline-block">
                   <NavLink
                     className="block cursor-pointer p-4  xl:font-medium   text-gray-900"
                     onMouseEnter={() => setIsBlogOfferArrowRotated(true)}
-                    onMouseLeave={() => setIsBlogOfferArrowRotated(false)}
-                  >
+                    onMouseLeave={() => setIsBlogOfferArrowRotated(false)}>
                     Blog & Offer
                     <span
-                      className={`inline-block transition-transform transform ${isBlogOfferArrowRotated ? 'rotate-180' : ''}`}>
-                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                      className={`inline-block transition-transform transform ${
+                        isBlogOfferArrowRotated ? "rotate-180" : ""
+                      }`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
 
                   <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
-                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Video Blog</p> </NavLink>
-                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Update Offer</p> </NavLink>
-                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Blog</p> </NavLink>
-                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">News</p> </NavLink>
+                    <NavLink to={"/"} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        Video Blog
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" / "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        Update Offer
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" / "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        Blog
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" / "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        News
+                      </p>{" "}
+                    </NavLink>
                   </div>
                 </div>
 
@@ -343,23 +386,6 @@ const NewHeader = ({ window, show }) => {
                   </NavLink>
                 )}
 
-
-                {/* Apply button and modal */}
-                <div className="group relative inline-block">
-                  {auth?.user === "Student" && (
-                    <div>
-                      <NavLink
-                        onClick={openModal}
-                        to={""}
-                        className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full    bg-primary "}
-                      >
-                        Apply
-                      </NavLink>
-                      <NavModal isOpen={isModalOpen} onClose={closeModal} />
-                    </div>
-                  )}
-                </div>
-
                 {auth?.accessToken ? (
                   <>
                     <Link
@@ -381,7 +407,6 @@ const NewHeader = ({ window, show }) => {
                       }>
                       Log In
                     </NavLink>
-
                   </>
                 )}
               </nav>
@@ -442,19 +467,7 @@ const NewHeader = ({ window, show }) => {
                     </NavLink>
                   </ListItemButton>
                 </ListItem>
-                {/* <ListItem button key={"/applyNow"}>
-                  <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-                    <NavLink
-                      exact="true"
-                      className={"text-center "}
-                      style={applyBtn}
-                      activeclassname={activeLink}
-                      onClick={navigateToRegister}>
-                      Apply Now
-                    </NavLink>
-                  </ListItemButton>
-                </ListItem> */}
-              </>
+                 </>
             )}
           </Drawer>
         </Box>

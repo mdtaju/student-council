@@ -4,10 +4,12 @@ import {
   useDeleteUniversityMutation,
   useGetUniversityQuery,
 } from "../../../features/university/universityApi";
+import usePath from "../../../hooks/usePath";
 import SnackMessage from "../../SnackBarMessage/SnackMessage";
 import DataTableMui from "../../Table/Table";
 
 const AllUniversity = () => {
+  const userPath = usePath();
   const { data, refetch } = useGetUniversityQuery();
   const [deleteUniversity] = useDeleteUniversityMutation();
   const [universities, setUniversities] = useState([]);
@@ -55,7 +57,7 @@ const AllUniversity = () => {
         </h1>
         {selectionModel.length > 0 && (
           <div className="w-fit ml-auto my-2 flex items-center gap-3">
-            <Link to={`/dashboard/updateUniversity/${selectionModel[0]}`}>
+            <Link to={`/${userPath}/updateUniversity/${selectionModel[0]}`}>
               <button className="px-3 py-1 text-white bg-blue-500 hover:bg-blue-600 shadow-sm active:scale-95 duration-150 rounded-md ">
                 Update
               </button>
@@ -79,7 +81,7 @@ const AllUniversity = () => {
                 renderCell: (params) => (
                   <Link
                     target="_blank"
-                    to={`/dashboard/updateUniversity/${params.value}`}>
+                    to={`/${userPath}/updateUniversity/${params.value}`}>
                     {params.value}
                   </Link>
                 ),

@@ -21,21 +21,6 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
     remarks,
   } = course || {};
 
-  const getOverallScore = customTest.map((test) => {
-    return {
-      testName: test?.test_name + " Overall",
-      testScore: test?.test_score,
-    };
-  });
-
-  const getNoBandScore = customTest.map((test) => {
-    return {
-      testName: test?.test_name + " No Band",
-      testScore: test?.test_no_band,
-    };
-  });
-
-  const getCustomTest = [...getOverallScore, ...getNoBandScore];
   return (
     <div className="w-full md:w-[700px] ">
       {/* course details */}
@@ -145,16 +130,26 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
             <p className="text-sm text-gray-500 col-span-4">{ielts_no_band}</p>
           </div>
           {/* custom tests */}
-          {getCustomTest.map((test, i) => (
+          {customTest.map((test, i) => (
             <div
               key={i}
-              className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
-              <h4 className="text-sm font-medium text-gray-800 col-span-8">
-                {test?.testName}
-              </h4>
-              <p className="text-sm text-gray-500 col-span-4">
-                {test?.testScore}
-              </p>
+              className="md:col-span-2 grid grid-cols-1 md:grid-cols-2">
+              <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
+                <h4 className="text-sm font-medium text-gray-800 col-span-8">
+                  {test?.test_name + " Overall"}
+                </h4>
+                <p className="text-sm text-gray-500 col-span-4">
+                  {test?.test_score}
+                </p>
+              </div>
+              <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
+                <h4 className="text-sm font-medium text-gray-800 col-span-8">
+                  {test?.test_name + " No Band"}
+                </h4>
+                <p className="text-sm text-gray-500 col-span-4">
+                  {test?.test_no_band}
+                </p>
+              </div>
             </div>
           ))}
         </div>

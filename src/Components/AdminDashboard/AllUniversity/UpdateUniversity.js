@@ -6,10 +6,10 @@ import {
   useUpdateUniversityMutation,
 } from "../../../features/university/universityApi";
 import SnackMessage from "../../SnackBarMessage/SnackMessage";
-import AddCourse from "../AddUniversity/AddCourse/AddCourse";
 import ApplicationRequirement from "../AddUniversity/ApplicationRequirement/ApplicationRequirement";
 import Features from "../AddUniversity/Features/Features";
 import InstituteDetails from "../AddUniversity/InstituteDetails/InstituteDetails";
+import UniversityCourses from "./UniversityCourses";
 
 const UpdateUniversity = () => {
   const { id } = useParams();
@@ -22,6 +22,8 @@ const UpdateUniversity = () => {
     error: false,
     message: "",
   });
+
+  console.log(getSingleUniversity);
 
   // institute details - under the university
   const [instituteName, setInstituteName] = useState("");
@@ -100,7 +102,7 @@ const UpdateUniversity = () => {
       setCourses(getSingleUniversity.courses);
     }
   }, [getSingleUniversity]);
-
+  console.log(courses);
   const handleSubmit = async () => {
     const formData = new FormData();
 
@@ -284,8 +286,8 @@ const UpdateUniversity = () => {
         />
 
         {/* add courses */}
-        <AddCourse courses={courses} setCourses={setCourses} />
-
+        {/* <AddCourse courses={courses} setCourses={setCourses} /> */}
+        <UniversityCourses courses={courses} />
         {/* const and duration */}
         {/* <CostAndDuration
           programLevels={programLevels}
