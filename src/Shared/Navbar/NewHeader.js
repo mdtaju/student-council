@@ -43,8 +43,9 @@ const NewHeader = ({ window, show }) => {
 
 
   /* Meta Menu icon functionality */
-  const [isArrowRotated, setIsArrowRotated] = useState(false);
-
+  const [isEventArrowRotated, setIsEventArrowRotated] = useState(false);
+  const [isVisaArrowRotated, setIsVisaArrowRotated] = useState(false);
+  const [isBlogOfferArrowRotated, setIsBlogOfferArrowRotated] = useState(false);
 
   // const { user, logoutUser, isLogin } = useContext(Context);
   const { SignOutAccount } = useFirebaseLogin();
@@ -359,16 +360,108 @@ const NewHeader = ({ window, show }) => {
                   style={({ isActive }) =>
                     isActive ? activeStyle : undefined
                   }>
-                  Search And Apply{" "}
+                  Search & Apply{" "}
                 </NavLink>
-                <NavLink
+
+
+
+
+
+
+
+                {/* Event Meta menu route start here   */}
+                <div className="group relative inline-block">
+                  <NavLink
+                    className="block cursor-pointer p-4 xl:font-medium   text-gray-900"
+                    onMouseEnter={() => setIsEventArrowRotated(true)}
+                    onMouseLeave={() => setIsEventArrowRotated(false)}
+                  >
+                    Event
+                    <span
+                      className={`inline-block transition-transform transform ${isEventArrowRotated ? 'rotate-180' : ''}`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                    </span>
+                  </NavLink>
+
+                  <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
+                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Education Expo</p> </NavLink>
+                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Assessment Day</p> </NavLink>
+                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Event Album</p> </NavLink>
+                  </div>
+                </div>
+
+
+
+
+
+
+                {/* Visa gallery Meta menu route start here   */}
+                <div className="group relative inline-block">
+                  <NavLink
+                    className="block cursor-pointer p-4  xl:font-medium   text-gray-900"
+                    onMouseEnter={() => setIsVisaArrowRotated(true)}
+                    onMouseLeave={() => setIsVisaArrowRotated(false)}
+                  >
+                    Visa Gallery
+                    <span
+                      className={`inline-block transition-transform transform ${isVisaArrowRotated ? 'rotate-180' : ''}`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                    </span>
+                  </NavLink>
+
+                  <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
+                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">UK</p> </NavLink>
+                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">USA</p> </NavLink>
+                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">CANADA</p> </NavLink>
+                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">AUSTRALIA</p> </NavLink>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+                {/* Blog and Offer Meta menu route start here   */}
+                <div className="group relative inline-block">
+                  <NavLink
+                    className="block cursor-pointer p-4  xl:font-medium   text-gray-900"
+                    onMouseEnter={() => setIsBlogOfferArrowRotated(true)}
+                    onMouseLeave={() => setIsBlogOfferArrowRotated(false)}
+                  >
+                    Blog & Offer
+                    <span
+                      className={`inline-block transition-transform transform ${isBlogOfferArrowRotated ? 'rotate-180' : ''}`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                    </span>
+                  </NavLink>
+
+                  <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
+                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Video Blog</p> </NavLink>
+                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Update Offer</p> </NavLink>
+                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Blog</p> </NavLink>
+                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">News</p> </NavLink>
+                  </div>
+                </div>
+
+
+
+
+                {/* <NavLink
                   to={"/contact_us"}
                   className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
                   style={({ isActive }) =>
                     isActive ? activeStyle : undefined
                   }>
                   Contact Us{" "}
-                </NavLink>
+                </NavLink> */}
+
+
+
+
+
+
 
                 {/* <button
                   className={
@@ -560,41 +653,21 @@ const NewHeader = ({ window, show }) => {
                   <>
 
 
-                    {/* Meta menu start here   */}
-                    <div className="group relative inline-block">
-                      <NavLink
-                        className="block cursor-pointer p-4"
-                        onMouseEnter={() => setIsArrowRotated(true)}
-                        onMouseLeave={() => setIsArrowRotated(false)}
-                      >
-                        Academic
-                        <span
-                          className={`inline-block transition-transform transform ${isArrowRotated ? 'rotate-180' : ''}`}>
-                          <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
-                        </span>
-                      </NavLink>
+                  
 
-                      <div className="hidden w-40 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
-                        <NavLink className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500">CSE</p> </NavLink>
-                        <NavLink className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500">EEE</p> </NavLink>
-                        <NavLink className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500">LLB</p> </NavLink>
-                        <NavLink className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500">English</p></NavLink>
+                    {/* Apply button and modal */}
+                    {auth?.user === "Student" && (
+                      <div>
+                        <NavLink
+                          onClick={openModal}
+                          to={""}
+                          className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "}
+                        >
+                          Apply
+                        </NavLink>
+                        <NavModal isOpen={isModalOpen} onClose={closeModal} />
                       </div>
-                    </div>
-
-
-
-
-
-                    <NavLink
-                      onClick={openModal}
-                      to={""}
-                      className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "}
-                    >
-                      Apply
-                    </NavLink>
-                    <NavModal isOpen={isModalOpen} onClose={closeModal} />
-
+                    )}
 
 
 
