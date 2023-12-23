@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 import formatBytes from "../../../Utilities/GetFileSize";
 import axiosInstance from "../../../config/axiosInstance";
 import { useDeleteVisaApplicationMutation } from "../../../features/student/studentApi";
-import useAuth from "../../../hooks/useAuth";
+import usePath from "../../../hooks/usePath";
 import SnackMessage from "../../SnackBarMessage/SnackMessage";
 import DataTableMui from "../../Table/Table";
 
 function AllVisa() {
-  const auth = useAuth();
+  const pathName = usePath();
   const [deleteVisaApplication] = useDeleteVisaApplicationMutation();
   const [selectionModel, setSelectionModel] = useState([]);
   const [open, setOpen] = useState(false);
@@ -27,7 +27,6 @@ function AllVisa() {
     message: "",
   });
   // console.log(selectedApplication);
-  console.log(auth);
 
   useEffect(() => {
     async function getAllVisa() {
@@ -175,14 +174,10 @@ function AllVisa() {
                 minWidth: 150,
                 headerName: "Document ID",
                 renderCell: (params) => {
-                  let link;
-                  if (auth?.user === "Admin") {
-                    link = `/dashboard/updateVisa/${params.value}`;
-                  } else {
-                    link = `/counsellor-dashboard/updateVisa/${params.value}`;
-                  }
                   return (
-                    <Link className="hover:underline text-blue-500" to={link}>
+                    <Link
+                      className="hover:underline text-blue-500"
+                      to={`/${pathName}/updateVisa/${params.value}`}>
                       {params.value}
                     </Link>
                   );

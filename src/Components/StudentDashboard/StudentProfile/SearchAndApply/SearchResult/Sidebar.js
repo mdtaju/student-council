@@ -45,6 +45,7 @@ const Sidebar = ({
   const handleChange = (event, newValue) => {
     setTuitionFeeRange(newValue);
   };
+
   return (
     <div className="w-full flex-1">
       {/* filter title header */}

@@ -4,7 +4,7 @@ import { Avatar } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetCourseShortListQuery } from "../../../../../../../features/course/courseApi";
-import useAuth from "../../../../../../../hooks/useAuth";
+import usePath from "../../../../../../../hooks/usePath";
 
 const StudentInfo = ({
   university_details = {},
@@ -39,7 +39,7 @@ const StudentInfo = ({
     state,
     zip_code,
   } = personal_info;
-  const auth = useAuth();
+  const pathName = usePath();
   const params = useParams();
   const { data } = useGetCourseShortListQuery(query_id);
   const { grading_scheme, country_of_education, grade_average } =
@@ -59,19 +59,10 @@ const StudentInfo = ({
       setOthersList(getOtherList);
     }
   }, [data, params]);
-  console.log(auth);
-  let courseLinkPath;
-  if (auth?.user === "Student") {
-    courseLinkPath = `/student-dashboard/applications`;
-  } else if (auth?.user === "Counsellor_Admin") {
-    courseLinkPath = `/counsellor-dashboard/applications`;
-  } else {
-    courseLinkPath = "/dashboard/applications";
-  }
 
   function handleOtherListClick(e) {
     setOtherListValue(e.target.value);
-    window.open(`${courseLinkPath}/${e.target.value}`, "_blank");
+    window.open(`/${pathName}/applications/${e.target.value}`, "_blank");
     // navigate(`${courseLinkPath}/${e.target.value}`);
   }
 

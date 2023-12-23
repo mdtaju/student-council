@@ -13,11 +13,13 @@ import {
   useUpdateAppointmentMutation,
 } from "../../../features/appointment/appointmentApi";
 import useAuth from "../../../hooks/useAuth";
+import usePath from "../../../hooks/usePath";
 import SnackMessage from "../../SnackBarMessage/SnackMessage";
 import DataTableMui from "../../Table/Table";
 
 const AssignedStudent = () => {
   const auth = useAuth();
+  const pathName = usePath();
   const { data, refetch } = useGetAppointmentsForCounsellorQuery(auth?.id);
   const [updateAppointment] = useUpdateAppointmentMutation();
   const [allAppointments, setAllAppointments] = useState([]);
@@ -59,7 +61,7 @@ const AssignedStudent = () => {
                 <Link
                   target="_blank"
                   className="hover:text-blue-500 hover:underline"
-                  to={`/counsellor-dashboard/contactDetails/${params?.id}`}>
+                  to={`/${pathName}/contactDetails/${params?.id}`}>
                   {params.value}
                 </Link>
               ),
