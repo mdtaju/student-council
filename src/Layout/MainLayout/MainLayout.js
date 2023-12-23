@@ -5,6 +5,7 @@ import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
 import SideLinks from "../../Shared/SideLinks/SideLinks";
 import whatsApp from "../../assets/logo/whatsapp.png";
+import NewFooter from "../../Shared/Footer/NewFooter";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -18,8 +19,10 @@ const MainLayout = () => {
       <SideLinks />
       <Outlet></Outlet>
       {
-        isAssessmentPage ? null : <Footer></Footer>
+        isAssessmentPage ? null : <NewFooter></NewFooter>
       }
+
+     
       
       <div className=" right-0 bottom-10 fixed z-50">
         <ReactWhatsapp
