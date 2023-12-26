@@ -177,11 +177,10 @@ const NewHeader = ({ window, show }) => {
             boxShadow: "none",
             borderBottom: "1px solid rgb(209 213 219 / 1)",
           }}
-          className={`${
-            !show
-              ? "fixed top-0 duration-100 py-4 scroll-smooth"
-              : "lg:mt-[45px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
-          }`}>
+          className={`${!show
+            ? "fixed top-0 duration-100 py-4 scroll-smooth"
+            : "lg:mt-[45px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
+            }`}>
           <Toolbar className="w-11/12 md:w-full mx-auto lg:w-full xl:w-11/12 lg mx-1:xl:mx-2 xl:mx-auto text-black">
             <div className="flex justify-between items-center lg:hidden w-full">
               <IconButton
@@ -236,9 +235,8 @@ const NewHeader = ({ window, show }) => {
                     onMouseLeave={() => setIsEventArrowRotated(false)}>
                     Event
                     <span
-                      className={`inline-block transition-transform transform ${
-                        isEventArrowRotated ? "rotate-180" : ""
-                      }`}>
+                      className={`inline-block transition-transform transform ${isEventArrowRotated ? "rotate-180" : ""
+                        }`}>
                       <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
@@ -273,15 +271,14 @@ const NewHeader = ({ window, show }) => {
                     onMouseLeave={() => setIsVisaArrowRotated(false)}>
                     Visa Gallery
                     <span
-                      className={`inline-block transition-transform transform ${
-                        isVisaArrowRotated ? "rotate-180" : ""
-                      }`}>
+                      className={`inline-block transition-transform transform ${isVisaArrowRotated ? "rotate-180" : ""
+                        }`}>
                       <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
 
                   <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
-                    <NavLink to={" "} className={"cursor-pointer"}>
+                    <NavLink to={"/countries/542"} className={"cursor-pointer"}>
                       {" "}
                       <p className=" mb-3 hover:text-red-500  hover:font-bold ">
                         UK
@@ -316,9 +313,8 @@ const NewHeader = ({ window, show }) => {
                     onMouseLeave={() => setIsBlogOfferArrowRotated(false)}>
                     Blog & Offer
                     <span
-                      className={`inline-block transition-transform transform ${
-                        isBlogOfferArrowRotated ? "rotate-180" : ""
-                      }`}>
+                      className={`inline-block transition-transform transform ${isBlogOfferArrowRotated ? "rotate-180" : ""
+                        }`}>
                       <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
@@ -351,7 +347,7 @@ const NewHeader = ({ window, show }) => {
                   </div>
                 </div>
 
-               
+
 
                 {auth?.user === "Admin" && (
                   <NavLink
@@ -386,6 +382,10 @@ const NewHeader = ({ window, show }) => {
                   </NavLink>
                 )}
 
+
+
+
+
                 {auth?.accessToken ? (
                   <>
                     <Link
@@ -403,12 +403,22 @@ const NewHeader = ({ window, show }) => {
                     <NavLink
                       to={"/login"}
                       className={
-                        "text-center mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
+                        "text-center border-2  border-[#031F4B]  shadow-xl xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold bg-white text-black  hover:bg-secondary  hover:text-white  mx-1 rounded"
                       }>
                       Log In
                     </NavLink>
                   </>
                 )}
+
+
+                <NavLink
+                  to={"/register"}
+                  className={
+                    "text-center  shadow-lg mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-red-600 hover:bg-secondary   rounded"
+                  }>
+                  Sign Up
+                </NavLink>
+
               </nav>
             </Box>
           </Toolbar>
@@ -467,7 +477,7 @@ const NewHeader = ({ window, show }) => {
                     </NavLink>
                   </ListItemButton>
                 </ListItem>
-                 </>
+              </>
             )}
           </Drawer>
         </Box>

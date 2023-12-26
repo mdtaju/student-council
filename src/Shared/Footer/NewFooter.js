@@ -4,16 +4,10 @@ import Logo from "../../assets/footer/footerLogo.png";
 import appStoreImage from "../../assets/footer/Apple store.png";
 import playstore from "../../assets/footer/Google play store.png";
 
-// import backgroundImage from '../../assets//footer/footer1.jpg'
-import backgroundImage from '../../assets//footer/footer2.jpg'
-
-
-
 const NewFooter = () => {
     return (
         <div>
             <footer
-                // <footer  style={{ backgroundImage: `url(${backgroundImage})` }}  
                 class="bg-white overflow-hidden bg-no-repeat bg:opacity-50 bg-cover">
                 {/* bg-indigo-500 */}
                 <div class=" bg-red-500 py-6">
@@ -31,7 +25,7 @@ const NewFooter = () => {
                             </div>
 
                             <div class="text-center flex gap-7 ">
-                                <Link to="" class="inline-block rounded bg-blue-950  px-10 py-4 text-center text-sm font-semibold text-white outline-none  md:text-base">Apply From Anywhere</Link>
+                                <Link to="" class="inline-block transition ease-in-out delay-150  rounded bg-blue-950 hover:bg-white  hover:text-black  px-10 py-4 text-center text-sm font-semibold text-white outline-none  md:text-base">Apply From Anywhere</Link>
                                 <Link to="" class="inline-block rounded bg-white px-10 py-4 text-center text-sm font-semibold text-indigo-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:text-indigo-600 md:text-base">Help & Support</Link>
                             </div>
                         </div>
@@ -69,11 +63,9 @@ const NewFooter = () => {
                             </div>
 
 
-
-
-                            {/* Register Option Start here  */}
+                            {/* 1st row and Register Option Start here  */}
                             <div>
-                                <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">Register</div>
+                                <div class="mb-4 font-bold hover:text-red-600  cursor-pointer  cursor-pointer  uppercase tracking-widest text-gray-800">Register</div>
 
                                 <nav class="flex flex-col gap-4">
                                     <div>
@@ -94,13 +86,9 @@ const NewFooter = () => {
                                 </nav>
                             </div>
 
-
-
-
-
                             {/* About option here  */}
                             <div>
-                                <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">About</div>
+                                <div class="mb-4 hover:text-red-600 cursor-pointer  font-bold uppercase tracking-widest text-gray-800">About</div>
 
                                 <nav class="flex flex-col gap-4">
                                     <div>
@@ -128,89 +116,95 @@ const NewFooter = () => {
                                 </nav>
                             </div>
 
-
                             {/* Branches option here  */}
-                            <div>
-                                <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">Branches</div>
+                            <div className=''>
+                                <div class="mb-4 hover:text-red-600 cursor-pointer  font-bold uppercase tracking-widest text-gray-800">Branches</div>
 
-                                <nav class="flex flex-col gap-4">
-                                    <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Head Office      </Link>
+                                <nav class="flex flex-col gap-4 w-full">
+                                    <div className='mb-4 '>
+                                        <Link to="/main_branch" class="text-white hover:bg-red-600  font-bold  bg-gradient-to-l rounded-md from-purple-500 to-red-500  px-5   py-3 w-full ">Head Office      </Link>
                                     </div>
 
                                     <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">All Branches      </Link>
+                                        <Link to="all_branches" class="text-white hover:bg-red-600  font-bold  bg-gradient-to-l rounded-md from-blue-800 to-red-500  px-4 py-3 w-full ">All Branches      </Link>
                                     </div>
                                 </nav>
                             </div>
-
-
 
                             {/* Resource link here  */}
-                            <div>
-                                <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">Resource</div>
+                            <div className='row-span-2'>
+                                <div class="mb-4 hover:text-red-600 cursor-pointer  font-bold uppercase tracking-widest text-gray-800">Resource</div>
 
-                                <nav class="flex flex-col gap-4">
+                                <nav class="flex flex-col gap-4  ">
                                     <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Uk      </Link>
-                                    </div>
-
-                                    <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">USA      </Link>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Uk Resource     </Link>
                                     </div>
                                     <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CANADA      </Link>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">USA Resource     </Link>
                                     </div>
                                     <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">AUSTRALIA      </Link>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CANADA Resource     </Link>
                                     </div>
                                     <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA      </Link>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">AUSTRALIA Resource     </Link>
                                     </div>
-
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">CHINA Resource     </Link>
+                                    </div>
                                 </nav>
                             </div>
-                        </div>
 
-
-
-
-
-
-                        {/* Branches link here  */}
-                        <div class="mb-16 grid grid-cols-2 gap-5 md:grid-cols-5 lg:grid-cols-6 lg:gap-5">
-                            <div class="col-span-full lg:col-span-2 ">
-
-                            </div>
+                            {/* 2nd row here  */}
+                            <div class="col-span-full lg:col-span-2 "> </div>
 
                             {/* Legal option here  */}
                             <div>
-                                <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">Legal</div>
+                                <div class="mb-4 hover:text-red-600 cursor-pointer  font-bold uppercase tracking-widest text-gray-800">Legal</div>
 
                                 <nav class="flex flex-col gap-4">
                                     <div>
                                         <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Privacy & Cookies Policy      </Link>
                                     </div>
                                     <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Cookies Setting </Link>
-                                    </div>
-
-                                    <div>
                                         <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Terms & Condition      </Link>
                                     </div>
-
                                     <div>
-                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Apply Versity Form      </Link>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Apply Versity Fees      </Link>
                                     </div>
-
                                     <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Modern Slavery Statement      </Link>
                                     </div>
+                                   
                                 </nav>
                             </div>
 
                             {/* Popular link here  */}
                             <div>
-                                <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">Popular link</div>
+                                <div class="mb-4 hover:text-red-600 cursor-pointer font-bold uppercase tracking-widest text-gray-800">Popular link</div>
 
                                 <nav class="flex flex-col gap-4">
                                     <div>
@@ -232,32 +226,18 @@ const NewFooter = () => {
                                     <div>
                                         <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Event      </Link>
                                     </div>
+                                    <div>
+                                        <Link to="" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Community      </Link>
+                                    </div>
                                 </nav>
-                            </div>
-
-
-
-                            {/* Address here  */}
-                            <div className='col-span-2'>
-                                <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">Contact Details</div>
-
-                                <ul className="text-md  mt-5">
-                                    <li className="pb-1"> Address: Shah Niketon (5th Floor), GEC Circle, Chittagong </li>
-                                    <li className="py-1"> Phone: 8801978-881097  </li>
-                                    <li className="py-1"> Email: ceostudentcouncil@gmail.com</li>
-                                </ul>
                             </div>
 
                         </div>
 
-
-
-
-
                         {/* Social link here  */}
                         <div class="border-t py-8  mx-8 flex justify-between items-center text-sm text-gray-400">
                             <div class="flex gap-4 ">
-                                <Link to="" target="_blank" class=" bg-green-600 rounded-full p-2  text-white font-bold">
+                                <Link to="https://ahzassociates.co.uk/global-branches" target="_blank" class=" bg-green-600 rounded-full p-2  text-white font-bold">
                                     <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                                     </svg>

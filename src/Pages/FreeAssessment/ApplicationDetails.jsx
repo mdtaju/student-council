@@ -2,6 +2,7 @@ import React from 'react';
 import Input from '../../Components/Inputs/Input';
 import SelectCountry from '../../Components/Inputs/SelectCountry';
 import DateInput from '../../Components/Inputs/DateInput';
+import { Container } from '@mui/material';
 
 const ApplicationDetails = ({
     applyCountry,
@@ -14,7 +15,8 @@ const ApplicationDetails = ({
 
 }) => {
     return (
-        <div className='shadow-md  w-full p-4 sm:p-6 bg-white rounded-lg mt-10'>
+       <Container>
+         <div className='shadow-md  w-full p-4 sm:p-6 bg-white rounded-lg mt-10'>
             <h1 className="text-2xl py-3 font-bold text-gray-600">Application Details</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 my-6">
                 <SelectCountry
@@ -41,6 +43,7 @@ const ApplicationDetails = ({
                 />
             </div>
         </div>
+       </Container>
     );
 };
 

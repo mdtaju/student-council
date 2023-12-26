@@ -1,10 +1,12 @@
+
 import React, { useState } from 'react';
 import moment from 'moment/moment';
 import { FiPlus } from 'react-icons/fi';
 import EducationInput from './EducationInput';
 import ShowDetails from './ShowEduDetails';
+import { Container } from '@mui/material';
 
-const EducationHistory = ({attendSchools, setAttendSchools}) => {
+const EducationHistory = ({ attendSchools, setAttendSchools }) => {
 
   const [inputBoxShow, setInputBoxShow] = useState(false);
   const [attSclLevelOfEdu, setAttSclLevelOfEdu] = useState(""); // required
@@ -39,43 +41,45 @@ const EducationHistory = ({attendSchools, setAttendSchools}) => {
 
   return (
 
-    <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg mt-5">
-      <h1 className="text-2xl font-bold text-gray-600">Eduction History </h1>
+    <Container>
+      <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg mt-5">
+        <h1 className="text-2xl font-bold text-gray-600">Eduction History <span className='text-sm font-normal'>( <span className='font-bold'>Note:</span> List your Degrees in chronological order. Starting From Your <span className='font-bold'>First</span> degree to the <span className='font-bold'>last</span> )</span> </h1>
 
-      {inputBoxShow && (
-        <EducationInput
-          nameOfIns={nameOfIns}
-          setNameOfIns={setNameOfIns}
+        {inputBoxShow && (
+          <EducationInput
+            nameOfIns={nameOfIns}
+            setNameOfIns={setNameOfIns}
 
-          attSclLevelOfEdu={attSclLevelOfEdu}
-          setAttSclLevelOfEdu={setAttSclLevelOfEdu}
+            attSclLevelOfEdu={attSclLevelOfEdu}
+            setAttSclLevelOfEdu={setAttSclLevelOfEdu}
 
-          degreeName={degreeName}
-          setDegreeName={setDegreeName}
+            degreeName={degreeName}
+            setDegreeName={setDegreeName}
 
-          graduationDate={graduationDate}
-          setGraduationDate={setGraduationDate}
+            graduationDate={graduationDate}
+            setGraduationDate={setGraduationDate}
 
+            attendSchools={attendSchools}
+            setAttendSchools={setAttendSchools}
+
+            grade={grade}
+            setGrade={setGrade}
+
+            setBoxShow={setInputBoxShow}
+          />
+        )}
+        <ShowDetails
           attendSchools={attendSchools}
           setAttendSchools={setAttendSchools}
-
-          grade={grade}
-          setGrade={setGrade}
-
-          setBoxShow={setInputBoxShow}
+          handleExpire={handleExpire}
         />
-      )}
-      <ShowDetails
-        attendSchools={attendSchools}
-        setAttendSchools={setAttendSchools}
-        handleExpire={handleExpire}
-      />
-      <div
-        onClick={handleAddSchools}
-        className="w-fit px-6 py-2 my-5 text-base text-white bg-green-600 rounded-xl  active:scale-95 duration-200 flex items-center gap-2 cursor-pointer">
-        <span>Add Education History</span> <FiPlus />
+        <div
+          onClick={handleAddSchools}
+          className="w-fit px-6 py-2 my-5 text-base text-white bg-green-600 rounded-xl  active:scale-95 duration-200 flex items-center gap-2 cursor-pointer">
+          <span>Add Another Education History</span> <FiPlus />
+        </div>
       </div>
-    </div>
+    </Container>
 
   );
 };

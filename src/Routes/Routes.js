@@ -101,6 +101,9 @@ import PublicForm from "../Shared/PublicForm/PublicForm";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import CouncilPrivateRoute from "./CouncilPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
+import Countries from "../Pages/VisaGallery/Countries";
+import AllBranches from "../Pages/Branches/AllBranches";
+import MainBranch from "../Pages/Branches/MainBranch";
 
 export const routes = createBrowserRouter([
   {
@@ -121,6 +124,14 @@ export const routes = createBrowserRouter([
         element: <ContactUs />,
       },
       {
+        path: "/main_branch",
+        element: <MainBranch />,
+      },
+      {
+        path: "/all_branches",
+        element: <AllBranches />,
+      },
+      {
         path: "/course_details/:id",
         element: <CourseDetailsPublic />,
       },
@@ -136,6 +147,10 @@ export const routes = createBrowserRouter([
       {
         path: "/assessment",
         element: <FreeAssessment />,
+      },
+      {
+        path: "/countries/:id",
+        element: <Countries />,
       },
 
       // {

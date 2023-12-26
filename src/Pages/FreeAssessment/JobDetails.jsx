@@ -4,10 +4,11 @@ import ShowDetails from './ShowEduDetails';
 import { FiPlus } from 'react-icons/fi';
 import JobInput from './JobInput';
 import ShowJobDetails from './ShowJobDetails';
+import { Container } from '@mui/material';
 
-const JobDetails = ({attendSchools, setAttendSchools}) => {
+const JobDetails = ({ attendSchools, setAttendSchools }) => {
 
-    
+
   const [inputBoxShow, setInputBoxShow] = useState(false);
 
   const [companyName, setCompanyName] = useState(""); // required
@@ -39,31 +40,32 @@ const JobDetails = ({attendSchools, setAttendSchools}) => {
     setInputBoxShow(true);
   };
 
-    return (
-        <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg mt-5">
-        <h1 className="text-2xl font-bold text-gray-600">Job Details (If Any) </h1>
-  
+  return (
+    <Container>
+      <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg mt-5">
+        <h1 className="text-2xl font-bold text-gray-600">Job Details (If Have) </h1>
+
         {inputBoxShow && (
           <JobInput
             companyName={companyName}
             setCompanyName={setCompanyName}
-  
+
             companyPosition={companyPosition}
-            setCompanyPosition ={setCompanyPosition}
-            
+            setCompanyPosition={setCompanyPosition}
+
             joinDate={joinDate}
             setJoinDate={setJoinDate}
-            
+
             endDate={endDate}
             setEndDate={setEndDate}
-            
+
             companyLocation={companyLocation}
             setCompanyLocation={setCompanyLocation}
 
             attendSchools={attendSchools}
             setAttendSchools={setAttendSchools}
-            
-                       
+
+
             setBoxShow={setInputBoxShow}
           />
         )}
@@ -75,10 +77,12 @@ const JobDetails = ({attendSchools, setAttendSchools}) => {
         <div
           onClick={handleAddSchools}
           className="w-fit px-6 py-2 my-5 text-base text-white bg-green-600 rounded-xl  active:scale-95 duration-200 flex items-center gap-2 cursor-pointer">
-          <span>Add Job</span> <FiPlus />
+          <span>Add Another Job Details</span> <FiPlus />
         </div>
       </div>
-    );
+    </Container>
+
+  );
 };
 
 export default JobDetails;

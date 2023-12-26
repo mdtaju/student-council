@@ -5,6 +5,8 @@ import SelectCountry from '../../Components/Inputs/SelectCountry';
 import RadioInput from '../../Components/Inputs/RadioInut';
 import { Button, Container, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SelectInput from '@mui/material/Select/SelectInput';
+import ReferenceDetails from './ReferenceDetails';
 
 const GeneralInfo = ({
     passportStatus,
@@ -33,22 +35,32 @@ const GeneralInfo = ({
     setState,
     zipCode,
     setZipCode,
-    email,
-    setEmail,
+
     phoneNumbers,
     setPhoneNumbers,
     whatsappNumbers,
     setWhatsappNumbers,
-    referenceName,
-    setReferenceName,
-    referenceAddress,
-    setReferenceAddress,
-    referenceMobile,
-    setReferenceMobile,
+
+
+
+    AddressStatus,
+    setAddressStatus,
+
+
+    emails,
+    setEmails,
+
 }) => {
+
+
+
 
     const handleMaritalStatus = (value) => {
         setMaritalStatus(value);
+    };
+
+    const handleAddressStatus = (value) => {
+        setAddressStatus(value);
     };
     const handleGender = (value) => {
         setGender(value);
@@ -60,6 +72,12 @@ const GeneralInfo = ({
     const maritalOptions = [
         { value: "Single", label: "Single" },
         { value: "Married", label: "Married" },
+    ];
+
+
+    const AddressOptions = [
+        { value: "Present", label: "Present" },
+        { value: "Permanent", label: "Permanent" },
     ];
 
     const genderOptions = [
@@ -122,9 +140,30 @@ const GeneralInfo = ({
 
 
 
+    /* email functionality  */
+    const handleEmailChange = (index, value) => {
+        setEmails((prevEmails) => {
+            const newEmails = [...prevEmails];
+            newEmails[index] = value;
+            return newEmails;
+        });
+    };
+    const handleAddEmail = () => {
+        setEmails((prevEmails) => [...prevEmails, '']);
+    };
+    const handleRemoveEmail = (index) => {
+        setEmails((prevEmails) => {
+            const newEmails = [...prevEmails];
+            newEmails.splice(index, 1);
+            return newEmails;
+        });
+    };
+
+
+
 
     return (
-        <div className='py-40'>
+        <div className='pt-40 pb-8 '>
             <Container>
                 <div className="shadow-md  w-full p-4 sm:p-6 bg-white rounded-lg mt-10">
                     <h1 className="text-2xl font-bold text-gray-600">General Information</h1>
@@ -210,44 +249,16 @@ const GeneralInfo = ({
                             onChange={handlePassport}
                         />
                     </div>
+                </div>
 
 
 
-                    {/* Reference Details Start here  */}
-
-                    <h1 className="text-2xl mt-20 font-bold text-gray-600">Reference Details</h1>
-                    <p className='pt-3'>If you have any references, please let me know</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 my-6">
-
-                        <Input
-                            title={"Name"}
-                            placeholder="Enter His/Her Name..."
-                            type="text"
-                            value={referenceName}
-                            onChange={(e) => setReferenceName(e.target.value)}
-                        />
-
-                        <Input
-                            title={"Address"}
-                            placeholder="Enter His/Her Address..."
-                            type="text"
-                            value={referenceAddress}
-                            onChange={(e) => setReferenceAddress(e.target.value)}
-                        />
-
-                        <Input
-                            title={"Phone Number"}
-                            type="text"
-                            placeholder="Add Phone Number"
-                            value={referenceMobile}
-                            onChange={(e) => setReferenceMobile(e.target.value)}
-                        />
-
-                    </div>
-                    {/* Reference Details End Here  */}
 
 
-                    <h1 className="text-2xl mt-20 font-bold text-gray-600">Address Details</h1>
+
+
+                <div className="shadow-md  w-full p-4 sm:p-6 bg-white rounded-lg mt-10">
+                    <h1 className="text-2xl mt-5 font-bold text-gray-600">Contact Details</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 my-6">
                         <div className="">
                             <Input
@@ -295,21 +306,20 @@ const GeneralInfo = ({
                             onChange={(e) => setZipCode(e.target.value)}
                         />
 
-                        <div className="">
-                            <Input
-                                title={"Email"}
-                                isRequired
-                                required
-                                placeholder="Enter your mail..."
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
+                        {/* mention your address permanent or present */}
+                        <RadioInput
+                            title={"Address type"}
+                            isRequired
+                            required
+                            name="mentionAddress"
+                            options={AddressOptions}
+                            selectedValue={AddressStatus}
+                            onChange={handleAddressStatus}
+                        />
 
                         <div>
                             {phoneNumbers?.map((phoneNumber, index) => (
-                                <div key={index} className="phone-input-container flex w-full  items-center">
+                                <div key={index} className="phone-input-container flex items-center w-full">
                                     <Input
                                         title={"Phone Number"}
                                         isRequired
@@ -329,10 +339,10 @@ const GeneralInfo = ({
                                 </div>
                             ))}
                             <button
-                                className="bg-green-600 mt-3 text-white p-2 shadow-xl rounded-xl text-sm outline-none mr-2" 
+                                className="bg-green-600 mt-3 text-white p-2 shadow-xl rounded-xl text-sm outline-none mr-2"
                                 onClick={handleAddPhoneNumber}
                                 variant="contained" color="success" size="small">
-                                Add More Number
+                                Add Another Number
                             </button>
                         </div>
 
@@ -342,7 +352,7 @@ const GeneralInfo = ({
 
                         <div>
                             {whatsappNumbers?.map((whatsappNumber, index) => (
-                                <div key={index} className="phone-input-container flex w-full  items-center">
+                                <div key={index} className="phone-input-container flex items-center w-full ">
                                     <Input
                                         title={"Whatsapp Number"}
                                         isRequired
@@ -362,19 +372,46 @@ const GeneralInfo = ({
                                 </div>
                             ))}
                             <button
-                               className="bg-green-600 mt-3 text-white p-2 shadow-xl rounded-xl text-sm outline-none mr-2" 
+                                className="bg-green-600 mt-3 text-white p-2 shadow-xl rounded-xl text-sm outline-none mr-2"
                                 onClick={handleAddWhatsappNumber}
                                 variant="contained" color="success" size="small">
-                                Add More Number
+                                Add Another whatsapp Number
                             </button>
                         </div>
 
+                        {/* email functionality here  */}
 
-
-
+                        <div>
+                            {emails?.map((email, index) => (
+                                <div key={index} className="phone-input-container flex items-center w-full ">
+                                    <Input
+                                        title={"Email "}
+                                        isRequired
+                                        required
+                                        placeholder={`Add Email ${index + 1}`}
+                                        value={email}
+                                        onChange={(e) => handleEmailChange(index, e.target.value)}
+                                    />
+                                    {index > 0 && (
+                                        <IconButton
+                                            style={{ marginTop: '14px' }}
+                                            onClick={() => handleRemoveEmail(index)}
+                                            color="error" aria-label="delete">
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    )}
+                                </div>
+                            ))}
+                            <button
+                                className="bg-green-600 mt-3 text-white p-2 shadow-xl rounded-xl text-sm outline-none mr-2"
+                                onClick={handleAddEmail}
+                                variant="contained" color="success" size="small">
+                                Add Another Email
+                            </button>
+                        </div>
                     </div>
-
                 </div>
+
             </Container>
         </div>
     );
