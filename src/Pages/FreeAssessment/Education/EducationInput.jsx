@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
-import Input from '../../Components/Inputs/Input';
-import GroupAutoSelectInput from '../../Components/Inputs/GroupAutoSelectInput';
-import DateInput from '../../Components/Inputs/DateInput';
+import Input from '../../../Components/Inputs/Input';
+import GroupAutoSelectInput from '../../../Components/Inputs/GroupAutoSelectInput';
+import DateInput from '../../../Components/Inputs/DateInput';
 
 const EducationInput = ({
     nameOfIns,
     setNameOfIns,
+
     attSclLevelOfEdu,
     setAttSclLevelOfEdu,
+
     degreeName,
     setDegreeName,
+
     graduationDate,
     setGraduationDate,
+
     setAttendSchools,
+
     existsSchoolIndex,
+
     setBoxShow,
+    
     grade,
     setGrade,
     

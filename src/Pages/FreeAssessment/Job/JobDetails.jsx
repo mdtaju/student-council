@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment/moment';
-import ShowDetails from './ShowEduDetails';
+import ShowDetails from '../Education/ShowEduDetails';
 import { FiPlus } from 'react-icons/fi';
 import JobInput from './JobInput';
 import ShowJobDetails from './ShowJobDetails';
@@ -9,7 +9,7 @@ import { Container } from '@mui/material';
 const JobDetails = ({ attendSchools, setAttendSchools }) => {
 
 
-  const [inputBoxShow, setInputBoxShow] = useState(false);
+  const [inputBoxShow, setInputBoxShow] = useState(true);
 
   const [companyName, setCompanyName] = useState(""); // required
   const [companyPosition, setCompanyPosition] = useState(""); // required

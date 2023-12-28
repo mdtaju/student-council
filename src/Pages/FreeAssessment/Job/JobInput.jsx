@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import GroupAutoSelectInput from '../../Components/Inputs/GroupAutoSelectInput';
-import Input from '../../Components/Inputs/Input';
-import DateInput from '../../Components/Inputs/DateInput';
+import GroupAutoSelectInput from '../../../Components/Inputs/GroupAutoSelectInput';
+import Input from '../../../Components/Inputs/Input';
+import DateInput from '../../../Components/Inputs/DateInput';
 
 const JobInput = ({
     companyName,

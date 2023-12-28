@@ -10,7 +10,7 @@ const ApplicationAndApply = () => {
   //   get application data
   useEffect(() => {
     async function getApplicationData() {
-      const res = await fetch(`http://localhost:9000/application/${id?.id}`);
+      const res = await fetch(`https://server-y29-p.applyversity.com/application/${id?.id}`);
       const getData = await res.json();
       setApplicationData(getData);
     }

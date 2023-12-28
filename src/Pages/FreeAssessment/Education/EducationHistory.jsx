@@ -8,7 +8,7 @@ import { Container } from '@mui/material';
 
 const EducationHistory = ({ attendSchools, setAttendSchools }) => {
 
-  const [inputBoxShow, setInputBoxShow] = useState(false);
+  const [inputBoxShow, setInputBoxShow] = useState(true);
   const [attSclLevelOfEdu, setAttSclLevelOfEdu] = useState(""); // required
   const [nameOfIns, setNameOfIns] = useState(""); // required
   const [graduationDate, setGraduationDate] = useState(null); // required

@@ -6,12 +6,14 @@ import { Container } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import { useAddStudentFormMutation, useGetStudentFormQuery, useUpdateStudentFormMutation } from '../../features/student/studentApi';
 import GeneralInfo from './GeneralInfo';
-import EducationHistory from './EducationHistory';
+import EducationHistory from './Education/EducationHistory';
 import ApplicationDetails from './ApplicationDetails';
-import ImmigrationHistory from './ImmigrationHistory';
-import JobDetails from './JobDetails';
+import ImmigrationHistory from './Immigration/ImmigrationHistory';
+import JobDetails from './Job/JobDetails';
 import ReferenceDetails from './ReferenceDetails';
 import { Link } from 'react-router-dom';
+import TextArea from '../../Components/Inputs/TextArea';
+import FileInput from '../../Components/Inputs/FileInput';
 
 const FreeAssessment = () => {
   const auth = useAuth();
@@ -70,7 +72,7 @@ const FreeAssessment = () => {
   const [engOverall, setEngOverall] = useState(""); // required with condition
 
 
-  const [specialExamsType, setSpecialExamsType ] = useState("")
+  const [specialExamsType, setSpecialExamsType] = useState("")
   const [specialExamOtherDetails, setSpecialExamOtherDetails] = useState('')
   const [selectSpecialExamType, setSelectSpecialExamType] = useState('')
   const [specialExamScore, setSpecialExamScore] = useState("")
@@ -106,41 +108,39 @@ const FreeAssessment = () => {
   const [applyCourse, setApplyCourse] = useState('')
   const [applyCountry, setApplyCountry] = useState("")
 
-
   // Immigration Details
-  const [emigrationHistoryType, setEmigrationHistoryType] = useState("")
-  const [reason, setReason] = useState("")
-  const [selectVisaCountry, setSelectVisaCountry] = useState("")
-  const [regDate, setRegDate] = useState(null)
+  const [immigrationHistory, setImmigrationHistory] = useState([]);
 
+  // Special Comments 
+  const [specialComments, setSpecialComments] = useState("")
 
-
+  // profile image state 
+  const [selectedFile, setSelectedFile] = useState(null);
 
   // Terms and condition checked
   const [isChecked, setIsChecked] = useState(false);
 
+  const [termsData, setTermsData] = useState({
+    termsAndConditions: false,
+  });
+
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  }
+    setIsChecked((prev) => !prev); // Update the local state
 
+    setTermsData((prevData) => ({
+      ...prevData,
+      termsAndConditions: !prevData.termsAndConditions, // Update the form data
+    }));
+  };
 
-
-
-  // const [inputSections, setInputSections] = useState([
-  //   {
-  //     nameOfIns: '',
-  //     attSclLevelOfEdu: '',
-  //     degreeName: '',
-  //     graduationDate: null,
-  //     grade: '',
-  //   },
-  // ]);
 
   const handleSubmit = async (e) => {
 
     e.preventDefault();
     const formData = new FormData();
+    console.log(formData)
 
+    formData.append("image", selectedFile);
     // personal info
     formData.append("first_name", firstName);
     formData.append("middle_name", middleName);
@@ -219,13 +219,17 @@ const FreeAssessment = () => {
     formData.append("apply_course", applyCourse);
 
     //  immigration Details 
-    formData.append("emigration_history_type", emigrationHistoryType);
-    formData.append("reason", reason);
-    formData.append("registration_date", regDate);
-    formData.append("select_visa_country", selectVisaCountry);
+    formData.append("immigration_history", JSON.stringify(immigrationHistory));
 
     // job  info
     formData.append("Job_History", JSON.stringify(jobHistory));
+
+    // special comment
+    formData.append("comment", JSON.stringify(specialComments));
+
+
+    // terms and condition
+    formData.append("Terms_condition", JSON.stringify(termsData));
 
 
 
@@ -326,6 +330,12 @@ const FreeAssessment = () => {
           <div className="w-full min-h-full">
             {/* <ProfileStepper progressRate={progressRate} /> */}
             <form onSubmit={handleSubmit}>
+
+              <FileInput
+                selectedFile={selectedFile}
+                setSelectedFile={setSelectedFile}
+              />
+
               <GeneralInfo
                 firstName={firstName}
                 setFirstName={setFirstName}
@@ -392,8 +402,6 @@ const FreeAssessment = () => {
               <EducationHistory
                 attendSchools={educationHistory}
                 setAttendSchools={setEducationHistory}
-              // inputSections = {inputSections}
-              //  setInputSections = {setInputSections}
               />
 
 
@@ -422,14 +430,14 @@ const FreeAssessment = () => {
                 setOtherDetails={setOtherDetails}
 
 
-                specialExamsType = {specialExamsType}
-                setSpecialExamsType ={setSpecialExamsType}
-                specialExamOtherDetails  ={ specialExamOtherDetails}
-                setSpecialExamOtherDetails = { setSpecialExamOtherDetails}
-                selectSpecialExamType ={selectSpecialExamType }
-                setSelectSpecialExamType ={setSelectSpecialExamType }
-                specialExamScore ={ specialExamScore}
-                setSpecialExamScore ={setSpecialExamScore }
+                specialExamsType={specialExamsType}
+                setSpecialExamsType={setSpecialExamsType}
+                specialExamOtherDetails={specialExamOtherDetails}
+                setSpecialExamOtherDetails={setSpecialExamOtherDetails}
+                selectSpecialExamType={selectSpecialExamType}
+                setSelectSpecialExamType={setSelectSpecialExamType}
+                specialExamScore={specialExamScore}
+                setSpecialExamScore={setSpecialExamScore}
               />
 
 
@@ -446,14 +454,8 @@ const FreeAssessment = () => {
 
 
               <ImmigrationHistory
-                emigrationHistoryType={emigrationHistoryType}
-                setEmigrationHistoryType={setEmigrationHistoryType}
-                reason={reason}
-                setReason={setReason}
-                regDate={regDate}
-                setRegDate={setRegDate}
-                selectVisaCountry={selectVisaCountry}
-                setSelectVisaCountry={setSelectVisaCountry}
+                attendSchools={immigrationHistory}
+                setAttendSchools={setImmigrationHistory}
               />
 
 
@@ -463,19 +465,38 @@ const FreeAssessment = () => {
               />
 
 
-              {/* terms and condition button  */}
-              <div className="flex items-center justify-center mt-5 mb-20">
-                <input
-                  type="checkbox"
-                  id="termsAndConditions"
-                  className="form-checkbox h-5 w-5 text-blue-600"
-                  checked={isChecked}
-                  onChange={() => handleCheckboxChange((prevS) => !prevS)}
+
+              <div className='bg-white px-5 py-8 m-4 shadow-lg rounded-lg mb-20'>
+                {/* Comment Box here */}
+
+                <TextArea
+                  title={"Comment Box"}
+                  placeholder="If You Have Any Special Notes, Please leave Your Comments Here"
+                  type="text"
+                  value={specialComments}
+                  onChange={(e) => setSpecialComments(e.target.value)}
                 />
-                <label htmlFor="termsAndConditions" className="ml-2 text-black text-xl  ">
-                  I agree to the <Link to="" className='font-bold'>terms and conditions</Link>
-                </label>
+
+
+                {/* terms and condition button  */}
+                <div className="flex items-center justify-center mt-5">
+                  <input
+                    type="checkbox"
+                    id="termsAndConditions"
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                    checked={isChecked}
+                    onChange={() => handleCheckboxChange((prevS) => !prevS)}
+                  />
+                  <label htmlFor="termsAndConditions" className="ml-2 text-black text-xl">
+                    I agree to the <Link to="" className='font-bold'>terms and conditions</Link>
+                  </label>
+                </div>
               </div>
+
+
+
+
+
 
 
               {/* <UploadDocuments /> */}
