@@ -28,6 +28,20 @@ export const universityApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateUniversityAppReq: builder.mutation({
+      query: (data) => ({
+        url: "/update_university_app_requirement",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    updateUniversityFeatures: builder.mutation({
+      query: (data) => ({
+        url: "/update_university_features",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -42,4 +56,6 @@ export const {
   useGetSingleUniversityQuery,
   // update
   useUpdateUniversityMutation,
+  useUpdateUniversityAppReqMutation,
+  useUpdateUniversityFeaturesMutation,
 } = universityApi;

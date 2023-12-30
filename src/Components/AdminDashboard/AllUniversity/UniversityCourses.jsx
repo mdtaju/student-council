@@ -2,13 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import usePath from '../../../hooks/usePath';
 import DataTableMui from '../../Table/Table';
+import AddCourse from '../AddUniversity/AddCourse/AddCourse';
 
-function UniversityCourses({ courses = [] }) {
+function UniversityCourses({ courses = [], addCourses = [],
+      setAddCourses, selectionModel,
+      setSelectionModel, handleDelete }) {
       const pathName = usePath();
+
       return (
             <div>
                   <h1 className="mt-3 text-xl font-semibold text-gray-700">Courses</h1>
                   <div className='mt-4'>
+                        {
+                              selectionModel.length > 0 &&
+                              <button
+                                    onClick={handleDelete}
+                                    className="px-3 py-1 text-white bg-red-500 hover:bg-red-600 shadow-sm active:scale-95 duration-150 rounded-md mb-4">
+                                    Delete Courses
+                              </button>
+                        }
                         <DataTableMui
                               rows={courses}
                               columns={[
@@ -17,7 +29,6 @@ function UniversityCourses({ courses = [] }) {
                                           minWidth: 150,
                                           headerName: "View to Edit",
                                           renderCell: (params) => {
-                                                console.log(params)
                                                 return (
                                                       <Link
                                                             className='px-4 py-1 text-xs font-medium rounded-md text-white bg-blue-500'
@@ -78,9 +89,17 @@ function UniversityCourses({ courses = [] }) {
                                           ),
                                     },
                               ]}
+                              checkboxSelection
+                              disableRowSelectionOnClick
+                              onRowSelectionModelChange={(newSelectionModel) => {
+                                    setSelectionModel(newSelectionModel);
+                              }}
                               getRowHeight={() => "auto"}
+                              selectionModel={selectionModel}
                         />
                   </div>
+                  <AddCourse courses={addCourses} setCourses={setAddCourses} />
+
             </div>
       )
 }
