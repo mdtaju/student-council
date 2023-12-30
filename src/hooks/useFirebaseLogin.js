@@ -3,16 +3,18 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithPopup,
+  sendEmailVerification
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import firebase from "../config/cofig.firebase";
+// import firebase from "../config/cofig.firebase";
 import {
   useRegisterMutation,
   useUserLoginMutation,
 } from "../features/auth/authApi";
 import { userLoggedOut } from "../features/auth/authSlice";
+import { firebase } from "../config/cofig.firebase";
 const provider = new GoogleAuthProvider();
-// import { useState } from "react";
+
 
 export default function useFirebaseLogin() {
   const [register] = useRegisterMutation();
@@ -29,6 +31,9 @@ export default function useFirebaseLogin() {
   const CreateNewAccount = async (email, password) => {
     let result;
     await createUserWithEmailAndPassword(auth, email, password)
+
+   
+
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -55,7 +60,25 @@ export default function useFirebaseLogin() {
             };
           });
       })
-      .catch((error) => {
+      
+      // Send email verification 
+
+    await sendEmailVerification(email)
+    .then(() => {
+      alert("Email verification sent! Check Email");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      result = {
+        status: errorCode,
+        message: errorMessage,
+      };
+    })
+   
+
+    
+   .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         result = {
@@ -64,6 +87,8 @@ export default function useFirebaseLogin() {
         };
         // ..
       });
+
+      
     return result;
   };
 

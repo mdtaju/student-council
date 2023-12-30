@@ -104,6 +104,7 @@ import StudentPrivateRoute from "./StudentPrivateRoute";
 import Countries from "../Pages/VisaGallery/Countries";
 import AllBranches from "../Pages/Branches/AllBranches";
 import MainBranch from "../Pages/Branches/MainBranch";
+import ResetPassword from "../Pages/Login/ResetPassword";
 
 export const routes = createBrowserRouter([
   {
@@ -222,6 +223,10 @@ export const routes = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/resetPassword",
+        element: <ResetPassword />,
       },
       {
         path: "/register",

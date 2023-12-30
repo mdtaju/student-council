@@ -383,6 +383,21 @@ const NewHeader = ({ window, show }) => {
                 )}
 
 
+                {/* Apply button and modal */}
+                <div className="group relative inline-block">
+                  {auth?.user === "Student" && (
+                    <div>
+                      <NavLink
+                        onClick={openModal}
+                        to={""}
+                        className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full    bg-primary "}
+                      >
+                        Apply
+                      </NavLink>
+                      <NavModal isOpen={isModalOpen} onClose={closeModal} />
+                    </div>
+                  )}
+                </div>
 
 
 
@@ -392,7 +407,7 @@ const NewHeader = ({ window, show }) => {
                       onClick={SignOutAccount}
                       to="/"
                       className={
-                        "text-center mx-1 xl:mx-2 xl:mr-2 px-2 md:px-4 xl:px-[25px] py-[8px] font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
+                        "text-center mx-1 xl:mx-2 xl:mr-2 px-2 md:px-4 xl:px-[25px] py-[8px] font-semibold text-white bg-secondary  ml-4  hover:bg-primary rounded"
                       }>
                       Log Out
                     </Link>
@@ -411,13 +426,21 @@ const NewHeader = ({ window, show }) => {
                 )}
 
 
-                <NavLink
-                  to={"/register"}
-                  className={
-                    "text-center  shadow-lg mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-red-600 hover:bg-secondary   rounded"
-                  }>
-                  Sign Up
-                </NavLink>
+                <div className="group relative inline-block">
+                  {
+                    auth?.user ? " " :
+
+                    <NavLink
+                      to={"/register"}
+                      className={
+                        "text-center  shadow-lg mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-red-600 hover:bg-secondary   rounded"
+                      }>
+                      Sign Up
+                    </NavLink>
+
+                
+                  }
+                </div>
 
               </nav>
             </Box>
