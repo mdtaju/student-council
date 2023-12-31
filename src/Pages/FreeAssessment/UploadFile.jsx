@@ -38,27 +38,30 @@ const UploadFile = ({
           </div>
         </div>
 
-        {/* right side for uploaded image */}
        
 
         {/* drop zone for upload file */}
-        <div className="w-full h-[300px] py-10 border-2 flex border-dashed border-green-400 bg-green-50 rounded-lg  cursor-pointer">
-          <div {...getRootProps()} className="w-full flex items-center justify-between">
+        <div className="w-full h-[300px] py-10 border-2  border-dashed border-green-400 bg-green-50 rounded-lg  cursor-pointer">
+        <p className='-mb-10 font-bold w-full ml-8 '>Upload Your Image</p>
+        <div className='flex'>
+        <div {...getRootProps()} className="w-full flex items-center justify-between">
             <div className="mr-5">
               <input {...getInputProps()} />
-              <div className="flex items-center ml-20 gap-3 w-fit mx-auto ">
+              <div className={`flex ${uploadedFile ? 'mt-8' : 'mt-24 '}items-center ml-20 gap-3 w-fit mx-auto`}>
+                
+                <h1 className="text-center flex gap-2 font-semibold text-2xl text-gray-600">
                 <BsFillFileEarmarkCheckFill className="text-green-500" />
-                <h1 className="text-center font-semibold text-2xl text-gray-600">
                   Drag and drop or click to upload your Image
                 </h1>
               </div>
-            </div>
+           </div>
           </div>
 
 
           <div className="w-full h-full md:w-1/3  pb-10">
           {uploadedFile && (
-            <div key={uploadedFile.id} className="w-52  border-2 border-dashed border-green-400">
+            <div key={uploadedFile.id} className="w-52  ">
+            <p className='text-center font-bold py-1'>Uploaded Image</p>
               <img
                 src={URL.createObjectURL(uploadedFile.file)}
                 alt={`uploaded-img-${uploadedFile.id}`}
@@ -66,6 +69,7 @@ const UploadFile = ({
               />
             </div>
           )}
+        </div>
         </div>
         </div>
       </div>
