@@ -105,6 +105,7 @@ import Countries from "../Pages/VisaGallery/Countries";
 import AllBranches from "../Pages/Branches/AllBranches";
 import MainBranch from "../Pages/Branches/MainBranch";
 import ResetPassword from "../Pages/Login/ResetPassword";
+import TermsCondition from "../Pages/TermsCondition/TermsCondition";
 
 export const routes = createBrowserRouter([
   {
@@ -152,6 +153,10 @@ export const routes = createBrowserRouter([
       {
         path: "/countries/:id",
         element: <Countries />,
+      },
+      {
+        path: "/terms_condition",
+        element: <TermsCondition />,
       },
 
       // {

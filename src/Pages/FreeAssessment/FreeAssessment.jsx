@@ -14,6 +14,7 @@ import ReferenceDetails from './ReferenceDetails';
 import { Link } from 'react-router-dom';
 import TextArea from '../../Components/Inputs/TextArea';
 import FileInput from '../../Components/Inputs/FileInput';
+import UploadFile from './UploadFile';
 
 const FreeAssessment = () => {
   const auth = useAuth();
@@ -27,6 +28,8 @@ const FreeAssessment = () => {
   const [addStudentForm] = useAddStudentFormMutation();
   const [updateStudentFrom] = useUpdateStudentFormMutation();
 
+  //  file upload state
+  const [uploadedFile, setUploadedFile] = useState(null);
   // General information states
   const [firstName, setFirstName] = useState(""); // required
   const [middleName, setMiddleName] = useState("");
@@ -133,6 +136,7 @@ const FreeAssessment = () => {
     }));
   };
 
+  console.log(uploadedFile)
 
   const handleSubmit = async (e) => {
 
@@ -140,7 +144,7 @@ const FreeAssessment = () => {
     const formData = new FormData();
     console.log(formData)
 
-    formData.append("image", selectedFile);
+    formData.append("image", setUploadedFile);
     // personal info
     formData.append("first_name", firstName);
     formData.append("middle_name", middleName);
@@ -331,11 +335,15 @@ const FreeAssessment = () => {
             {/* <ProfileStepper progressRate={progressRate} /> */}
             <form onSubmit={handleSubmit}>
 
-              <FileInput
+
+              {/* <FileInput
                 selectedFile={selectedFile}
                 setSelectedFile={setSelectedFile}
+              /> */}
+              <UploadFile
+                uploadedFile={uploadedFile}
+                setUploadedFile={setUploadedFile}
               />
-
               <GeneralInfo
                 firstName={firstName}
                 setFirstName={setFirstName}
@@ -488,7 +496,7 @@ const FreeAssessment = () => {
                     onChange={() => handleCheckboxChange((prevS) => !prevS)}
                   />
                   <label htmlFor="termsAndConditions" className="ml-2 text-black text-xl">
-                    I agree to the <Link to="" className='font-bold'>terms and conditions</Link>
+                    I agree to the <Link target='_blank' to="/terms_condition" className='font-bold'>terms and conditions</Link>
                   </label>
                 </div>
               </div>
