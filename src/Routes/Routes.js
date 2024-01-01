@@ -107,6 +107,7 @@ import PublicForm from "../Shared/PublicForm/PublicForm";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import CouncilPrivateRoute from "./CouncilPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
+import TermsCondition from "../Pages/TermsCondition/TermsCondition";
 
 export const routes = createBrowserRouter([
   {
@@ -154,6 +155,10 @@ export const routes = createBrowserRouter([
       {
         path: "/countries/:id",
         element: <Countries />,
+      },
+      {
+        path: "/terms_condition",
+        element: <TermsCondition />,
       },
 
       // {
