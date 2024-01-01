@@ -231,7 +231,7 @@ const Course = ({ course }) => {
                     <del>{application_fee}</del> {application_offer_fee}
                   </>
                 ) : (
-                  { application_fee }
+                  <>{application_fee}</>
                 )}
               </span>
             </h4>

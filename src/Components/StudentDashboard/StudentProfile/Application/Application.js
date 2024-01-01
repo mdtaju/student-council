@@ -34,7 +34,7 @@ const Application = () => {
   useEffect(() => {
     async function getShortlistData() {
       const res = await fetch(
-        `http://localhost:9000/get_all_course_shortlist/${auth?.id}`
+        `https://server-y29-p.applyversity.com/get_all_course_shortlist/${auth?.id}`
       );
       const getData = await res.json();
       setCourseShortlist(getData);

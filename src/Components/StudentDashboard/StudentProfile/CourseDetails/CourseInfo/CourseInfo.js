@@ -8,6 +8,7 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
     campus,
     course_url,
     application_fee,
+    application_offer_fee,
     yearly_tuition_fee,
     pte_overall,
     pte_no_band,
@@ -19,8 +20,8 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
     gmat_exam_score,
     entry_requirements,
     remarks,
+    currency,
   } = course || {};
-
   return (
     <div className="w-full md:w-[700px] ">
       {/* course details */}
@@ -69,7 +70,17 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
           <h4 className="text-sm font-medium text-gray-800 col-span-4">
             Application Fees
           </h4>
-          <p className="text-sm text-gray-500 col-span-8">{application_fee}</p>
+          <p className="text-sm text-gray-500 col-span-8">
+            {currency}{" "}
+            {application_offer_fee ? (
+              <>
+                {" "}
+                <del>{`${application_fee}`}</del> {application_offer_fee}
+              </>
+            ) : (
+              <>{application_fee}</>
+            )}
+          </p>
         </div>
         {/* Yearly Tuition Fees */}
         <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
@@ -77,7 +88,7 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
             Yearly Tuition Fees
           </h4>
           <p className="text-sm text-gray-500 col-span-8">
-            {yearly_tuition_fee}
+            {`${currency} ${yearly_tuition_fee}`}
           </p>
         </div>
       </div>
@@ -155,7 +166,7 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
         </div>
       </div>
       {/* Standardized details */}
-      {standardizedTest.length > 0 && gre_exam_score && gmat_exam_score && (
+      {(standardizedTest.length > 0 || gre_exam_score || gmat_exam_score) && (
         <div className="mb-6 bg-white">
           <div className="w-full px-4 py-2 bg-blue-600 text-white text-base font-medium">
             <h1>Standardized Test Requirements</h1>
