@@ -6,13 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 import lottieAnimation from "../../assets/lotties/student.json";
 import useFirebaseLogin from "../../hooks/useFirebaseLogin";
-
+import { getAuth, sendEmailVerification } from "firebase/auth";
+import useAuth from "../../hooks/useAuth";
 const StudentRegister = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { SignInWithGoogle, CreateNewAccount } = useFirebaseLogin();
   const [error, setError] = useState("");
-
+const auth = useAuth()
   const navigate = useNavigate();
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
@@ -35,6 +36,9 @@ const StudentRegister = () => {
     setError("");
     e.preventDefault();
     const result = await CreateNewAccount(email, password);
+
+    
+ 
     if (result?.status !== 200) {
       return setError(result?.message);
     }

@@ -93,8 +93,11 @@ const SearchResult = () => {
     //   created_by: "Student",
     //   is_eligible: "No",
     // };
+    const filterAdmissionAvailableCourses = courses.filter(
+      (crs) => crs?.application_availability === "Open"
+    );
     if (!shortListAll) {
-      courses.map((course, i) => {
+      filterAdmissionAvailableCourses.map((course, i) => {
         addCourseShortList({
           student_id: auth?.id,
           course_id: course?.id,

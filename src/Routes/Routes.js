@@ -68,10 +68,13 @@ import CounsellorDashboard from "../Components/CounsellorDashboard/CounsellorDas
 import AddUniversity from "../Components/AdminDashboard/AddUniversity/AddUniversity";
 import AllStudents from "../Components/AdminDashboard/AllStudents/AllStudents";
 import AllUniversity from "../Components/AdminDashboard/AllUniversity/AllUniversity";
+import UpdateCourse from "../Components/AdminDashboard/AllUniversity/UpdateCourse";
 import UpdateUniversity from "../Components/AdminDashboard/AllUniversity/UpdateUniversity";
 import AllVisa from "../Components/AdminDashboard/AllVisa/AllVisa";
 import Appointments from "../Components/AdminDashboard/Appointments/Appointments";
 import AllForm from "../Components/AdminDashboard/Form/AllForm";
+import AllFormAns from "../Components/AdminDashboard/Form/AllFormAns";
+import FormAnsView from "../Components/AdminDashboard/Form/FormAnsView";
 import FormView from "../Components/AdminDashboard/Form/FormView";
 import MakeForm from "../Components/AdminDashboard/Form/MakeForm";
 import UpdateForm from "../Components/AdminDashboard/Form/UpdateForm";
@@ -90,16 +93,21 @@ import SearchAndApply from "../Components/StudentDashboard/StudentProfile/Search
 import StudentProfile from "../Components/StudentDashboard/StudentProfile/StudentProfile";
 import VisaApplication from "../Components/StudentDashboard/StudentProfile/VisaApplication/VisaApplication";
 import UniversityDetails from "../Components/StudentDashboard/UniversityDetails/UniversityDetails";
+import AllBranches from "../Pages/Branches/AllBranches";
+import MainBranch from "../Pages/Branches/MainBranch";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import CourseDetailsPublic from "../Pages/CourseDetails/CourseDetails";
 import FreeAssessment from "../Pages/FreeAssessment/FreeAssessment";
 import Login from "../Pages/Login/Login";
+import ResetPassword from "../Pages/Login/ResetPassword";
 import SearchAndApplyHomePage from "../Pages/SearchAndApply/SearchAndApply";
 import StudentRegister from "../Pages/StudentRegister/StudentRegister";
+import Countries from "../Pages/VisaGallery/Countries";
 import PublicForm from "../Shared/PublicForm/PublicForm";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import CouncilPrivateRoute from "./CouncilPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
+import TermsCondition from "../Pages/TermsCondition/TermsCondition";
 
 export const routes = createBrowserRouter([
   {
@@ -120,6 +128,14 @@ export const routes = createBrowserRouter([
         element: <ContactUs />,
       },
       {
+        path: "/main_branch",
+        element: <MainBranch />,
+      },
+      {
+        path: "/all_branches",
+        element: <AllBranches />,
+      },
+      {
         path: "/course_details/:id",
         element: <CourseDetailsPublic />,
       },
@@ -135,6 +151,14 @@ export const routes = createBrowserRouter([
       {
         path: "/assessment",
         element: <FreeAssessment />,
+      },
+      {
+        path: "/countries/:id",
+        element: <Countries />,
+      },
+      {
+        path: "/terms_condition",
+        element: <TermsCondition />,
       },
 
       // {
@@ -208,6 +232,10 @@ export const routes = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: "/resetPassword",
+        element: <ResetPassword />,
+      },
+      {
         path: "/register",
         element: <StudentRegister />,
       },
@@ -271,6 +299,14 @@ export const routes = createBrowserRouter([
         element: <VisaUpdate />,
       },
       {
+        path: "updateCourse/:id",
+        element: <UpdateCourse />,
+      },
+      {
+        path: "courseDetails/:id",
+        element: <CourseDetails />,
+      },
+      {
         path: "allStudents",
         element: <AllStudents />,
       },
@@ -289,6 +325,14 @@ export const routes = createBrowserRouter([
       {
         path: "allForm/view/:id",
         element: <FormView />,
+      },
+      {
+        path: "allForm/answers/:id",
+        element: <AllFormAns />,
+      },
+      {
+        path: "allForm/answers/view/:id",
+        element: <FormAnsView />,
       },
 
       // {
@@ -624,6 +668,10 @@ export const routes = createBrowserRouter([
       {
         path: "todaysAssignedStudent",
         element: <TodaysAssignedStudent />,
+      },
+      {
+        path: "courseDetails/:id",
+        element: <CourseDetails />,
       },
       // // studentPathName
       // {

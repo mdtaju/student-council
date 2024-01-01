@@ -5,6 +5,8 @@ import ListIcon from "@mui/icons-material/List";
 import PaymentIcon from "@mui/icons-material/Payment";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import PublicIcon from "@mui/icons-material/Public";
+import RequestPageIcon from "@mui/icons-material/RequestPage";
+import SchoolIcon from "@mui/icons-material/School";
 import { Switch } from "@mui/material";
 import { FaSchool } from "react-icons/fa";
 import { useDispatch } from "react-redux";
@@ -15,6 +17,7 @@ import {
 } from "../../../../../../features/course/courseApi";
 import { addToSortList } from "../../../../../../features/searchAndApply/searchAndApplySlice";
 import useAuth from "../../../../../../hooks/useAuth";
+import usePath from "../../../../../../hooks/usePath";
 import SnackMessage from "../../../../../SnackBarMessage/SnackMessage";
 
 const Course = ({ course }) => {
@@ -27,6 +30,12 @@ const Course = ({ course }) => {
     duration,
     currency,
     yearly_tuition_fee,
+    scholarship_available,
+    scholarship_duration,
+    scholarship_amount,
+    application_availability,
+    application_fee,
+    application_offer_fee,
     isSortListed,
   } = course || {};
   const {
@@ -37,6 +46,7 @@ const Course = ({ course }) => {
     world_ranking,
   } = university || {};
   const auth = useAuth();
+  const pathName = usePath();
   const [shortList, setShortList] = useState(false);
   const [addCourseShortList] = useAddCourseShortListMutation();
   const [deleteCourseShortList] = useDeleteCourseShortListMutation();
@@ -128,7 +138,7 @@ const Course = ({ course }) => {
       <Link
         to={
           auth?.accessToken
-            ? `/student-dashboard/courseDetails/${id}`
+            ? `/${pathName}/courseDetails/${id}`
             : `/course_details/${id}`
         }
         target="_blank">
@@ -206,14 +216,50 @@ const Course = ({ course }) => {
               </span>
             </h4>
           </div>
+          {/* application fee */}
+          <div className="flex items-center gap-2 ml-[-2px]">
+            <RequestPageIcon
+              fontSize="small"
+              className="text-blue-800 text-sm"
+            />
+            <h4 className="text-sm font-semibold text-gray-800">
+              Application Fees:{" "}
+              <span className="text-gray-600 font-normal">
+                {currency}{" "}
+                {application_offer_fee ? (
+                  <>
+                    <del>{application_fee}</del> {application_offer_fee}
+                  </>
+                ) : (
+                  <>{application_fee}</>
+                )}
+              </span>
+            </h4>
+          </div>
+
+          {/* scholarship */}
+          <div className="flex items-center gap-2 ml-[-2px]">
+            <SchoolIcon fontSize="small" className="text-blue-800 text-sm" />
+            <h4 className="text-sm font-semibold text-gray-800">
+              {scholarship_available === "Yes"
+                ? `Scholarship Available - ${scholarship_duration} - ${currency} ${scholarship_amount}`
+                : `Scholarship Not Available`}
+            </h4>
+          </div>
         </div>
         {/* shortlist and details view container */}
-        <div>
+        <div className="text-center flex flex-col gap-2 items-center">
+          {/* application availability */}
+          {application_availability === "Open" ? (
+            <span className="text-xs font-medium bg-green-600 px-4 py-1 rounded-md text-white">{`Admission Open`}</span>
+          ) : (
+            <span className="text-xs font-medium bg-red-600 px-4 py-1 rounded-md text-white">{`Admission Close`}</span>
+          )}
           {/* details view container */}
           <Link
             to={
               auth?.accessToken
-                ? `/student-dashboard/courseDetails/${id}`
+                ? `/${pathName}/courseDetails/${id}`
                 : `/course_details/${id}`
             }
             target="_blank">
@@ -222,8 +268,9 @@ const Course = ({ course }) => {
               <span>View Details</span>
             </div>
           </Link>
+
           {/* shortlist container */}
-          {auth?.accessToken && (
+          {auth?.accessToken && application_availability === "Open" && (
             <div className="flex items-center gap-2">
               <h4 className="text-base font-semibold text-gray-600">
                 Shortlist

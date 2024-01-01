@@ -56,6 +56,30 @@ export const courseApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getCourseListForUpdate: builder.query({
+      query: (id) => `/course_for_update/${id}`,
+    }),
+    courseUpdate: builder.mutation({
+      query: (data) => ({
+        url: "/course_for_update",
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    deleteCourses: builder.mutation({
+      query: (data) => ({
+        url: "/course_for_update",
+        method: "DELETE",
+        body: data,
+      }),
+    }),
+    addCoursesToServer: builder.mutation({
+      query: (data) => ({
+        url: "/course_for_update",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -70,4 +94,8 @@ export const {
   useAddAppointmentPriorityStatusMutation,
   useAddAppointmentReplyMessageMutation,
   useGetAllCourseShortListForAdminQuery,
+  useGetCourseListForUpdateQuery,
+  useCourseUpdateMutation,
+  useDeleteCoursesMutation,
+  useAddCoursesToServerMutation,
 } = courseApi;

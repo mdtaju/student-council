@@ -8,6 +8,7 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
     campus,
     course_url,
     application_fee,
+    application_offer_fee,
     yearly_tuition_fee,
     pte_overall,
     pte_no_band,
@@ -19,23 +20,9 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
     gmat_exam_score,
     entry_requirements,
     remarks,
+    currency,
   } = course || {};
-
-  const getOverallScore = customTest.map((test) => {
-    return {
-      testName: test?.test_name + " Overall",
-      testScore: test?.test_score,
-    };
-  });
-
-  const getNoBandScore = customTest.map((test) => {
-    return {
-      testName: test?.test_name + " No Band",
-      testScore: test?.test_no_band,
-    };
-  });
-
-  const getCustomTest = [...getOverallScore, ...getNoBandScore];
+  //
   return (
     <div className="w-full md:w-[700px] ">
       {/* course details */}
@@ -84,7 +71,17 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
           <h4 className="text-sm font-medium text-gray-800 col-span-4">
             Application Fees
           </h4>
-          <p className="text-sm text-gray-500 col-span-8">{application_fee}</p>
+          <p className="text-sm text-gray-500 col-span-8">
+            {currency}{" "}
+            {application_offer_fee ? (
+              <>
+                {" "}
+                <del>{`${application_fee}`}</del> {application_offer_fee}
+              </>
+            ) : (
+              <>{application_fee}</>
+            )}
+          </p>
         </div>
         {/* Yearly Tuition Fees */}
         <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
@@ -92,7 +89,7 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
             Yearly Tuition Fees
           </h4>
           <p className="text-sm text-gray-500 col-span-8">
-            {yearly_tuition_fee}
+            {`${currency} ${yearly_tuition_fee}`}
           </p>
         </div>
       </div>
@@ -145,53 +142,73 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
             <p className="text-sm text-gray-500 col-span-4">{ielts_no_band}</p>
           </div>
           {/* custom tests */}
-          {getCustomTest.map((test, i) => (
+          {customTest.map((test, i) => (
             <div
               key={i}
-              className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
-              <h4 className="text-sm font-medium text-gray-800 col-span-8">
-                {test?.testName}
-              </h4>
-              <p className="text-sm text-gray-500 col-span-4">
-                {test?.testScore}
-              </p>
+              className="md:col-span-2 grid grid-cols-1 md:grid-cols-2">
+              <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
+                <h4 className="text-sm font-medium text-gray-800 col-span-8">
+                  {test?.test_name + " Overall"}
+                </h4>
+                <p className="text-sm text-gray-500 col-span-4">
+                  {test?.test_score}
+                </p>
+              </div>
+              <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
+                <h4 className="text-sm font-medium text-gray-800 col-span-8">
+                  {test?.test_name + " No Band"}
+                </h4>
+                <p className="text-sm text-gray-500 col-span-4">
+                  {test?.test_no_band}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </div>
       {/* Standardized details */}
-      <div className="mb-6 bg-white">
-        <div className="w-full px-4 py-2 bg-blue-600 text-white text-base font-medium">
-          <h1>Standardized Test Requirements</h1>
-        </div>
-        {/* gre exam score */}
-        <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
-          <h4 className="text-sm font-medium text-gray-800 col-span-4">
-            GRE Score
-          </h4>
-          <p className="text-sm text-gray-500 col-span-8">{gre_exam_score}</p>
-        </div>
-        {/* gmat exam score */}
-        <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
-          <h4 className="text-sm font-medium text-gray-800 col-span-4">
-            GMAT Score
-          </h4>
-          <p className="text-sm text-gray-500 col-span-8">{gmat_exam_score}</p>
-        </div>
-        {/* custom tests */}
-        {standardizedTest.map((test, i) => (
-          <div
-            key={i}
-            className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
-            <h4 className="text-sm font-medium text-gray-800 col-span-4">
-              {test?.test_name}
-            </h4>
-            <p className="text-sm text-gray-500 col-span-8">
-              {test?.test_score}
-            </p>
+      {(standardizedTest.length > 0 || gre_exam_score || gmat_exam_score) && (
+        <div className="mb-6 bg-white">
+          <div className="w-full px-4 py-2 bg-blue-600 text-white text-base font-medium">
+            <h1>Standardized Test Requirements</h1>
           </div>
-        ))}
-      </div>
+          {/* gre exam score */}
+          {gre_exam_score && (
+            <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
+              <h4 className="text-sm font-medium text-gray-800 col-span-4">
+                GRE Score
+              </h4>
+              <p className="text-sm text-gray-500 col-span-8">
+                {gre_exam_score}
+              </p>
+            </div>
+          )}
+          {/* gmat exam score */}
+          {gmat_exam_score && (
+            <div className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
+              <h4 className="text-sm font-medium text-gray-800 col-span-4">
+                GMAT Score
+              </h4>
+              <p className="text-sm text-gray-500 col-span-8">
+                {gmat_exam_score}
+              </p>
+            </div>
+          )}
+          {/* custom tests */}
+          {standardizedTest.map((test, i) => (
+            <div
+              key={i}
+              className="px-5 py-3 border-b border-gray-400 grid grid-cols-2 md:grid-cols-12 gap-4">
+              <h4 className="text-sm font-medium text-gray-800 col-span-4">
+                {test?.test_name}
+              </h4>
+              <p className="text-sm text-gray-500 col-span-8">
+                {test?.test_score}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
       {/* Entry Requirements */}
       <div className="mb-6 bg-white">
         <div className="w-full px-4 py-2 bg-blue-600 text-white text-base font-medium">

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import usePath from "../../../../../hooks/usePath";
 
 const UniversityInfo = ({
   query_id,
@@ -13,6 +14,7 @@ const UniversityInfo = ({
   world_ranking,
   website_url,
 }) => {
+  const pathName = usePath();
   return (
     <div className="w-full md:w-[300px] px-4 py-8 border border-gray-400 rounded-md bg-white">
       <div className="h-[120px] w-full text-center relative grid place-items-center">
@@ -23,7 +25,7 @@ const UniversityInfo = ({
         />
       </div>
       <div className="space-y-4 text-center mt-6">
-        <Link to={`/student-dashboard/university/${query_id}`} target="_blank">
+        <Link to={`/${pathName}/university/${query_id}`} target="_blank">
           <h4 className="text-blue-800 hover:underline text-lg font-semibold">
             {institute_name}
           </h4>

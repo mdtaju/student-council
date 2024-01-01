@@ -31,9 +31,10 @@ const Search = () => {
     "November",
     "December",
   ]);
+  const fullYear = `${new Date().getFullYear()}`;
   const [searchQuery, setSearchQuery] = useState("");
   const [getCourses] = useGetCoursesMutation();
-  const [years, setYears] = useState(["2023"]);
+  const [years, setYears] = useState([fullYear]);
   const [countryNames, setCountryNames] = useState([]);
   const [subjectArea, setSubjectArea] = useState([]);
   const [duration, setDuration] = useState([]);
@@ -324,6 +325,18 @@ const Search = () => {
       });
     }
   };
+
+  // handle clear filter
+  const handleClear = () => {
+    setSearchQuery("");
+    setYears([fullYear]);
+    setCountryNames([]);
+    setSubjectArea([]);
+    setDuration([]);
+    setIsEsl("");
+    setSelectedPrograms([]);
+    setRequirements([]);
+  };
   return (
     <div className="w-full relative sm:w-[600px] md:w-[800px] mx-auto bg-white shadow-md rounded-md px-6 pt-8 pb-12">
       <div className="w-full flex flex-col md:flex-row items-start md:items-end gap-4">
@@ -537,7 +550,9 @@ const Search = () => {
         </div>
         {/* clear all */}
         <div className="text-left mt-4">
-          <span className="text-lg font-medium text-red-500 underline cursor-pointer">
+          <span
+            onClick={handleClear}
+            className="text-lg font-medium text-red-500 underline cursor-pointer">
             Clear all
           </span>
         </div>

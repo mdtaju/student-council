@@ -1,1 +1,4 @@
 node --max_old_space_size=4096 node_modules/react-scripts/scripts/build.js
+
+Admin: tajumd512ctg90i@gmail.com / 123456
+Counsellor: tajumd512ctg9tt@gmail.com / 123456

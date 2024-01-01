@@ -79,7 +79,7 @@ function UpdateForm() {
                         message: "Data successfully updated. Please copy the URL below. The URL is the same as the previous one."
                   });
                   setMssOpen(true);
-                  setFormUrl(`https://server-y29-p.applyversity.com/public-form/${data?.id}`);
+                  setFormUrl(`https://applyversity.com/publicForm/${data?.id}`);
                   setInputName("")
                   setInputNames([])
                   setTitle("")

@@ -17,21 +17,11 @@ import useAuth from "../../hooks/useAuth";
 import useFirebaseLogin from "../../hooks/useFirebaseLogin";
 // import GET from "../../API/get";
 // import { backendURL } from "../../API/config";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NavModal from "./NavModal";
 
 const drawerWidth = 280;
-
-
-
-
-
-
-
-
-
 const NewHeader = ({ window, show }) => {
-
   /* SignIn Modal functionality  */
   const [isModalOpen, setModalOpen] = useState(false);
   const openModal = () => {
@@ -40,7 +30,6 @@ const NewHeader = ({ window, show }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
 
   /* Meta Menu icon functionality */
   const [isEventArrowRotated, setIsEventArrowRotated] = useState(false);
@@ -124,115 +113,6 @@ const NewHeader = ({ window, show }) => {
         </ListItemButton>
       </ListItem>
 
-      {/* countries  */}
-      {/* <List>
-        <ListItemButton onClick={() => setOpenCountries(!openCountries)}>
-          <ListItemText className="mx-4" primary="Countries" />
-          {openCountries ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={openCountries} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {countries?.map((country) => (
-              <NavLink
-                key={country?.path}
-                to={`/countries/${country._id}`}
-                className={({ isActive }) => (isActive ? `${activeStyle}` : ``)}
-                onClick={handleDrawerToggle}
-                exact="true">
-                <ListItemButton>
-                  <ListItemText
-                    className="mx-4"
-                    primary={`Study in ${country?.countryName}`}
-                  />
-                </ListItemButton>
-              </NavLink>
-            ))}
-          </List>
-        </Collapse>
-      </List> */}
-
-      {/* e-counselling  */}
-      {/* <ListItem button>
-        <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-          <NavLink
-            to={"/eCounselling"}
-            exact="true"
-            className={"text-center "}
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            activeclassname={activeLink}
-            onClick={handleDrawerToggle}>
-            {"E-Counselling"}
-          </NavLink>
-        </ListItemButton>
-      </ListItem> */}
-
-      {/* events  */}
-
-      {/* <List>
-        <ListItemButton onClick={() => setOpenEvents(!openEvents)}>
-          <ListItemText className="mx-4" primary="Events" />
-          {openEvents ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={openEvents} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {events?.map((event) => (
-              <NavLink
-                key={event?.path}
-                to={`${event?.path}`}
-                className={({ isActive }) => (isActive ? `${activeStyle}` : ``)}
-                onClick={handleDrawerToggle}
-                exact="true">
-                <ListItemButton>
-                  <ListItemText className="mx-4" primary={` ${event?.event}`} />
-                </ListItemButton>
-              </NavLink>
-            ))}
-          </List>
-        </Collapse>
-      </List> */}
-
-      {/* <List>
-        {navItems?.map((route) => (
-          <ListItem button key={route?.path}>
-            <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-              <NavLink
-                to={route?.path}
-                exact="true"
-                className={"text-center "}
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                activeclassname={activeLink}
-                onClick={handleDrawerToggle}>
-                {route?.text}
-              </NavLink>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
-
-      {/* blog and news  */}
-      {/* <List>
-        <ListItemButton onClick={() => setOpenBlogs(!openBlogs)}>
-          <ListItemText className="mx-4" primary="Blog And News" />
-          {openBlogs ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={openBlogs} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {blogs?.map((blog) => (
-              <NavLink
-                key={blog?.path}
-                to={`${blog?.path}`}
-                className={({ isActive }) => (isActive ? `${activeStyle}` : ``)}
-                onClick={handleDrawerToggle}
-                exact="true">
-                <ListItemButton>
-                  <ListItemText className="mx-4" primary={` ${blog?.name}`} />
-                </ListItemButton>
-              </NavLink>
-            ))}
-          </List>
-        </Collapse>
-      </List> */}
-
       {/* dashboard  */}
       {auth?.user === "Admin" && (
         <ListItem button>
@@ -279,21 +159,6 @@ const NewHeader = ({ window, show }) => {
           </ListItemButton>
         </ListItem>
       )}
-      {/* {isLogin && user?.role === "counsellor" && (
-        <ListItem button>
-          <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-            <NavLink
-              to={"/counsellor-dashboard"}
-              exact="true"
-              className={"text-center "}
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              activeclassname={activeLink}
-              onClick={handleDrawerToggle}>
-              {"Dashboard"}
-            </NavLink>
-          </ListItemButton>
-        </ListItem>
-      )} */}
     </Box>
   );
 
@@ -302,7 +167,6 @@ const NewHeader = ({ window, show }) => {
 
   return (
     <div className="navbar bg-white">
-
       <Box sx={{ display: "flex" }} style={{}} className="shadow-lg">
         <CssBaseline />
         <AppBar
@@ -345,7 +209,7 @@ const NewHeader = ({ window, show }) => {
             </Typography>
 
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <nav>
+              <nav className="">
                 <NavLink
                   to={"/"}
                   className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
@@ -363,236 +227,127 @@ const NewHeader = ({ window, show }) => {
                   Search & Apply{" "}
                 </NavLink>
 
-
-
-
-
-
-
                 {/* Event Meta menu route start here   */}
                 <div className="group relative inline-block">
                   <NavLink
                     className="block cursor-pointer p-4 xl:font-medium   text-gray-900"
                     onMouseEnter={() => setIsEventArrowRotated(true)}
-                    onMouseLeave={() => setIsEventArrowRotated(false)}
-                  >
+                    onMouseLeave={() => setIsEventArrowRotated(false)}>
                     Event
                     <span
-                      className={`inline-block transition-transform transform ${isEventArrowRotated ? 'rotate-180' : ''}`}>
-                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                      className={`inline-block transition-transform transform ${isEventArrowRotated ? "rotate-180" : ""
+                        }`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
 
                   <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Education Expo</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Assessment Day</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500 hover:font-bold">Event Album</p> </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500 hover:font-bold">
+                        Education Expo
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500 hover:font-bold">
+                        Assessment Day
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500 hover:font-bold">
+                        Event Album
+                      </p>{" "}
+                    </NavLink>
                   </div>
                 </div>
-
-
-
-
-
 
                 {/* Visa gallery Meta menu route start here   */}
                 <div className="group relative inline-block">
                   <NavLink
                     className="block cursor-pointer p-4  xl:font-medium   text-gray-900"
                     onMouseEnter={() => setIsVisaArrowRotated(true)}
-                    onMouseLeave={() => setIsVisaArrowRotated(false)}
-                  >
+                    onMouseLeave={() => setIsVisaArrowRotated(false)}>
                     Visa Gallery
                     <span
-                      className={`inline-block transition-transform transform ${isVisaArrowRotated ? 'rotate-180' : ''}`}>
-                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                      className={`inline-block transition-transform transform ${isVisaArrowRotated ? "rotate-180" : ""
+                        }`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
 
                   <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">UK</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">USA</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">CANADA</p> </NavLink>
-                    <NavLink to={" "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">AUSTRALIA</p> </NavLink>
+                    <NavLink to={"/countries/542"} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        UK
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        USA
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        CANADA
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        AUSTRALIA
+                      </p>{" "}
+                    </NavLink>
                   </div>
                 </div>
-
-
-
-
-
-
 
                 {/* Blog and Offer Meta menu route start here   */}
                 <div className="group relative inline-block">
                   <NavLink
                     className="block cursor-pointer p-4  xl:font-medium   text-gray-900"
                     onMouseEnter={() => setIsBlogOfferArrowRotated(true)}
-                    onMouseLeave={() => setIsBlogOfferArrowRotated(false)}
-                  >
+                    onMouseLeave={() => setIsBlogOfferArrowRotated(false)}>
                     Blog & Offer
                     <span
-                      className={`inline-block transition-transform transform ${isBlogOfferArrowRotated ? 'rotate-180' : ''}`}>
-                      <KeyboardArrowDownIcon style={{ fontSize: '20px' }} />
+                      className={`inline-block transition-transform transform ${isBlogOfferArrowRotated ? "rotate-180" : ""
+                        }`}>
+                      <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
 
                   <div className="hidden w-52 rounded-xl shadow-lg bg-white group-hover:block absolute top-full left-0  text-black p-5 ">
-                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Video Blog</p> </NavLink>
-                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Update Offer</p> </NavLink>
-                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">Blog</p> </NavLink>
-                    <NavLink to={" / "} className={'cursor-pointer'}> <p className=" mb-3 hover:text-red-500  hover:font-bold ">News</p> </NavLink>
+                    <NavLink to={"/"} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        Video Blog
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" / "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        Update Offer
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" / "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        Blog
+                      </p>{" "}
+                    </NavLink>
+                    <NavLink to={" / "} className={"cursor-pointer"}>
+                      {" "}
+                      <p className=" mb-3 hover:text-red-500  hover:font-bold ">
+                        News
+                      </p>{" "}
+                    </NavLink>
                   </div>
                 </div>
 
 
-
-
-                {/* <NavLink
-                  to={"/contact_us"}
-                  className={` xl:font-medium mx-1 xl:mx-2  text-gray-900  hover:text-[#ff0000] navbar`}
-                  style={({ isActive }) =>
-                    isActive ? activeStyle : undefined
-                  }>
-                  Contact Us{" "}
-                </NavLink> */}
-
-
-
-
-
-
-
-                {/* <button
-                  className={
-                    " xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000]"
-                  }
-                  id="fade-button"
-                  aria-controls={open ? "fade-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}>
-                  Countries{" "}
-                  <span>{open ? <ExpandLess /> : <ExpandMore />}</span>
-                </button> */}
-
-                {/* menu */}
-                {/* <Menu
-                  id="fade-menu"
-                  MenuListProps={{
-                    "aria-labelledby": "fade-button",
-                  }}
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  TransitionComponent={Fade}>
-                  {countries?.map((country) => (
-                    <Link to={`/countries/${country._id}`} key={country?._id}>
-                      <MenuItem
-                        className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
-                        onClick={handleClose}>
-                        Study in {country?.countryName}
-                        {}
-                      </MenuItem>
-                    </Link>
-                  ))}
-                </Menu> */}
-
-                {/* menu */}
-                {/* <NavLink
-                  to={"/eCounselling"}
-                  className={
-                    " xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000]"
-                  }
-                  style={({ isActive }) =>
-                    isActive ? activeStyle : undefined
-                  }>
-                  E-Counselling{" "}
-                </NavLink> */}
-
-                {/* <button
-                  className={
-                    " xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] "
-                  }
-                  id="fade-button"
-                  aria-controls={open2 ? "fade-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open2 ? "true" : undefined}
-                  onClick={handleEventClick}>
-                  Events <span>{open2 ? <ExpandLess /> : <ExpandMore />}</span>
-                </button> */}
-
-                {/* menu */}
-                {/* <Menu
-                  id="fade-menu"
-                  MenuListProps={{
-                    "aria-labelledby": "fade-button",
-                  }}
-                  anchorEl={anchorE2}
-                  open={open2}
-                  onClose={handleClose2}
-                  TransitionComponent={Fade}>
-                  {events?.map((event) => (
-                    <Link to={event?.path} key={event._id}>
-                      <MenuItem
-                        className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
-                        onClick={handleClose2}>
-                        {event?.event}
-                        {}
-                      </MenuItem>
-                    </Link>
-                  ))}
-                </Menu> */}
-                {/* <NavLink
-                  to={"/whyUs"}
-                  className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000]`}
-                  style={({ isActive }) =>
-                    isActive ? activeStyle : undefined
-                  }>
-                  Why Us{" "}
-                </NavLink> */}
-                {/* <NavLink
-                                    to={"/blogAndNews"}
-                                    className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
-                                    style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                                >
-                                    Blog & News{" "}
-                                </NavLink> */}
-
-                {/* <button
-                  className={
-                    " xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] "
-                  }
-                  id="fade-button"
-                  aria-controls={open3 ? "fade-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open3 ? "true" : undefined}
-                  onClick={handleBlogsClick}>
-                  Blog & News{" "}
-                  <span>{open3 ? <ExpandLess /> : <ExpandMore />}</span>
-                </button> */}
-
-                {/* menu */}
-                {/* <Menu
-                  id="fade-menu"
-                  MenuListProps={{
-                    "aria-labelledby": "fade-button",
-                  }}
-                  anchorEl={anchorE3}
-                  open={open3}
-                  onClose={handleClose3}
-                  TransitionComponent={Fade}>
-                  {blogs?.map((blog) => (
-                    <Link to={blog?.path} key={blog._id}>
-                      <MenuItem
-                        className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 w-32 hover:text-[#ff0000] `}
-                        onClick={handleClose3}>
-                        {blog?.name}
-                        {}
-                      </MenuItem>
-                    </Link>
-                  ))}
-                </Menu> */}
 
                 {auth?.user === "Admin" && (
                   <NavLink
@@ -626,17 +381,25 @@ const NewHeader = ({ window, show }) => {
                     Dashboard{" "}
                   </NavLink>
                 )}
-                {/* {isLogin && user?.role === "counsellor" && (
-                  <NavLink
-                    to={"/counsellor-dashboard"}
-                    className={` xl:font-medium mx-1 xl:mx-2  text-gray-900 hover:text-[#ff0000] `}
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Dashboard{" "}
-                  </NavLink>
-                )} */}
+
+
+                {/* Apply button and modal */}
+                <div className="group relative inline-block">
+                  {auth?.user === "Student" && (
+                    <div>
+                      <NavLink
+                        onClick={openModal}
+                        to={""}
+                        className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full    bg-primary "}
+                      >
+                        Apply
+                      </NavLink>
+                      <NavModal isOpen={isModalOpen} onClose={closeModal} />
+                    </div>
+                  )}
+                </div>
+
+
 
                 {auth?.accessToken ? (
                   <>
@@ -644,7 +407,7 @@ const NewHeader = ({ window, show }) => {
                       onClick={SignOutAccount}
                       to="/"
                       className={
-                        "text-center mx-1 xl:mx-2 xl:mr-2 px-2 md:px-4 xl:px-[25px] py-[8px] font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
+                        "text-center mx-1 xl:mx-2 xl:mr-2 px-2 md:px-4 xl:px-[25px] py-[8px] font-semibold text-white bg-secondary  ml-4  hover:bg-primary rounded"
                       }>
                       Log Out
                     </Link>
@@ -652,43 +415,33 @@ const NewHeader = ({ window, show }) => {
                 ) : (
                   <>
 
-
-                  
-
-                    {/* Apply button and modal */}
-                    {auth?.user === "Student" && (
-                      <div>
-                        <NavLink
-                          onClick={openModal}
-                          to={""}
-                          className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full   ml-4 xl:ml-10 bg-primary "}
-                        >
-                          Apply
-                        </NavLink>
-                        <NavModal isOpen={isModalOpen} onClose={closeModal} />
-                      </div>
-                    )}
-
-
-
-
-
                     <NavLink
                       to={"/login"}
                       className={
-                        "text-center mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-secondary  ml-4 xl:ml-10 hover:bg-primary rounded"
+                        "text-center border-2  border-[#031F4B]  shadow-xl xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold bg-white text-black  hover:bg-secondary  hover:text-white  mx-1 rounded"
                       }>
                       Log In
                     </NavLink>
-                    {/* <NavLink
-                      onClick={navigateToRegister}
-                      className={
-                        "text-center mx-1 xl:mx-2 px-2 xl:px-[25px] py-[8px] xl:font-medium text-white bg-primary  hover:bg-secondary rounded"
-                      }>
-                      Apply Now
-                    </NavLink> */}
                   </>
                 )}
+
+
+                <div className="group relative inline-block">
+                  {
+                    auth?.user ? " " :
+
+                    <NavLink
+                      to={"/register"}
+                      className={
+                        "text-center  shadow-lg mx-1 xl:mx-2 xl:mr-2 px-2  xl:px-[25px] py-[8px] xl:font-semibold text-white bg-red-600 hover:bg-secondary   rounded"
+                      }>
+                      Sign Up
+                    </NavLink>
+
+                
+                  }
+                </div>
+
               </nav>
             </Box>
           </Toolbar>
@@ -747,18 +500,6 @@ const NewHeader = ({ window, show }) => {
                     </NavLink>
                   </ListItemButton>
                 </ListItem>
-                {/* <ListItem button key={"/applyNow"}>
-                  <ListItemButton sx={{ textAlign: "center", color: "black" }}>
-                    <NavLink
-                      exact="true"
-                      className={"text-center "}
-                      style={applyBtn}
-                      activeclassname={activeLink}
-                      onClick={navigateToRegister}>
-                      Apply Now
-                    </NavLink>
-                  </ListItemButton>
-                </ListItem> */}
               </>
             )}
           </Drawer>
