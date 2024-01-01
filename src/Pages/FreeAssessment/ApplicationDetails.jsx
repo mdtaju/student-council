@@ -15,7 +15,6 @@ const ApplicationDetails = ({
 
 }) => {
   return (
-    <Container>
       <div className='shadow-md  w-full p-4 sm:p-6 bg-white rounded-lg mt-10'>
         <h1 className="text-2xl py-3 font-bold text-gray-600">Application Details <span className='text-sm font-normal'>(Note: Arrange Your Selected Countries from Your First Choice To The Last Chosen One.)</span></h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 my-6">
@@ -44,7 +43,6 @@ const ApplicationDetails = ({
           />
         </div>
       </div>
-    </Container>
   );
 };
 

@@ -59,7 +59,6 @@ const ReferenceDetails = ({
 
 
     return (
-        <Container>
             <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg ">
                 <h1 className="text-2xl font-bold text-gray-600">Reference Details <span></span></h1>
                 <p className='pt-3'>If you have any references, please let me know</p>
@@ -124,7 +123,6 @@ const ReferenceDetails = ({
                     )}
                 </div>
             </div>
-        </Container>
     );
 };
 

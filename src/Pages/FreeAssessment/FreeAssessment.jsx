@@ -337,10 +337,7 @@ const FreeAssessment = () => {
             <form onSubmit={handleSubmit}>
 
 
-              {/* <FileInput
-                selectedFile={selectedFile}
-                setSelectedFile={setSelectedFile}
-              /> */}
+             
               <UploadFile
                 uploadedFile={uploadedFile}
                 setUploadedFile={setUploadedFile}
@@ -475,7 +472,7 @@ const FreeAssessment = () => {
 
 
 
-              <div className='bg-white px-5 py-8 m-4 shadow-lg rounded-lg mb-20'>
+              <div className='bg-white px-5 py-8 my-4 shadow-lg rounded-lg mb-20'>
                 {/* Comment Box here */}
 
                 <TextArea

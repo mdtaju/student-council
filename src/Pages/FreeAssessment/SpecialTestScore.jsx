@@ -38,7 +38,6 @@ const SpecialTestScore = ({
 
 
     return (
-        <Container>
             <div>
                 {/* special exam section  */}
                 <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg mt-10">
@@ -98,7 +97,6 @@ const SpecialTestScore = ({
                 </div>
 
             </div>
-        </Container>
     );
 };
 
