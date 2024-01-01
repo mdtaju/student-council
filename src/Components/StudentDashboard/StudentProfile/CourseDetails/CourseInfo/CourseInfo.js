@@ -22,6 +22,7 @@ const CourseInfo = ({ course, customTest = [], standardizedTest = [] }) => {
     remarks,
     currency,
   } = course || {};
+  //
   return (
     <div className="w-full md:w-[700px] ">
       {/* course details */}
