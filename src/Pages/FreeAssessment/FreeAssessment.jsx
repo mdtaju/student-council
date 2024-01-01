@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import TextArea from '../../Components/Inputs/TextArea';
 import FileInput from '../../Components/Inputs/FileInput';
 import UploadFile from './UploadFile';
+import SpecialTestScore from './SpecialTestScore';
 
 const FreeAssessment = () => {
   const auth = useAuth();
@@ -436,8 +437,9 @@ const FreeAssessment = () => {
                 setOtherTestScore={setOtherTestScore}
                 otherDetails={otherDetails}
                 setOtherDetails={setOtherDetails}
+              />
 
-
+              <SpecialTestScore
                 specialExamsType={specialExamsType}
                 setSpecialExamsType={setSpecialExamsType}
                 specialExamOtherDetails={specialExamOtherDetails}
@@ -447,7 +449,6 @@ const FreeAssessment = () => {
                 specialExamScore={specialExamScore}
                 setSpecialExamScore={setSpecialExamScore}
               />
-
 
               <ApplicationDetails
                 applyCountry={applyCountry}

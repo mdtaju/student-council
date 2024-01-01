@@ -50,6 +50,11 @@ const AllForm = () => {
                         </h1>
                         {selectionModel.length > 0 && (
                               <div className="w-fit ml-auto my-2 flex items-center gap-3">
+                                    <Link to={`/${pathName}/allForm/answers/${selectionModel[0]}`} target="_blank">
+                                          <button className="px-3 py-1 text-white bg-green-500 hover:bg-green-600 shadow-sm active:scale-95 duration-150 rounded-md ">
+                                                Answers
+                                          </button>
+                                    </Link>
                                     <Link to={`/${pathName}/allForm/${selectionModel[0]}`} target="_blank">
                                           <button className="px-3 py-1 text-white bg-blue-500 hover:bg-blue-600 shadow-sm active:scale-95 duration-150 rounded-md ">
                                                 Update
@@ -71,13 +76,16 @@ const AllForm = () => {
                                                 field: "query_id",
                                                 minWidth: 150,
                                                 headerName: "Query ID",
-                                                renderCell: (params) => (
-                                                      <Link className="text-blue-500 hover:underline"
-                                                            target="_blank"
-                                                            to={`/${pathName}/allForm/view/${params.value}`}>
-                                                            {params.value}
-                                                      </Link>
-                                                ),
+                                                renderCell: (params) => {
+                                                      // console.log(params)
+                                                      return (
+                                                            <Link className="text-blue-500 hover:underline"
+                                                                  target="_blank"
+                                                                  to={`/${pathName}/allForm/view/${params.value}`}>
+                                                                  {params.value}
+                                                            </Link>
+                                                      )
+                                                },
                                           },
                                           {
                                                 field: "title",

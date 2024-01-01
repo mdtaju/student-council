@@ -55,7 +55,7 @@ function MakeForm() {
                         message: "Data successfully submitted. Please copy the URL below."
                   });
                   setMssOpen(true);
-                  setFormUrl(`https://server-y29-p.applyversity.com/public-form/${data?.id}`);
+                  setFormUrl(`http://localhost:9000/public-form/${data?.id}`);
                   setInputName("")
                   setInputNames([])
                   setTitle("")
