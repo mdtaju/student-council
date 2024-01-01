@@ -73,6 +73,8 @@ import UpdateUniversity from "../Components/AdminDashboard/AllUniversity/UpdateU
 import AllVisa from "../Components/AdminDashboard/AllVisa/AllVisa";
 import Appointments from "../Components/AdminDashboard/Appointments/Appointments";
 import AllForm from "../Components/AdminDashboard/Form/AllForm";
+import AllFormAns from "../Components/AdminDashboard/Form/AllFormAns";
+import FormAnsView from "../Components/AdminDashboard/Form/FormAnsView";
 import FormView from "../Components/AdminDashboard/Form/FormView";
 import MakeForm from "../Components/AdminDashboard/Form/MakeForm";
 import UpdateForm from "../Components/AdminDashboard/Form/UpdateForm";
@@ -91,20 +93,20 @@ import SearchAndApply from "../Components/StudentDashboard/StudentProfile/Search
 import StudentProfile from "../Components/StudentDashboard/StudentProfile/StudentProfile";
 import VisaApplication from "../Components/StudentDashboard/StudentProfile/VisaApplication/VisaApplication";
 import UniversityDetails from "../Components/StudentDashboard/UniversityDetails/UniversityDetails";
+import AllBranches from "../Pages/Branches/AllBranches";
+import MainBranch from "../Pages/Branches/MainBranch";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import CourseDetailsPublic from "../Pages/CourseDetails/CourseDetails";
 import FreeAssessment from "../Pages/FreeAssessment/FreeAssessment";
 import Login from "../Pages/Login/Login";
+import ResetPassword from "../Pages/Login/ResetPassword";
 import SearchAndApplyHomePage from "../Pages/SearchAndApply/SearchAndApply";
 import StudentRegister from "../Pages/StudentRegister/StudentRegister";
+import Countries from "../Pages/VisaGallery/Countries";
 import PublicForm from "../Shared/PublicForm/PublicForm";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import CouncilPrivateRoute from "./CouncilPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
-import Countries from "../Pages/VisaGallery/Countries";
-import AllBranches from "../Pages/Branches/AllBranches";
-import MainBranch from "../Pages/Branches/MainBranch";
-import ResetPassword from "../Pages/Login/ResetPassword";
 
 export const routes = createBrowserRouter([
   {
@@ -318,6 +320,14 @@ export const routes = createBrowserRouter([
       {
         path: "allForm/view/:id",
         element: <FormView />,
+      },
+      {
+        path: "allForm/answers/:id",
+        element: <AllFormAns />,
+      },
+      {
+        path: "allForm/answers/view/:id",
+        element: <FormAnsView />,
       },
 
       // {

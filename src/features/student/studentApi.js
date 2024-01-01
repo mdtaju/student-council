@@ -124,6 +124,13 @@ export const studentApi = apiSlice.injectEndpoints({
     getSingleForm: builder.query({
       query: (id) => `/get_single_form/${id}`,
     }),
+    getSingleFormAns: builder.mutation({
+      query: (data) => ({
+        url: "/get_single_form",
+        method: "POST",
+        body: data,
+      }),
+    }),
     deleteForm: builder.mutation({
       query: (data) => ({
         url: "/public_form",
@@ -137,6 +144,16 @@ export const studentApi = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
       }),
+    }),
+    addFormAns: builder.mutation({
+      query: (data) => ({
+        url: "/submit_form_ans_post",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getAllFormAns: builder.query({
+      query: (id) => `/submit_form_ans_post/${id}`,
     }),
   }),
 });
@@ -169,4 +186,7 @@ export const {
   useDeleteFormMutation,
   useUpdateFormMutation,
   useGetSingleFormQuery,
+  useAddFormAnsMutation,
+  useGetAllFormAnsQuery,
+  useGetSingleFormAnsMutation,
 } = studentApi;
