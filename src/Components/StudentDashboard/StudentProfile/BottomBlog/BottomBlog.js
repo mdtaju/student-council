@@ -10,7 +10,7 @@ const BottomBlog = () => {
       <button
         type="submit"
         className="px-8 py-2 text-lg font-normal text-white rounded-full bg-blue-500 hover:bg-blue-600 active:scale-95 duration-200">
-        Save
+        Submit
       </button>
       <div
         onClick={handleTop}

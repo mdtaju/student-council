@@ -22,6 +22,13 @@ export const studentApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    addStudentAssessment: builder.mutation({
+      query: (data) => ({
+        url: "/assessment",
+        method: "POST",
+        body: data,
+      }),
+    }),
     addContactMessage: builder.mutation({
       query: (data) => ({
         url: "/contact",
@@ -155,6 +162,26 @@ export const studentApi = apiSlice.injectEndpoints({
     getAllFormAns: builder.query({
       query: (id) => `/submit_form_ans_post/${id}`,
     }),
+    addAssessment: builder.mutation({
+      query: (data) => ({
+        url: "/assessment",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getSingleAssessment: builder.query({
+      query: (id) => `/assessment/${id}`,
+    }),
+    getAllAssessment: builder.query({
+      query: () => `/get_all_assessment`,
+    }),
+    addAssessmentTags: builder.mutation({
+      query: (data) => ({
+        url: "/assessment_tags",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -189,4 +216,9 @@ export const {
   useAddFormAnsMutation,
   useGetAllFormAnsQuery,
   useGetSingleFormAnsMutation,
+  useAddStudentAssessmentMutation,
+  useAddAssessmentMutation,
+  useGetSingleAssessmentQuery,
+  useGetAllAssessmentQuery,
+  useAddAssessmentTagsMutation,
 } = studentApi;
