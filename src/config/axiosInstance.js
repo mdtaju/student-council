@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://server-y29-p.applyversity.com",
+  baseURL: "http://localhost:9000",
   // "https://prayojon-server.prayojon.com",
 });
 

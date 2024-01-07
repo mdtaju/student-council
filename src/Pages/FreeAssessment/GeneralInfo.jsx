@@ -164,7 +164,6 @@ const GeneralInfo = ({
 
     return (
         <div className='pt-10 pb-8 '>
-            <Container>
                 <div className="shadow-md  w-full p-4 sm:p-6 bg-white rounded-lg mt-10">
                     <h1 className="text-2xl font-bold text-gray-600">General Information</h1>
 
@@ -412,7 +411,6 @@ const GeneralInfo = ({
                     </div>
                 </div>
 
-            </Container>
         </div>
     );
 };

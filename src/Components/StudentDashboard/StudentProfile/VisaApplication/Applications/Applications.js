@@ -75,7 +75,7 @@ function Applications({
     <div className="flex-1 w-[calc(100%-40px)] ml-[40px]">
       {/* text body */}
       <div
-        className={`flex items-center justify-between gap-4 p-4 pr-0 overflow-y-scroll`}>
+        className={`flex items-center justify-between gap-4 p-4 pr-0 overflow-y-scroll overflow-x-hidden`}>
         {/* info */}
         <div className={`flex-1`}>
           <h1 className="text-lg font-medium text-gray-700">{title}</h1>

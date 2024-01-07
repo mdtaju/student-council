@@ -10,6 +10,7 @@ exports.adminNormalPathname = [
   { path: "addVisa", name: "Add Visa" },
   { path: "allVisa", name: "All Visa" },
   { path: "allStudents", name: "All Students" },
+  { path: "allAssessment", name: "All Assessment" },
   { path: "makeForm", name: "Make Form" },
   { path: "allForm", name: "All Form" },
 ];

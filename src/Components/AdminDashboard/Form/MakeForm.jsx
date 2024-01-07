@@ -1,4 +1,5 @@
 import { Close } from '@mui/icons-material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import React, { useState } from 'react';
 import { useAddPublicFormMutation } from '../../../features/student/studentApi';
@@ -92,6 +93,16 @@ function MakeForm() {
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                               />
+
+                              <div className=''>
+                                    <h4 className='text-sm font-medium text-gray-800'>{`Upload a banner (Image file)`}</h4>
+                                    <div className='border-dashed border border-gray-500 bg-gray-100 rounded-md w-full h-[100px] mt-2 grid place-content-center cursor-pointer'>
+                                          <div className='flex items-center gap-2'>
+                                                <CloudUploadIcon />
+                                                <span>Drag and drop OR select an image</span>
+                                          </div>
+                                    </div>
+                              </div>
 
                               {
                                     inputNames.length > 0 &&

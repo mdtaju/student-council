@@ -41,7 +41,6 @@ const EducationHistory = ({ attendSchools, setAttendSchools }) => {
 
   return (
 
-    <Container>
       <div className="shadow-md w-full p-4 sm:p-6 bg-white rounded-lg mt-5">
         <h1 className="text-2xl font-bold text-gray-600">Eduction History <span className='text-sm font-normal'>( <span className='font-bold'>Note:</span> List your Degrees in chronological order. Starting From Your <span className='font-bold'>First</span> degree to the <span className='font-bold'>last</span> )</span> </h1>
 
@@ -79,7 +78,6 @@ const EducationHistory = ({ attendSchools, setAttendSchools }) => {
           <span>Add Another Education History</span> <FiPlus />
         </div>
       </div>
-    </Container>
 
   );
 };

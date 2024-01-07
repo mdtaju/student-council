@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import SnackMessage from '../../Components/SnackBarMessage/SnackMessage';
-import TestScores from '../../Components/StudentDashboard/StudentProfile/TestScores/TestScores';
-import BottomBlog from '../../Components/StudentDashboard/StudentProfile/BottomBlog/BottomBlog';
 import { Container } from '@mui/material';
+import moment from 'moment/moment';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import TextArea from '../../Components/Inputs/TextArea';
+import SnackMessage from '../../Components/SnackBarMessage/SnackMessage';
+import BottomBlog from '../../Components/StudentDashboard/StudentProfile/BottomBlog/BottomBlog';
+import TestScores from '../../Components/StudentDashboard/StudentProfile/TestScores/TestScores';
+import { useAddAssessmentMutation, useAddStudentAssessmentMutation, useGetSingleAssessmentQuery } from '../../features/student/studentApi';
 import useAuth from '../../hooks/useAuth';
-import { useAddStudentFormMutation, useGetStudentFormQuery, useUpdateStudentFormMutation } from '../../features/student/studentApi';
-import GeneralInfo from './GeneralInfo';
-import EducationHistory from './Education/EducationHistory';
 import ApplicationDetails from './ApplicationDetails';
+import EducationHistory from './Education/EducationHistory';
+import GeneralInfo from './GeneralInfo';
 import ImmigrationHistory from './Immigration/ImmigrationHistory';
 import JobDetails from './Job/JobDetails';
 import ReferenceDetails from './ReferenceDetails';
-import { Link } from 'react-router-dom';
-import TextArea from '../../Components/Inputs/TextArea';
-import FileInput from '../../Components/Inputs/FileInput';
-import UploadFile from './UploadFile';
 import SpecialTestScore from './SpecialTestScore';
+import UploadFile from './UploadFile';
 
 const FreeAssessment = () => {
   const auth = useAuth();
@@ -25,12 +25,15 @@ const FreeAssessment = () => {
     error: false,
   });
 
-  const { data: student_form_data, refetch } = useGetStudentFormQuery(auth?.id);
-  const [addStudentForm] = useAddStudentFormMutation();
-  const [updateStudentFrom] = useUpdateStudentFormMutation();
+  const { data: assessment_data, refetch } = useGetSingleAssessmentQuery(auth?.id);
+  console.log(assessment_data)
+  const [addAssessment] = useAddAssessmentMutation();
+  // const [updateStudentFrom] = useUpdateStudentFormMutation();
+  const [addStudentAssessment] = useAddStudentAssessmentMutation();
 
   //  file upload state
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [profileImgLink, setProfileImgLink] = useState("");
   // General information states
   const [firstName, setFirstName] = useState(""); // required
   const [middleName, setMiddleName] = useState("");
@@ -51,9 +54,8 @@ const FreeAssessment = () => {
   const [placeOfBirth, setPlaceOfBirth] = useState(""); // required
   const [passportStatus, setPassportStatus] = useState(""); // required
   const [phoneNumbers, setPhoneNumbers] = useState(['']);
+  const [uploadedPhoneNumbers, setUploadedPhoneNumbers] = useState([]);
   const [whatsappNumbers, setWhatsappNumbers] = useState(['']);
-
-
 
   // Reference  Details
   const [referencesHistoryType, setReferencesHistoryType] = useState("")
@@ -75,37 +77,15 @@ const FreeAssessment = () => {
   const [engSpecking, setEngSpecking] = useState(""); // required with condition
   const [engOverall, setEngOverall] = useState(""); // required with condition
 
-
   const [specialExamsType, setSpecialExamsType] = useState("")
   const [specialExamOtherDetails, setSpecialExamOtherDetails] = useState('')
   const [selectSpecialExamType, setSelectSpecialExamType] = useState('')
   const [specialExamScore, setSpecialExamScore] = useState("")
 
-
-
   const [otherTestName, setOtherTestName] = useState(""); // required with condition
   const [otherTestScore, setOtherTestScore] = useState(""); // required with condition
   const [otherDetails, setOtherDetails] = useState(""); // required with condition
-  // additional qualification
-  const [isGREExam, setIsGREExam] = useState(false);
-  const [greExamDate, setGREExamDate] = useState(null); // required with condition
-  const [greVerbalScore, setGREVerbalScore] = useState("");
-  const [greVerbalRank, setGREVerbalRank] = useState("");
-  const [greQuantitativeScore, setGREQuantitativeScore] = useState("");
-  const [greQuantitativeRank, setGREQuantitativeRank] = useState("");
-  const [greWritingScore, setGREWritingScore] = useState("");
-  const [greWritingRank, setGREWritingRank] = useState("");
-  // GMAT
-  const [isGMATExam, setIsGMATExam] = useState(false);
-  const [GMATExamDate, setGMATExamDate] = useState(null); // required with condition
-  const [GMATVerbalScore, setGMATVerbalScore] = useState("");
-  const [GMATVerbalRank, setGMATVerbalRank] = useState("");
-  const [GMATQuantitativeScore, setGMATQuantitativeScore] = useState("");
-  const [GMATQuantitativeRank, setGMATQuantitativeRank] = useState("");
-  const [GMATWritingScore, setGMATWritingScore] = useState("");
-  const [GMATWritingRank, setGMATWritingRank] = useState("");
-  const [GMATTotalScore, setGMATTotalScore] = useState("");
-  const [GMATTotalRank, setGMATTotalRank] = useState("");
+
 
   // apply details
   const [applyDate, setApplyDate] = useState(null)
@@ -118,15 +98,37 @@ const FreeAssessment = () => {
   // Special Comments 
   const [specialComments, setSpecialComments] = useState("")
 
-  // profile image state 
-  const [selectedFile, setSelectedFile] = useState(null);
-
   // Terms and condition checked
   const [isChecked, setIsChecked] = useState(false);
 
   const [termsData, setTermsData] = useState({
     termsAndConditions: false,
   });
+
+  // set the data 
+  useEffect(() => {
+    if (assessment_data) {
+      setFirstName(assessment_data?.generalInfo?.first_name)
+      setMiddleName(assessment_data?.generalInfo?.middle_name)
+      setLastName(assessment_data?.generalInfo?.last_name)
+      setBirthDate(moment.utc(assessment_data?.generalInfo?.date_of_birth))
+      setMaritalStatus(assessment_data?.generalInfo?.marital_status)
+      setGender(assessment_data?.generalInfo?.gender)
+      setPlaceOfBirth(assessment_data?.generalInfo?.place_of_birth);
+      setPassportStatus(assessment_data?.generalInfo?.passport_status);
+      setAddress(assessment_data?.contactDetails?.address);
+      setCity(assessment_data?.contactDetails?.city);
+      setCountry(assessment_data?.contactDetails?.country);
+      setState(assessment_data?.contactDetails?.state);
+      setZipCode(assessment_data?.contactDetails?.zip_code);
+      setAddressStatus(assessment_data?.contactDetails?.address_type);
+      setReferencesHistoryType(assessment_data?.referenceDetails?.assessment_type);
+      setReferenceName(assessment_data?.referenceDetails?.refer_name);
+      setReferenceAddress(assessment_data?.referenceDetails?.refer_address);
+      setReferenceMobile(assessment_data?.referenceDetails?.refer_phone);
+      setReferenceComment(assessment_data?.referenceDetails?.comment);
+    }
+  }, [assessment_data])
 
   const handleCheckboxChange = () => {
     setIsChecked((prev) => !prev); // Update the local state
@@ -137,15 +139,17 @@ const FreeAssessment = () => {
     }));
   };
 
-  console.log(uploadedFile)
-
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-    const formData = new FormData();
-    console.log(formData)
+    if (!termsData?.termsAndConditions) {
+      return alert("You must agree with out terms and conditions");
+    }
 
-    formData.append("image", setUploadedFile);
+    const formData = new FormData();
+    console.log(uploadedFile)
+
+    formData.append("file", uploadedFile);
+    formData.append("query_id", auth?.id);
     // personal info
     formData.append("first_name", firstName);
     formData.append("middle_name", middleName);
@@ -154,7 +158,7 @@ const FreeAssessment = () => {
     formData.append("place_of_birth", placeOfBirth);
     formData.append("marital_status", maritalStatus);
     formData.append("gender", gender);
-    formData.append("passport_Status", passportStatus);
+    formData.append("passport_status", passportStatus);
 
 
     /* Reference Details */
@@ -171,9 +175,9 @@ const FreeAssessment = () => {
     formData.append("country", country);
     formData.append("state", state);
     formData.append("zip_code", zipCode);
-    formData.append("emails", emails);
-    formData.append("Phone_Numbers", phoneNumbers);
-    formData.append("Whatsapp_Numbers", whatsappNumbers);
+    formData.append("emails", JSON.stringify(emails));
+    formData.append("Phone_Numbers", JSON.stringify(phoneNumbers));
+    formData.append("Whatsapp_Numbers", JSON.stringify(whatsappNumbers));
     formData.append("address_status", AddressStatus);
 
     // Educational info
@@ -188,38 +192,17 @@ const FreeAssessment = () => {
     formData.append("specking", engSpecking);
     formData.append("overall", engOverall);
 
-    formData.append("overall", otherTestName);
-    formData.append("overall", otherTestScore);
-    formData.append("overall", otherDetails);
-
+    formData.append("other_test_name", otherTestName);
+    formData.append("other_test_score", otherTestScore);
+    formData.append("other_details", otherDetails);
 
     formData.append("special_exam_types", specialExamsType);
     formData.append("special_exam_other_details", specialExamOtherDetails);
     formData.append("select_special_exam_type", selectSpecialExamType);
     formData.append("special_exam_score", specialExamScore);
 
-    // additional qualification
-    formData.append("is_gre_exam", isGREExam);
-    formData.append("gre_exam_date", greExamDate);
-    formData.append("gre_verbal_score", greVerbalScore);
-    formData.append("gre_verbal_rank", greVerbalRank);
-    formData.append("gre_quantitative_score", greQuantitativeScore);
-    formData.append("gre_quantitative_rank", greQuantitativeRank);
-    formData.append("gre_writing_score", greWritingScore);
-    formData.append("gre_writing_rank", greWritingRank);
-    formData.append("is_gmat_exam", isGMATExam);
-    formData.append("gmat_exam_date", GMATExamDate);
-    formData.append("gmat_verbal_score", GMATVerbalScore);
-    formData.append("gmat_verbal_rank", GMATVerbalRank);
-    formData.append("gmat_quantitative_score", GMATQuantitativeScore);
-    formData.append("gmat_quantitative_rank", GMATQuantitativeRank);
-    formData.append("gmat_writing_score", GMATWritingScore);
-    formData.append("gmat_writing_rank", GMATWritingRank);
-    formData.append("gmat_total_score", GMATTotalScore);
-    formData.append("gmat_total_rank", GMATTotalRank);
-
     //  Application Details
-    formData.append("education_country", applyCountry);
+    formData.append("education_country", JSON.stringify(applyCountry));
     formData.append("apply_date", applyDate);
     formData.append("apply_course", applyCourse);
 
@@ -233,16 +216,6 @@ const FreeAssessment = () => {
     formData.append("comment", JSON.stringify(specialComments));
 
 
-    // terms and condition
-    formData.append("Terms_condition", JSON.stringify(termsData));
-
-
-
-
-    // Log the FormData entries
-    for (const pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
     // find the removed passport files as array
     function findMissingObjectsByUniqueId(firstArray, secondArray) {
       const firstIds = new Set(firstArray?.map((obj) => obj?.id));
@@ -257,10 +230,8 @@ const FreeAssessment = () => {
       return missingObjects;
     }
 
-
-
     if (attendSchools.length > 0) {
-      const firstSchoolArray = student_form_data?.school_attend;
+      const firstSchoolArray = assessment_data?.school_attend;
       const secondSchoolArray = attendSchools;
 
       const missingSchools = findMissingObjectsByUniqueId(
@@ -277,11 +248,27 @@ const FreeAssessment = () => {
       formData.append("newSchools", JSON.stringify(getNewSchools));
     }
 
-    if (!student_form_data) {
-      addStudentForm(formData)
+    addStudentAssessment(formData)
+      .unwrap()
+      .then((d) => {
+        refetch(auth?.id);
+        setMessage({ message: d?.message, error: false });
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        setOpen(true);
+      })
+      .catch((e) => {
+        setMessage({
+          message: "Something went wrong. Please try again.",
+          error: true,
+        });
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      });
+
+    if (!assessment_data) {
+      addAssessment(formData)
         .unwrap()
         .then((d) => {
-          refetch(auth?.id);
+          // refetch(auth?.id);
           setMessage({ message: d?.message, error: false });
           window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           setOpen(true);
@@ -294,38 +281,29 @@ const FreeAssessment = () => {
           window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         });
       return;
-    } else {
-      updateStudentFrom(formData)
-        .unwrap()
-        .then((d) => {
-          refetch(auth?.id);
-          setMessage({ message: d?.message, error: false });
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-          setOpen(true);
-        })
-        .catch((e) => {
-          setMessage({
-            message: "Something went wrong. Please try again.",
-            error: true,
-          });
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        });
-      return;
-
-
-
     }
+    // else {
+    //   updateStudentFrom(formData)
+    //     .unwrap()
+    //     .then((d) => {
+    //       refetch(auth?.id);
+    //       setMessage({ message: d?.message, error: false });
+    //       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    //       setOpen(true);
+    //     })
+    //     .catch((e) => {
+    //       setMessage({
+    //         message: "Something went wrong. Please try again.",
+    //         error: true,
+    //       });
+    //       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    //     });
+    //   return;
 
 
+
+    // }
   };
-
-
-
-
-
-
-
-
 
   return (
     <div>
@@ -335,12 +313,6 @@ const FreeAssessment = () => {
           <div className="w-full min-h-full">
             {/* <ProfileStepper progressRate={progressRate} /> */}
             <form onSubmit={handleSubmit}>
-
-
-              {/* <FileInput
-                selectedFile={selectedFile}
-                setSelectedFile={setSelectedFile}
-              /> */}
               <UploadFile
                 uploadedFile={uploadedFile}
                 setUploadedFile={setUploadedFile}
@@ -475,7 +447,7 @@ const FreeAssessment = () => {
 
 
 
-              <div className='bg-white px-5 py-8 m-4 shadow-lg rounded-lg mb-20'>
+              <div className='bg-white px-5 py-8 my-4 shadow-lg rounded-lg mb-20'>
                 {/* Comment Box here */}
 
                 <TextArea
