@@ -39,7 +39,6 @@ const NavModal = ({ isOpen, onClose }) => {
                             >Free Assessment
                         </button>
 
-
                         <button className=" w-full my-2 rounded-full   bg-red-600 hover:bg-green-500 text-white px-4 py-3 ">Call Back Request</button>
                         <button className="w-full my-2 rounded-full   bg-red-600 hover:bg-green-500 text-white px-4 py-3  ">Appointment Booking</button>
                         <button className=" w-full my-2 rounded-full   bg-red-600 hover:bg-green-500 text-white px-4 py-3  ">Help and support?</button>
