@@ -6,7 +6,6 @@ const UploadFile = ({
   uploadedFile,
   setUploadedFile,
 }) => {
-  //   const [uploadedFile, setUploadedFile] = useState(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     setUploadedFile(acceptedFiles[0]);
