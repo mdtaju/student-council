@@ -1,20 +1,83 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDeleteAssessmentAssignMutation } from '../../../../features/student/studentApi';
+import SnackMessage from '../../../SnackBarMessage/SnackMessage';
 
 function ProfileView({ data = {} }) {
-      const { generalInfo, contactDetails, referenceDetails, educationHistory, englishProficiency, specialTestScore, applicationDetails, immigrationHistory, jobDetails, comment, profileImage } = data;
+      const [deleteAssessmentAssign, { isLoading }] = useDeleteAssessmentAssignMutation();
+      const { assigns, generalInfo, contactDetails, referenceDetails, educationHistory, englishProficiency, specialTestScore, applicationDetails, immigrationHistory, jobDetails, comment, profileImage } = data;
 
       const { address, city, country, state, zip_code, address_type, phoneNumbers, emails, whatsappNumbers } = contactDetails || {};
+      const [open, setOpen] = useState(false);
+      const [allAssignList, setAllAssignList] = useState([]);
+      const [message, setMessage] = useState({
+            error: false,
+            message: "",
+      });
 
+      // get assigns list 
+      useEffect(() => {
+            if (assigns?.length > 0) {
+                  setAllAssignList(assigns)
+            }
+      }, [assigns])
 
+      // unassign handler 
+      const handleUnassign = (id) => {
+            deleteAssessmentAssign(id).unwrap().then(() => {
+                  setAllAssignList((prevAssign) => {
+                        return prevAssign.filter((item) => item.id !== id);
+                  })
+                  setMessage({
+                        error: false,
+                        message: "Form successfully deleted"
+                  });
+                  setOpen(true);
+            }).catch(() => {
+                  setMessage({
+                        error: true,
+                        message: "Something went wrong. Please, try again."
+                  });
+                  setOpen(true);
+            })
+      }
       return (
             <div className='mt-4 w-full bg-white rounded-md shadow-sm p-4'>
-
-                  {/* Profile Image */}
-                  <h1 className='text-lg mt-6 font-medium text-gray-800'>Profile Image</h1>
-                  <div className='mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-[500px] text-sm font-medium text-gray-800'>
-                        <img className='object-cover  h-[300px] w-[300px]' src={profileImage?.file_name} alt="" />
+                  <SnackMessage open={open} setOpen={setOpen} message={message} />
+                  {/* profile image and assign info container */}
+                  <div className='flex flex-col items-start sm:flex-row gap-4 
+                  '>
+                        {/* Profile Image */}
+                        <div>
+                              <h1 className='text-lg mt-6 font-medium text-gray-800'>Profile Image</h1>
+                              <div className='my-4 grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-[500px] text-sm font-medium text-gray-800'>
+                                    <img className='object-contain object-center  h-[300px] w-[300px]' src={profileImage?.file_url} alt="" />
+                              </div>
+                              {/* commission status */}
+                              {
+                                    allAssignList[0]?.commission &&
+                                    <span className=' text-sm font-medium'>{`Commissions of this lead for the counselors: BDT ${allAssignList[0]?.commission}`}</span>
+                              }
+                        </div>
+                        {/* assign information */}
+                        <div>
+                              <h1 className='text-lg font-medium text-gray-800'>This lead assigned to</h1>
+                              <ul className='mt-3 p-2 w-full sm:w-[300px] list-inside list-none space-y-3 border border-gray-200 rounded-sm'>
+                                    {
+                                          allAssignList?.map((item, i) => (
+                                                <li key={i} className="flex flex-wrap items-center gap-2">
+                                                      <span>{`${i + 1}. ${item.assign_to}`}</span>
+                                                      <button
+                                                            disabled={isLoading}
+                                                            onClick={() => handleUnassign(item.id)}
+                                                            className="text-xs font-medium bg-red-500 hover:bg-red-600 py-1 px-3 rounded-md text-white">
+                                                            {isLoading ? "loading..." : "Unassign"}
+                                                      </button>
+                                                </li>
+                                          ))
+                                    }
+                              </ul>
+                        </div>
                   </div>
-
 
                   {/* general info */}
                   <h1 className='text-lg mt-6 font-medium text-gray-800'>General Information</h1>
@@ -39,9 +102,6 @@ function ProfileView({ data = {} }) {
                         <span>{generalInfo?.passport_status}</span>
                   </div>
 
-
-
-
                   <div>
                         {/* Contact Details */}
                         <h1 className='text-lg mt-6  font-medium text-gray-800'>Contact Details</h1>
@@ -64,57 +124,49 @@ function ProfileView({ data = {} }) {
                               {/* Address Type */}
                               <span>Address Type</span>
                               <span>{address_type}</span>
-                             
+
                         </div>
 
                         {/* Phone Numbers */}
                         <div className='mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-[500px] text-sm font-medium text-gray-800'>
-                        <h1 className=' text-sm font-medium text-gray-800 ' >Phone Numbers:  </h1>
-                        <span className=' grid grid-cols-1 gap-2 w-96  text-sm font-medium text-gray-800'>
-                              {phoneNumbers && phoneNumbers.map((phoneNumber, index) => (
-                                    <div key={index}>
-                                          <span>Phone Number {index + 1} : </span>
-                                          <span className=''>{phoneNumber.phone_number}</span>
-                                    </div>
-                              ))}
-                        </span>
+                              <h1 className=' text-sm font-medium text-gray-800 ' >Phone Numbers:  </h1>
+                              <span className=' grid grid-cols-1 gap-2 w-96  text-sm font-medium text-gray-800'>
+                                    {phoneNumbers && phoneNumbers.map((phoneNumber, index) => (
+                                          <div key={index}>
+                                                <span>Phone Number {index + 1} : </span>
+                                                <span className=''>{phoneNumber.phone_number}</span>
+                                          </div>
+                                    ))}
+                              </span>
                         </div>
 
                         {/* Emails */}
                         <div className='mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-[500px] text-sm font-medium text-gray-800'>
-                        <h1 className=' text-sm font-medium text-gray-800 ' >Emails:  </h1>
-        
-                        <div className=' grid grid-cols-1  gap-2 w-full  text-sm font-medium text-gray-800'>
-                              {emails && emails.map((email, index) => (
-                                    <span key={index}>
-                                          <span>Email {index + 1} : </span>
-                                          <span>{email.email}</span>
-                                    </span>
-                              ))}
-                        </div>
+                              <h1 className=' text-sm font-medium text-gray-800 ' >Emails:  </h1>
+
+                              <div className=' grid grid-cols-1  gap-2 w-full  text-sm font-medium text-gray-800'>
+                                    {emails && emails.map((email, index) => (
+                                          <span key={index}>
+                                                <span>Email {index + 1} : </span>
+                                                <span>{email.email}</span>
+                                          </span>
+                                    ))}
+                              </div>
                         </div>
 
                         {/* WhatsApp Numbers */}
                         <div className='mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-[500px] text-sm font-medium text-gray-800'>
-                        <h1 className=' text-sm font-medium text-gray-800 ' >Whatsapp Numbers:  </h1>
-                        <div className=' grid grid-cols-1 gap-2 w-96 text-sm font-medium text-gray-800'>
-                              {whatsappNumbers && whatsappNumbers.map((whatsappNumber, index) => (
-                                    <div key={index}>
-                                          <span>WhatsApp Number {index + 1} : </span>
-                                          <span>{whatsappNumber.whatsapp_number}</span>
-                                    </div>
-                              ))}
-                        </div>
+                              <h1 className=' text-sm font-medium text-gray-800 ' >Whatsapp Numbers:  </h1>
+                              <div className=' grid grid-cols-1 gap-2 w-96 text-sm font-medium text-gray-800'>
+                                    {whatsappNumbers && whatsappNumbers.map((whatsappNumber, index) => (
+                                          <div key={index}>
+                                                <span>WhatsApp Number {index + 1} : </span>
+                                                <span>{whatsappNumber.whatsapp_number}</span>
+                                          </div>
+                                    ))}
+                              </div>
                         </div>
                   </div>
-
-
-
-
-
-
-
-
 
                   {/* Reference Details */}
                   <h1 className='text-lg mt-6 font-medium text-gray-800'>Reference Information</h1>
@@ -135,9 +187,6 @@ function ProfileView({ data = {} }) {
                         <span>Comment</span>
                         <span>{referenceDetails?.comment}</span>
                   </div>
-
-
-
 
                   {/* Education History */}
                   {educationHistory && educationHistory.map((edu, index) => (
@@ -162,7 +211,6 @@ function ProfileView({ data = {} }) {
                               </div>
                         </div>
                   ))}
-
 
                   {/* English Proficiency */}
                   <h1 className='text-lg mt-6  font-medium text-gray-800'>English Proficiency Information</h1>
@@ -199,10 +247,6 @@ function ProfileView({ data = {} }) {
                         <span>{englishProficiency?.other_test_details}</span>
                   </div>
 
-
-
-
-
                   {/* Special Test Score */}
                   <h1 className='text-lg font-medium mt-6 text-gray-800'>Special Test Score Information</h1>
                   <div className='mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-[500px] text-sm font-medium text-gray-800'>
@@ -218,12 +262,8 @@ function ProfileView({ data = {} }) {
                         {/* Other Details */}
                         <span>Other Details</span>
                         <span>{specialTestScore?.other_details}</span>
-                       
+
                   </div>
-
-
-
-
 
                   {/* Application Details */}
                   <h1 className='text-lg mt-6 font-medium text-gray-800'>Application Details Information</h1>
@@ -238,9 +278,6 @@ function ProfileView({ data = {} }) {
                         <span>Course Name for Apply</span>
                         <span>{applicationDetails?.course_name_for_apply}</span>
                   </div>
-
-
-
 
                   {/* Immigration History */}
                   {immigrationHistory && immigrationHistory.map((immigration, index) => (
@@ -262,9 +299,6 @@ function ProfileView({ data = {} }) {
                               </div>
                         </div>
                   ))}
-
-
-
 
                   {/* Job Details */}
                   {jobDetails && jobDetails.map((job, index) => (
@@ -289,8 +323,6 @@ function ProfileView({ data = {} }) {
                               </div>
                         </div>
                   ))}
-
-
 
                   {/* Comment */}
                   <h1 className='text-lg mt-6 font-medium text-gray-800'>Student Comment</h1>

@@ -85,6 +85,7 @@ import AddVisa from "../Components/AdminDashboard/VisaApplications/AddVisa";
 import VisaUpdate from "../Components/AdminDashboard/VisaUpdate/VisaUpdate";
 import CounsellorAppointments from "../Components/CounsellorDashboard/Appointments/Appointments";
 import ContactMessages from "../Components/CounsellorDashboard/ContactMessages.js/ContactMessages";
+import AllAssessmentCounsellor from "../Components/CounsellorDashboard/Lead/AllAssessment";
 import StudentCourseList from "../Components/CounsellorDashboard/StudentCourseList/StudentCourseList";
 import CreateAppointment from "../Components/StudentDashboard/CreateAppoinment/CreateAppointment";
 import MyAppointments from "../Components/StudentDashboard/MyAppointments/MyAppointments";
@@ -109,6 +110,8 @@ import Countries from "../Pages/VisaGallery/Countries";
 import PublicForm from "../Shared/PublicForm/PublicForm";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import CouncilPrivateRoute from "./CouncilPrivateRoute";
+import LeadPrivateRoute from "./LeadPrivateRoute";
+import RegisterPrivateRoute from "./RegisterPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
 
 export const routes = createBrowserRouter([
@@ -149,11 +152,6 @@ export const routes = createBrowserRouter([
         path: "/publicForm/:id",
         element: <PublicForm />,
       },
-
-      {
-        path: "/assessment",
-        element: <FreeAssessment />,
-      },
       {
         path: "/countries/:id",
         element: <Countries />,
@@ -161,6 +159,14 @@ export const routes = createBrowserRouter([
       {
         path: "/terms_condition",
         element: <TermsCondition />,
+      },
+      {
+        path: "/assessment",
+        element: (
+          <LeadPrivateRoute>
+            <FreeAssessment />
+          </LeadPrivateRoute>
+        ),
       },
 
       // {
@@ -231,15 +237,27 @@ export const routes = createBrowserRouter([
       // },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <RegisterPrivateRoute>
+            <Login />
+          </RegisterPrivateRoute>
+        ),
       },
       {
         path: "/resetPassword",
-        element: <ResetPassword />,
+        element: (
+          <RegisterPrivateRoute>
+            <ResetPassword />
+          </RegisterPrivateRoute>
+        ),
       },
       {
         path: "/register",
-        element: <StudentRegister />,
+        element: (
+          <RegisterPrivateRoute>
+            <StudentRegister />
+          </RegisterPrivateRoute>
+        ),
       },
       // {
       //   path: "/applyNow",
@@ -537,21 +555,6 @@ export const routes = createBrowserRouter([
       // },
     ],
   },
-  // {
-  //   path: "/events/album",
-  //   element: <EventAlbumLayout></EventAlbumLayout>,
-  //   errorElement: <ErrorPage />,
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <UkEduExpo2022></UkEduExpo2022>,
-  //     },
-  //     {
-  //       path: "ukEduExpo_2022",
-  //       element: <UkEduExpo2022></UkEduExpo2022>,
-  //     },
-  //   ],
-  // },
   {
     path: "/student-dashboard/",
     element: (
@@ -678,6 +681,10 @@ export const routes = createBrowserRouter([
       {
         path: "todaysAssignedStudent",
         element: <TodaysAssignedStudent />,
+      },
+      {
+        path: "allAssessment",
+        element: <AllAssessmentCounsellor />,
       },
       {
         path: "courseDetails/:id",

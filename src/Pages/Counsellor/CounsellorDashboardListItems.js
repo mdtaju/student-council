@@ -70,6 +70,11 @@ const CounsellorDashboardListItems = ({
                 <InsertCommentIcon className="text-" />
               </ListItemIcon>
             )}
+            {normalPath?.name === "All Assessment" && (
+              <ListItemIcon>
+                <InsertCommentIcon className="text-" />
+              </ListItemIcon>
+            )}
 
             <ListItemText primary={`${normalPath?.name}`} />
           </ListItemButton>

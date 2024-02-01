@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { BsFillFileEarmarkCheckFill } from 'react-icons/bs';
 
@@ -33,7 +33,7 @@ const UploadFile = ({
       {/* drop zone for upload file */}
       <div className="w-full h-[300px] py-10 shadow-lg bg-green-50 rounded-lg  cursor-pointer">
         <p className='-mb-10 font-bold w-full ml-8 '>Upload Your Image</p>
-       
+
 
 
         <div className='flex '>
@@ -53,21 +53,21 @@ const UploadFile = ({
 
 
 
-        
 
-<div className="w-full h-full  md:w-1/3 pb-10">
-  {uploadedFile && (
-    <div className="">
-      <p className='text-center font-bold py-1 mr-20'>Uploaded Image</p>
-      <img
-        src={URL.createObjectURL(uploadedFile)}
-        alt={`uploaded-img`}
-        className="h-[200px] object-cover w-[200px] rounded"
-        
-      />
-    </div>
-  )}
-</div>
+
+          <div className="w-full h-full  md:w-1/3 pb-10">
+            {uploadedFile && (
+              <div className="">
+                <p className='text-center font-bold py-1 mr-20'>Uploaded Image</p>
+                <img
+                  src={URL.createObjectURL(uploadedFile)}
+                  alt={`uploaded-img`}
+                  className="h-[200px] object-contain w-[200px] rounded"
+
+                />
+              </div>
+            )}
+          </div>
 
 
 

@@ -41,6 +41,9 @@ const Login = () => {
     if (result?.role === "Student") {
       navigate("/student-dashboard");
       return;
+    } else if (result?.role === "Lead") {
+      navigate("/");
+      return;
     } else if (result?.role === "Admin") {
       navigate("/dashboard");
       return;
@@ -59,7 +62,12 @@ const Login = () => {
     if (result?.status !== 200) {
       return setError(result?.message);
     }
-    navigate("/student-dashboard");
+    if (result?.role === "Student") {
+      navigate("/student-dashboard");
+      return;
+    } else {
+      navigate("/");
+    }
   };
 
   return (

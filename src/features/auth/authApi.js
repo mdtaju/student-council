@@ -17,7 +17,6 @@ export const authApi = apiSlice.injectEndpoints({
           const result = await queryFulfilled;
           // const hashRole = bcrypt.hashSync(result.data.user, salt);
           // let decoded = jwt_decode(result?.data?.accessToken);
-          console.log(result);
           localStorage.setItem(
             "auth",
             JSON.stringify({

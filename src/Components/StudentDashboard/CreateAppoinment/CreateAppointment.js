@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { useAddAppointmentMutation } from "../../../features/appointment/appointmentApi";
+import React, { useEffect, useState } from "react";
+import {
+  useAddAppointmentMutation,
+  useGetAppointmentServiceTypesQuery,
+} from "../../../features/appointment/appointmentApi";
 import useAuth from "../../../hooks/useAuth";
 import DateInput from "../../Inputs/DateInput";
 import Input from "../../Inputs/Input";
@@ -11,12 +14,14 @@ import SnackMessage from "../../SnackBarMessage/SnackMessage";
 const CreateAppointment = () => {
   const auth = useAuth();
   const [addAppointment] = useAddAppointmentMutation();
+  const { data } = useGetAppointmentServiceTypesQuery();
   const [serviceType, setServiceType] = useState("");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [appointmentDate, setAppointmentDate] = useState(null);
   const [appointmentTime, setAppointmentTime] = useState(null);
+  const [allServiceTypes, setAllServiceTypes] = useState([""]);
   const [notes, setNotes] = useState("");
 
   const [snackOpen, setSnackOpen] = useState(false);
@@ -25,13 +30,13 @@ const CreateAppointment = () => {
     error: false,
   });
 
-  const servicesTypes = [
-    "",
-    "Service One",
-    "Service Two",
-    "Service Three",
-    "Service Four",
-  ];
+  // set service types
+  useEffect(() => {
+    if (data) {
+      const servicesTypes = data.map((element) => element.service_type);
+      setAllServiceTypes(["", ...servicesTypes]);
+    }
+  }, [data]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -141,7 +146,7 @@ const CreateAppointment = () => {
             <SelectInput
               title={"Service Type"}
               isRequired
-              optionsArray={servicesTypes}
+              optionsArray={allServiceTypes}
               placeholder="Select a service"
               selectState={serviceType}
               setSelectState={setServiceType}
