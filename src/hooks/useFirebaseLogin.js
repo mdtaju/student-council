@@ -2,26 +2,25 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
+  sendEmailVerification,
   signInWithPopup,
-  sendEmailVerification
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 // import firebase from "../config/cofig.firebase";
+import { firebase } from "../config/cofig.firebase";
 import {
   useRegisterMutation,
   useUserLoginMutation,
 } from "../features/auth/authApi";
 import { userLoggedOut } from "../features/auth/authSlice";
-import { firebase } from "../config/cofig.firebase";
 const provider = new GoogleAuthProvider();
-
 
 export default function useFirebaseLogin() {
   const [register] = useRegisterMutation();
   const [userLogin] = useUserLoginMutation();
   const dispatch = useDispatch();
 
-  const auth = getAuth(firebase);
+  const authConfig = getAuth(firebase);
 
   const SignOutAccount = () => {
     dispatch(userLoggedOut());
@@ -30,11 +29,9 @@ export default function useFirebaseLogin() {
 
   const CreateNewAccount = async (email, password) => {
     let result;
-    await createUserWithEmailAndPassword(auth, email, password)
-
-   
-
+    await createUserWithEmailAndPassword(authConfig, email, password)
       .then(async (userCredential) => {
+        // Send email verification
         // Signed in
         const user = userCredential.user;
         const makingInfo = {
@@ -43,9 +40,9 @@ export default function useFirebaseLogin() {
           password,
           provider: "Email",
           isVerified: user?.emailVerified,
-          role: "Student",
+          role: "Lead",
         };
-        await register(makingInfo)
+        register(makingInfo)
           .unwrap()
           .then((data) => {
             result = {
@@ -60,35 +57,22 @@ export default function useFirebaseLogin() {
             };
           });
       })
-      
-      // Send email verification 
-
-    await sendEmailVerification(email)
-    .then(() => {
-      alert("Email verification sent! Check Email");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      result = {
-        status: errorCode,
-        message: errorMessage,
-      };
-    })
-   
-
-    
-   .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+      .catch((error) => {
         result = {
-          status: errorCode,
-          message: errorMessage,
+          status: 400,
+          message: error.code,
         };
         // ..
       });
-
-      
+    if (authConfig?.currentUser) {
+      await sendEmailVerification(authConfig.currentUser)
+        .then(() => {
+          console.log("Verification email sent");
+        })
+        .catch((error) => {
+          console.error("Error sending verification email:", error);
+        });
+    }
     return result;
   };
 
@@ -118,7 +102,7 @@ export default function useFirebaseLogin() {
 
   const SignInWithGoogle = async () => {
     let result;
-    await signInWithPopup(auth, provider)
+    await signInWithPopup(authConfig, provider)
       .then(async (data) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -132,7 +116,7 @@ export default function useFirebaseLogin() {
           email: user?.email,
           provider: "Google",
           isVerified: user?.emailVerified,
-          role: "Student",
+          role: "Lead",
         };
         await register(makingInfo)
           .unwrap()
@@ -140,7 +124,7 @@ export default function useFirebaseLogin() {
             result = {
               status: 200,
               message: "Successfully login with Goggle",
-              role: "Student",
+              role: "Lead",
             };
             // navigate("/");
           })

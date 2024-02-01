@@ -34,6 +34,22 @@ export const appointmentApi = apiSlice.injectEndpoints({
         method: "DELETE",
       }),
     }),
+    addAppointmentServiceType: builder.mutation({
+      query: (data) => ({
+        url: "/appointment_service_types",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getAppointmentServiceTypes: builder.query({
+      query: () => "/appointment_service_types",
+    }),
+    deleteAppointmentServiceType: builder.mutation({
+      query: (id) => ({
+        url: `/appointment_service_types/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -46,4 +62,7 @@ export const {
   useGetSingleAppointmentQuery,
   useGetAppointmentsForStudentQuery,
   useDeleteAppointmentMutation,
+  useAddAppointmentServiceTypeMutation,
+  useGetAppointmentServiceTypesQuery,
+  useDeleteAppointmentServiceTypeMutation,
 } = appointmentApi;

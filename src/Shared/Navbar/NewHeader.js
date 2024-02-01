@@ -177,10 +177,11 @@ const NewHeader = ({ window, show }) => {
             boxShadow: "none",
             borderBottom: "1px solid rgb(209 213 219 / 1)",
           }}
-          className={`${!show
-            ? "fixed top-0 duration-100 py-4 scroll-smooth"
-            : "lg:mt-[45px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
-            }`}>
+          className={`${
+            !show
+              ? "fixed top-0 duration-100 py-4 scroll-smooth"
+              : "lg:mt-[45px] duration-100 shadow-lg py-2 xl:py-4 scroll-smooth"
+          }`}>
           <Toolbar className="w-11/12 md:w-full mx-auto lg:w-full xl:w-11/12 lg mx-1:xl:mx-2 xl:mx-auto text-black">
             <div className="flex justify-between items-center lg:hidden w-full">
               <IconButton
@@ -235,8 +236,9 @@ const NewHeader = ({ window, show }) => {
                     onMouseLeave={() => setIsEventArrowRotated(false)}>
                     Event
                     <span
-                      className={`inline-block transition-transform transform ${isEventArrowRotated ? "rotate-180" : ""
-                        }`}>
+                      className={`inline-block transition-transform transform ${
+                        isEventArrowRotated ? "rotate-180" : ""
+                      }`}>
                       <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
@@ -271,8 +273,9 @@ const NewHeader = ({ window, show }) => {
                     onMouseLeave={() => setIsVisaArrowRotated(false)}>
                     Visa Gallery
                     <span
-                      className={`inline-block transition-transform transform ${isVisaArrowRotated ? "rotate-180" : ""
-                        }`}>
+                      className={`inline-block transition-transform transform ${
+                        isVisaArrowRotated ? "rotate-180" : ""
+                      }`}>
                       <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
@@ -313,8 +316,9 @@ const NewHeader = ({ window, show }) => {
                     onMouseLeave={() => setIsBlogOfferArrowRotated(false)}>
                     Blog & Offer
                     <span
-                      className={`inline-block transition-transform transform ${isBlogOfferArrowRotated ? "rotate-180" : ""
-                        }`}>
+                      className={`inline-block transition-transform transform ${
+                        isBlogOfferArrowRotated ? "rotate-180" : ""
+                      }`}>
                       <KeyboardArrowDownIcon style={{ fontSize: "20px" }} />
                     </span>
                   </NavLink>
@@ -346,8 +350,6 @@ const NewHeader = ({ window, show }) => {
                     </NavLink>
                   </div>
                 </div>
-
-
 
                 {auth?.user === "Admin" && (
                   <NavLink
@@ -382,24 +384,22 @@ const NewHeader = ({ window, show }) => {
                   </NavLink>
                 )}
 
-
                 {/* Apply button and modal */}
                 <div className="group relative inline-block">
-                  {auth?.user === "Student" && (
+                  {auth?.user === "Lead" && (
                     <div>
                       <NavLink
                         onClick={openModal}
                         to={""}
-                        className={"text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full    bg-primary "}
-                      >
+                        className={
+                          "text-center mx-1 xl:mx-2 xl:mr-2 px-4  xl:px-[25px] py-[8px] xl:font-semibold text-white rounded-full    bg-primary "
+                        }>
                         Apply
                       </NavLink>
                       <NavModal isOpen={isModalOpen} onClose={closeModal} />
                     </div>
                   )}
                 </div>
-
-
 
                 {auth?.accessToken ? (
                   <>
@@ -414,7 +414,6 @@ const NewHeader = ({ window, show }) => {
                   </>
                 ) : (
                   <>
-
                     <NavLink
                       to={"/login"}
                       className={
@@ -425,11 +424,10 @@ const NewHeader = ({ window, show }) => {
                   </>
                 )}
 
-
                 <div className="group relative inline-block">
-                  {
-                    auth?.user ? " " :
-
+                  {auth?.user ? (
+                    " "
+                  ) : (
                     <NavLink
                       to={"/register"}
                       className={
@@ -437,11 +435,8 @@ const NewHeader = ({ window, show }) => {
                       }>
                       Sign Up
                     </NavLink>
-
-                
-                  }
+                  )}
                 </div>
-
               </nav>
             </Box>
           </Toolbar>

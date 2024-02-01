@@ -6,6 +6,7 @@ exports.counsellorNormalPathname = [
   { path: "todaysAssignedStudent", name: "Active Appointments" },
   { path: "contactMessages", name: "Contact Messages" },
   { path: "studentCourseList", name: "Student Course List" },
+  { path: "allAssessment", name: "All Assessment" },
 ];
 
 exports.assignedStudentPath = [

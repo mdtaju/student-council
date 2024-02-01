@@ -22,13 +22,6 @@ export const studentApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    addStudentAssessment: builder.mutation({
-      query: (data) => ({
-        url: "/assessment",
-        method: "POST",
-        body: data,
-      }),
-    }),
     addContactMessage: builder.mutation({
       query: (data) => ({
         url: "/contact",
@@ -169,6 +162,13 @@ export const studentApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    deleteAssessment: builder.mutation({
+      query: (data) => ({
+        url: "/assessment",
+        method: "DELETE",
+        body: data,
+      }),
+    }),
     getSingleAssessment: builder.query({
       query: (id) => `/assessment/${id}`,
     }),
@@ -178,6 +178,33 @@ export const studentApi = apiSlice.injectEndpoints({
     addAssessmentTags: builder.mutation({
       query: (data) => ({
         url: "/assessment_tags",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    addAssessmentLeadStatus: builder.mutation({
+      query: (data) => ({
+        url: "/assessment_change_to_client",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    addAssessmentAssign: builder.mutation({
+      query: (data) => ({
+        url: "/assessment_assign",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    deleteAssessmentAssign: builder.mutation({
+      query: (id) => ({
+        url: `/assessment_assign/${id}`,
+        method: "DELETE",
+      }),
+    }),
+    addCommission: builder.mutation({
+      query: (data) => ({
+        url: "/assessment_commission",
         method: "POST",
         body: data,
       }),
@@ -216,9 +243,13 @@ export const {
   useAddFormAnsMutation,
   useGetAllFormAnsQuery,
   useGetSingleFormAnsMutation,
-  useAddStudentAssessmentMutation,
   useAddAssessmentMutation,
   useGetSingleAssessmentQuery,
   useGetAllAssessmentQuery,
   useAddAssessmentTagsMutation,
+  useAddAssessmentLeadStatusMutation,
+  useDeleteAssessmentMutation,
+  useAddAssessmentAssignMutation,
+  useDeleteAssessmentAssignMutation,
+  useAddCommissionMutation,
 } = studentApi;

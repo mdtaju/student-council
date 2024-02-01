@@ -13,6 +13,8 @@ export default function useAuth() {
       role = "Admin";
     } else if (decoded?.role === "Counsellor_Admin") {
       role = "Counsellor_Admin";
+    } else if (decoded?.role === "Lead") {
+      role = "Lead";
     } else {
       role = "Public";
     }

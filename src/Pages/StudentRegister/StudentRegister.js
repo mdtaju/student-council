@@ -5,15 +5,15 @@ import Lottie from "react-lottie";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 import lottieAnimation from "../../assets/lotties/student.json";
-import useFirebaseLogin from "../../hooks/useFirebaseLogin";
-import { getAuth, sendEmailVerification } from "firebase/auth";
 import useAuth from "../../hooks/useAuth";
+import useFirebaseLogin from "../../hooks/useFirebaseLogin";
+
 const StudentRegister = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { SignInWithGoogle, CreateNewAccount } = useFirebaseLogin();
   const [error, setError] = useState("");
-const auth = useAuth()
+  const auth = useAuth();
   const navigate = useNavigate();
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
@@ -37,12 +37,10 @@ const auth = useAuth()
     e.preventDefault();
     const result = await CreateNewAccount(email, password);
 
-    
- 
     if (result?.status !== 200) {
       return setError(result?.message);
     }
-    navigate("/student-dashboard");
+    navigate("/");
   };
 
   // google login popup
@@ -52,7 +50,7 @@ const auth = useAuth()
     if (result?.status !== 200) {
       return setError(result?.message);
     }
-    navigate("/student-dashboard");
+    navigate("/");
   };
 
   return (
